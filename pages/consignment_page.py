@@ -137,5 +137,5 @@ class ConsignmentPage(BasePage):
     def accept_offer(self):
         self.click(self._offer_details)
         sleep(2)
-        self.click(self._accept_offer_button)
+        self.condition_click(self._accept_offer_button)
         self.click(self._accept_offer_button2)
