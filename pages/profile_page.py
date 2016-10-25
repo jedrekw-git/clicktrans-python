@@ -203,7 +203,7 @@ class ProfilePage(BasePage):
         self.click(self._withdraw_consignment_submit)
 
     def open_first_auction(self):
-        self.click(self._my_consignments_menu)
+        self.condition_click(self._my_consignments_menu)
         self.click(self._first_consignment_enter)
         return ConsignmentPage(self.get_driver())
 
@@ -323,7 +323,7 @@ class ProfilePage(BasePage):
         self.click(self._random_notification_period_radio)
         self.click(self._notification_category_custom_radio)
         self.click(self._notification_category_dropdown)
-        self.click(self._random_notification_category)
+        self.condition_click(self._random_notification_category)
         self.click(self._notifications_countries_custom_radio)
         self.click(self._notifications_countries_custom_dropdown)
         self.click(self._random_notifications_countries_custom_button)

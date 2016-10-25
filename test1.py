@@ -374,7 +374,7 @@ class SmokeTest(unittest.TestCase):
         profile_page.edit_provider_company_data()
 
         Assert.contains(u"Zmiany zostały zapisane.", profile_page.get_page_source())
-        Assert.contains(u"Dane na Twoim koncie oczekują na sprawdzenie przez pracownika Clicktrans2.pl. Do weryfikacji danych może być potrzebne nadesłanie dokumentów potwierdzających. Powiadomimy Cię o tym e-mailem.", profile_page.get_page_source())
+        Assert.contains(u"Dane na Twoim koncie oczekują na sprawdzenie przez pracownika Clicktrans.pl. Do weryfikacji danych może być potrzebne nadesłanie dokumentów potwierdzających. Powiadomimy Cię o tym e-mailem.", profile_page.get_page_source())
 
     def test_edit_provider_notifications_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
