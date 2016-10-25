@@ -255,7 +255,6 @@ class SmokeTest(unittest.TestCase):
         add_consignment_page.add_consignment_parcel()
         view_consignment_page = home_page.header.view_consignments_page()
         view_consignment_page.check_categories()
-        sleep(10)
         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(view_consignment_page._first_result_posting_province, "mazowieckie"))
         view_consignment_page.click_first_result()
         Assert.contains('Paczki', view_consignment_page.get_page_source())

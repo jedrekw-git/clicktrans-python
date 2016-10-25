@@ -48,10 +48,11 @@ class ViewConsignmentsPage(BasePage):
         self.send_keys("a", self._province_field)
         self.send_keys("z", self._province_field)
         self.send_keys("o", self._province_field)
+        sleep(1)
         self.send_keys("w", self._province_field)
         sleep(2)
         # self.send_keys('\b', self._province_field)
-        self.condition_click(self._province_dropdown_first_result)
+        # self.condition_click(self._province_dropdown_first_result)
         self.click(self._province_posting_in_selected_region_checkbox)
         self.click(self._auction_search_button)
 

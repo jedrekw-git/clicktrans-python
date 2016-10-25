@@ -218,7 +218,6 @@ class AddConsignmentPage(BasePage):
         # self.clear_field_and_send_keys("200", self._budget)
         self.clear_field_and_send_keys("This is my additional info", self._additional_info)
         self.click(self._submit_consignment_button)
-        sleep(10)
 
     def set_highlited(self):
         self.check(self._highlited_checkbox)
