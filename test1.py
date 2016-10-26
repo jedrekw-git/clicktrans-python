@@ -1142,7 +1142,7 @@ class SmokeTest(unittest.TestCase):
                           To=["sergii.demianchuk@Clicktrans.pl", "michal.brzezinski@Clicktrans.pl"])
         message.Subject = "Raport Clicktrans3 Testy Automatyczne Jenkins"
         message.Html = """<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p>Cześć!<br>
-           Oto wygenerowany automatycznie raport z testów dev.clicktrans.pl/<br><br>
+           Oto wygenerowany automatycznie raport z testów Clicktrans 3<br><br>
            Tabela raportowa z logami wykonanych testów, a pod nią linki do screenshotów i kodu html testów które nie przeszły oraz wykres statystyczny:  <a href="http://ci.testuj.pl/job/Clicktrans3/ws/Clicktrans3ReportLogi.html">Tabela z logami, screenshoty i wykres</a></p>"""
 
         sender = Mailer('smtp.gmail.com', use_tls=True, usr='jedrzej.wojcieszczyk@testuj.pl', pwd='paluch88')
