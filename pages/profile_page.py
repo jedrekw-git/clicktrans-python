@@ -57,8 +57,10 @@ class ProfilePage(BasePage):
     _random_notification_period_radio = (By.XPATH, "//div[%s]/div/label"%randint(2,6))
     _notification_category_custom_radio = (By.XPATH, "//div[2]/div/div/div/label")
     _notification_category_dropdown = (By.XPATH, "//div/div/div[2]/div[2]/div/div")
+    _remove_first_notification_category_button = (By.XPATH, "//div[2]/div/div/a/i")
     _random_notification_category = (By.XPATH, "//div[2]/div[%s]"%randint(3,9))
     _notifications_countries_custom_radio = (By.XPATH, "//div[3]/div/div/div/label")
+    _remove_first_country_button = (By.XPATH, "//div[3]/div[2]/div/div/a/i")
     _notifications_countries_custom_dropdown = (By.XPATH, "//div[3]/div[2]/div/div")
     _random_notifications_countries_custom_button = (By.XPATH, "//div[%s]"%randint(12,234))
     _save_notifications_button = (By.XPATH, "//button")
@@ -86,7 +88,7 @@ class ProfilePage(BasePage):
     _provider_send_commentary_submit_button = (By.XPATH, "(//input[@value='OK'])[3]")
     _first_consignment_edit = (By.XPATH, "/html/body/div[8]/div[5]/div[2]/div[2]/table/tbody/tr[1]/td[5]/div/div[2]/a")
     _first_consignment_withdraw = (By.XPATH, "//div[3]/a")
-    _random_withdraw_cause = (By.XPATH, "//div[%s]/div/label"%randint(2,6))
+    _random_withdraw_cause = (By.XPATH, "//div[%s]/div/label"%randint(2,5))
     _withdraw_consignment_submit = (By.ID, "RejectAuction_reject")
     _first_consignment_enter = (By.XPATH, "//td/a")
     _withdraw_first_offer = (By.XPATH, "//div[3]/a")
@@ -94,13 +96,13 @@ class ProfilePage(BasePage):
     _unactual_tab = (By.PARTIAL_LINK_TEXT, u"Nieaktualne")
     _my_offers_menu = (By.PARTIAL_LINK_TEXT, "Moje oferty")
     _first_consignment_issue_again = (By.XPATH, "//td[4]/div/div[2]/a")
-    _accepted_tab = (By.XPATH, "(//a[contains(text(),'Zaakceptowane')])[2]")
-    _my_offers_send_commentary_button = (By.LINK_TEXT, "Wystaw komentarz")
-    _my_offers_commentary_content = (By.XPATH, "//textarea[@id='content_mess']")
-    _my_offers_commentary_submit_button = (By.XPATH, "(//input[@value='OK'])[2]")
-    _set_executed_link = (By.XPATH, "//a[contains(text(),'ustaw »')]")
-    _set_executed_submit = (By.XPATH, "//a[contains(text(),'Ustaw jako ZREALIZOWANA')]")
-    _set_executed_submit_yes = (By.LINK_TEXT, "Tak")
+    _accepted_tab = (By.PARTIAL_LINK_TEXT, "Zaakceptowane")
+    _my_offers_send_commentary_button = (By.PARTIAL_LINK_TEXT, u"Wystaw komentarz")
+    _my_offers_commentary_content = (By.ID, "user_opinion_content")
+    _my_offers_commentary_submit_button = (By.XPATH, "//div[3]/div[2]")
+    _random_commentary_type_button = (By.XPATH, "//form/div/div/div[2]/div[%s]"%randint(1,3))
+    _set_executed_link = (By.PARTIAL_LINK_TEXT, "Ustaw jako ZREALIZOWANA")
+    _set_executed_submit = (By.XPATH, "//div[2]/div/div[2]/a")
     _commission_payback_tab = (By.PARTIAL_LINK_TEXT, u"Zwroty prowizji")
     _commission_payback_request_link = (By.XPATH, "//td[6]/div/div[2]/a")
     _commission_reason_field = (By.ID, "AddRefund_descriptionCompany")
@@ -153,15 +155,15 @@ class ProfilePage(BasePage):
     _company_creation_year_field = (By.ID, "company_profile_establishedYear")
     _company_creation_year_value = randint(1988, 2015)
     _save_changes = (By.ID, "company_profile_submit")
-    _user_messages_menu = (By.XPATH, "/html/body/div[1]/div[3]/div[4]/div[1]/div/ul/li[2]/a")
-    _user_first_message = (By.XPATH, "/html/body/div[1]/div[3]/div[4]/div[3]/div[1]/div[2]/div[1]/table/tbody/tr[2]/td[2]/a")
+    _user_messages_menu = (By.XPATH, "//a[2]/h4")
+    _user_first_message = (By.XPATH, "//td[2]/a")
     _user_first_link_reply_to_question = (By.XPATH, "/html/body/div[1]/div[3]/div[4]/div[3]/div[1]/div[2]/div[1]/table/tbody/tr[2]/td[5]/a")
-    _provider_data_saved_name = (By.XPATH, "//li[2]/strong")
-    _provider_data_saved_tel = (By.XPATH, "//div[4]/input")
-    _provider_data_saved_kom = (By.XPATH, "//li[2]/strong")
-    _provider_data_saved_mail = (By.XPATH, "//li[3]/strong")
-    _provider_data_saved_www = (By.XPATH, "//li[7]/strong")
-    _provider_data_saved_address = (By.XPATH, "//li[9]/strong")
+    _provider_data_saved_name = (By.XPATH, "//td[2]")
+    _provider_data_saved_tel = (By.XPATH, "//tr[3]/td[2]")
+    _provider_data_saved_kom = (By.ID, "user_edit_phone")
+    _provider_data_saved_mail = (By.XPATH, "//tr[2]/td[2]")
+    _provider_data_saved_www = (By.XPATH, "//tr[5]/td[2]")
+    _provider_data_saved_address = (By.XPATH, "//tr[4]/td[2]")
     _ask_for_offers_button = (By.XPATH, "//a[2]")
     _first_offer = (By.XPATH, "//div[@id='recommendedusers']/div/table/tbody/tr[2]/td[7]/input")
     _first_consignment_distinguish_button = (By.XPATH, "//td[5]/a")
@@ -171,7 +173,7 @@ class ProfilePage(BasePage):
     _submit_distinguish_consignment = (By.ID, "add_auction_button")
     # _provider_my_consignments_menu = (By.XPATH, "//div[6]/div/div/ul/li[4]/a")
     _provider_my_consignments_menu = (By.PARTIAL_LINK_TEXT, u"Moje przesyłki")
-    _executed_result_field = (By.XPATH, "//div[5]/div[3]/div/div[2]")
+    _executed_result_field = (By.XPATH, "/html/body/div[7]/div")
 
     def __init__(self, driver):
         super(ProfilePage, self).__init__(driver, self._title)
@@ -322,9 +324,19 @@ class ProfilePage(BasePage):
         self.click(self._notification_settings_tab)
         self.click(self._random_notification_period_radio)
         self.click(self._notification_category_custom_radio)
+        while True:
+            try:
+                self.click(self._remove_first_notification_category_button, "remove first notification category button is not clickable", 2)
+            except TimeoutException:
+                break
         self.click(self._notification_category_dropdown)
         self.condition_click(self._random_notification_category)
         self.click(self._notifications_countries_custom_radio)
+        while True:
+            try:
+                self.click(self._remove_first_country_button, "remove first country button is not clickable", 2)
+            except TimeoutException:
+                break
         self.click(self._notifications_countries_custom_dropdown)
         self.click(self._random_notifications_countries_custom_button)
         self.click(self._save_notifications_button)
@@ -360,14 +372,11 @@ class ProfilePage(BasePage):
         self.click(self._set_executed_link)
         self.click(self._set_executed_submit)
 
-    def make_offer_executed_submit_yes(self):
-        sleep(1)
-        self.click(self._set_executed_submit_yes)
-
     def provider_send_commentary_from_my_offers_menu(self):
         self.click(self._my_offers_menu)
         self.click(self._accepted_tab)
         self.click(self._my_offers_send_commentary_button)
+        self.click(self._random_commentary_type_button)
         self.clear_field_and_send_keys("This is my commentary", self._my_offers_commentary_content)
         self.click(self._my_offers_commentary_submit_button)
 
@@ -410,11 +419,17 @@ class ProfilePage(BasePage):
         self.name1 = self.get_text(self._provider_data_saved_name)
         self.tel = self.get_text(self._provider_data_saved_tel)
         self.mail = self.get_text(self._provider_data_saved_mail)
+        # self.kom = self.get_text(self._provider_data_saved_kom)
         self.click(self._company_data_tab)
-        self.kom = self.get_text(self._provider_data_saved_kom)
+        self.www = self.get_text(self._provider_data_saved_www)
         self.address = self.get_text(self._provider_data_saved_address)
         self.address_without_html = re.sub("<.*?>", "", self.address)
         self.address_table = self.address_without_html.splitlines()
+        print self.address
+        print self.address_without_html
+        print self.address_table[0]
+        print self.address_table[1]
+        print self.address_table[2]
 
     def ask_for_offer_for_added_consignment(self):
         self.click(self._my_consignments_menu)

@@ -42,17 +42,17 @@ class ConsignmentPage(BasePage):
     _expiration_date = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-"+str(datetime.date.today().day)+" 12:30"
     _watch_consignment_link = (By.PARTIAL_LINK_TEXT, u"Obserwuj ogłoszenie")
     _offer_details = (By.XPATH, "//td[6]")
-    _reject_offer_button = (By.XPATH, "//div[2]/div[2]/div/div/a")
-    # _reject_offer_confirm = (By.LINK_TEXT, "Odrzuć ofertę")
-    _reject_offer_confirm = (By.XPATH, "//div[2]/div/div/form/input")
+    _reject_offer_button = (By.PARTIAL_LINK_TEXT, u"Odrzuć ofertę")
+    _reject_offer_random_reason = (By.XPATH, "//div/div/div/div[%s]/div/label"%randint(1,6))
+    _reject_offer_confirm = (By.ID, "RejectOffer_reject")
     _add_question_button = (By.PARTIAL_LINK_TEXT, u"Wyślij wiadomość")
     _question_content = (By.ID, "AddOfferMessage_message")
     _add_question_confirm = (By.ID, "AddOfferMessage_send")
     _add_question_to_consignment_button = (By.ID, "ask-question")
     _consignment_question_content = (By.ID, "AddAuctionMessage_message")
     _consignment_question_confirm = (By.ID, "AddAuctionMessage_send")
-    _consignment_question_reply_content = (By.NAME, "content")
-    _consignment_question_reply_confirm = (By.XPATH, "//input[@value='Odpowiedz']")
+    _consignment_question_reply_content = (By.ID, "AddAuctionMessage_message")
+    _consignment_question_reply_confirm = (By.ID, "AddAuctionMessage_send")
     _accept_offer_button = (By.XPATH, "//div[2]/div/div[2]/a")
     _accept_offer_button2 = (By.LINK_TEXT, u"Akceptuję ofertę")
 
@@ -139,3 +139,6 @@ class ConsignmentPage(BasePage):
         sleep(2)
         self.condition_click(self._accept_offer_button)
         self.click(self._accept_offer_button2)
+
+    def show_offer_details(self):
+        self.click(self._offer_details)
