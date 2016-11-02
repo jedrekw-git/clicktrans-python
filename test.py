@@ -583,7 +583,7 @@ class SmokeTest(unittest.TestCase):
         profile.provider_send_commentary_from_my_offers_menu()
 
         Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
-    #
+
     # def test_reply_to_question_to_consignment_from_panel_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()
     #     user = home_page.header.login(USER, PASSWORD)
@@ -605,7 +605,7 @@ class SmokeTest(unittest.TestCase):
     #
     #     Assert.contains(u"Twoja odpowiedź została dodana.", profile.get_page_source())
     #     Assert.contains(u"This is my reply", profile.get_page_source())
-    #
+
     # def test_user_send_commentary_from_ended_transactions_menu_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()
     #     user = home_page.header.login(USER, PASSWORD)

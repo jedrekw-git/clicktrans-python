@@ -9,13 +9,13 @@ USER = "testujpl2o2"
 PASSWORD = "testuj88"
 
 PROVIDER_USER = "damian-wiklina"
-PROVIDER_PASSWORD = "TestujPL1"
+PROVIDER_PASSWORD = "testuj88"
 
-PROVIDER_USER2 = "sprinterem-odreki"
-PROVIDER_PASSWORD2 = "TestoojemyClick"
+PROVIDER_USER3 = "sprinterem-odreki"
+PROVIDER_PASSWORD3 = "TestoojemyClick"
 
-PROVIDER_USER3 = "BRUM-BRUM86"
-PROVIDER_PASSWORD3 = "TestujPL1"
+PROVIDER_USER2 = "BRUM-BRUM86"
+PROVIDER_PASSWORD2 = "testuj88"
 
 CHANGE_PASSWORD_USER = "testujpltlen"
 
