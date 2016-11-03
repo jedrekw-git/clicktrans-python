@@ -33,13 +33,16 @@ class ConsignmentPage(BasePage):
     _month = (By.LINK_TEXT, str(datetime.date.today().month))
     _date_from_field = (By.ID, "AddOffer_pickUpDateStart")
     _date_from = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-"+str(datetime.date.today().day)
+    _date_from_first_10_days = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-0"+str(datetime.date.today().day)
     _date_to_field = (By.ID, "AddOffer_pickUpDateEnd")
     _date_to = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-"+str(datetime.date.today().day)
+    _date_to_first_10_days = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-0"+str(datetime.date.today().day)
     _date_to_next_month = str(datetime.date.today().year)+"-"+str(datetime.date.today().month+1)+"-01"
     _transport_period = (By.ID, "AddOffer_transportDuration")
     _submit_offer_confirm = (By.ID, "AddOffer_save")
     _expiration_date_field = (By.ID, "AddOffer_endDate")
     _expiration_date = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-"+str(datetime.date.today().day)+" 12:30"
+    _expiration_date_first_10_days = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-0"+str(datetime.date.today().day)+" 12:30"
     _watch_consignment_link = (By.PARTIAL_LINK_TEXT, u"Obserwuj ogłoszenie")
     _offer_details = (By.XPATH, "//td[6]")
     _reject_offer_button = (By.PARTIAL_LINK_TEXT, u"Odrzuć ofertę")
@@ -87,9 +90,17 @@ class ConsignmentPage(BasePage):
         self.click(self._transport_kind_dropdown)
         self.click(self._random_transport_kind_button)
         self.clear_field_and_send_keys(self._description_value, self._description_field)
-        self.clear_field_and_send_keys(self._expiration_date, self._expiration_date_field)
-        self.clear_field_and_send_keys(self._date_from, self._date_from_field)
-        if str(datetime.date.today().day) == 29:
+        if str(datetime.date.today().day) == 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9:
+            self.clear_field_and_send_keys(self._expiration_date_first_10_days, self._expiration_date_field)
+        else:
+            self.clear_field_and_send_keys(self._expiration_date, self._expiration_date_field)
+        if str(datetime.date.today().day) == 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9:
+            self.clear_field_and_send_keys(self._date_from_first_10_days, self._date_from_field)
+        else:
+            self.clear_field_and_send_keys(self._date_from, self._date_from_field)
+        if str(datetime.date.today().day) == 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9:
+            self.clear_field_and_send_keys(self._date_to_first_10_days, self._date_to_field)
+        elif str(datetime.date.today().day) == 29:
             self.clear_field_and_send_keys(self._date_to_next_month, self._date_to_field)
         elif str(datetime.date.today().day) == 30:
             self.clear_field_and_send_keys(self._date_to_next_month, self._date_to_field)

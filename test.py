@@ -437,7 +437,7 @@ class SmokeTest(unittest.TestCase):
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.add_question_to_offer()
-        sleep(2)
+        sleep(22)
         consignment.show_offer_details()
 
         Assert.contains(u"Twoja wiadomość została dodana.", consignment.get_page_source())
