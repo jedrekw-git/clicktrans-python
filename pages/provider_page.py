@@ -9,14 +9,12 @@ from utils.utils import *
 
 class ProviderPage(BasePage):
     _title = "Provider page"
-    _ask_for_offer_button = (By.LINK_TEXT, "Poproś o ofertę")
-    _first_aucton_checkbox = (By.XPATH, "//tr[3]/td/input")
-    _close_cookies_bar = (By.ID, "cookiesBarClose")
-    _ask_for_offer_submit_button = (By.XPATH, "//input[@value='Poproś o ofertę']")
+    _ask_for_offer_button = (By.PARTIAL_LINK_TEXT, u"Poproś o ofertę")
+    _first_aucton_checkbox = (By.XPATH, "//input[@name='offer_request[auctionIds][]']")
+    _ask_for_offer_submit_button = (By.ID, "offer_request_submit")
 
     def ask_for_offer_on_provider_page(self):
-        # self.click(self._close_cookies_bar)
         self.click(self._ask_for_offer_button)
-        self.check(self._first_aucton_checkbox)
+        self.condition_click(self._first_aucton_checkbox)
         self.click(self._ask_for_offer_submit_button)
 

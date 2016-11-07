@@ -55,8 +55,8 @@ class HeaderRegion(Page):
         self.get(self._base_url + "my-account")
         return ProfilePage(self.get_driver())
 
-    def view_provider_JLMTranspol_page(self):
-        self.get(self._base_url + "firmy-transportowe/JLMTranspol.html")
+    def view_provider_damian_wiklina_page(self):
+        self.get(self._base_url + "firmy-transportowe/damian-wiklina")
         return ProviderPage(self.get_driver())
 
     def continue_to_registration_page(self):

@@ -41,8 +41,8 @@ class ConsignmentPage(BasePage):
     _transport_period = (By.ID, "AddOffer_transportDuration")
     _submit_offer_confirm = (By.ID, "AddOffer_save")
     _expiration_date_field = (By.ID, "AddOffer_endDate")
-    _expiration_date = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-"+str(datetime.date.today().day)+" 12:30"
-    _expiration_date_first_10_days = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-0"+str(datetime.date.today().day)+" 12:30"
+    _expiration_date = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-"+str(datetime.date.today().day)+" 23:59"
+    _expiration_date_first_10_days = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-0"+str(datetime.date.today().day)+" 23:59"
     _watch_consignment_link = (By.PARTIAL_LINK_TEXT, u"Obserwuj ogłoszenie")
     _offer_details = (By.XPATH, "//td[6]")
     _reject_offer_button = (By.PARTIAL_LINK_TEXT, u"Odrzuć ofertę")
@@ -88,7 +88,7 @@ class ConsignmentPage(BasePage):
         self.send_keys("111", self._price)
         self.send_keys("22", self._minimum_price)
         self.click(self._transport_kind_dropdown)
-        self.click(self._random_transport_kind_button)
+        self.condition_click(self._random_transport_kind_button)
         self.clear_field_and_send_keys(self._description_value, self._description_field)
         if str(datetime.date.today().day) == 1 or 2 or 3 or 4 or 5 or 6 or 7 or 8 or 9:
             self.clear_field_and_send_keys(self._expiration_date_first_10_days, self._expiration_date_field)
