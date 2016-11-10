@@ -529,17 +529,14 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u"Imi\u0119 i nazwisko:</b> "+store.name1, consignment.get_page_source())
         Assert.contains(u"tel.:</b> "+store.tel, consignment.get_page_source())
         Assert.contains(u"e-mail:</b> "+store.mail, consignment.get_page_source())
-        # Assert.contains(store.www, consignment.get_page_source())
-        # Assert.contains(store.address_table[0], consignment.get_page_source())
+        Assert.contains(store.www, consignment.get_page_source())
+        Assert.contains(store.address_table_0_splitted[0]+"  "+store.address_table_0_splitted[1], consignment.get_page_source())
         Assert.contains(store.address_table[1], consignment.get_page_source())
         Assert.contains(store.address_table[2], consignment.get_page_source())
         Assert.contains(u"Pobierz list przewozowy, który będzie potwierdzeniem nadania Twojej przesyłki", consignment.get_page_source())
         Assert.contains(u"(Ogłoszenie nieaktualne. Użytkownik wybrał już ofertę)", consignment.get_page_source())
 
-#  PROVIDER WWW ISN'T SHOWN AFTER ACCEPTING OFFER, zgłoszone
-#  PROVIDER ADDRESS TABLE[0] IS SHOWN WITH 2 SPACES, zgłoszone
-
-
+#  PROVIDER ADDRESS TABLE[0] IS SHOWN WITH 2 SPACES, zgłoszone, ale poprawione splittem
 
     def test_make_offer_executed_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -627,7 +624,7 @@ class SmokeTest(unittest.TestCase):
         profile.user_send_commentary_from_ended_transactions_menu()
 
         Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
-
+#
 #     def test_user_send_commentary_from_commentaries_menu_should_succeed(self):
 #         home_page = HomePage(self.driver).open_home_page()
 #         user = home_page.header.login(USER, PASSWORD)
@@ -725,17 +722,17 @@ class SmokeTest(unittest.TestCase):
 #         sleep(2)
 #
 #         Assert.contains(u"Prośba wysłana", add_consignment_page.get_page_source())
+#
+#     def test_ask_for_offer_for_added_consignment_should_succeed(self):
+#         home_page = HomePage(self.driver).open_home_page()
+#         user = home_page.header.login(USER, PASSWORD)
+#         add_consignment_page = home_page.header.add_consignment_page()
+#         add_consignment_page.new_furniture_consignment()
+#         profile = home_page.header.open_profile_page()
+#         profile.ask_for_offer_for_added_consignment()
+#         sleep(4)
+#         Assert.contains(u"Prośba wysłana", profile.get_page_source())
 
-    # def test_ask_for_offer_for_added_consignment_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     user = home_page.header.login(USER, PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.new_furniture_consignment()
-    #     profile = home_page.header.open_profile_page()
-    #     profile.ask_for_offer_for_added_consignment()
-    #     sleep(4)
-    #     Assert.contains(u"Prośba wysłana", profile.get_page_source())
-    #
     # def test_user_add_new_consignment_urgent_and_highlited_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()
     #     account_page = home_page.header.login(USER, PASSWORD)

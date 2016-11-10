@@ -439,6 +439,7 @@ class ProfilePage(BasePage):
         self.address = self.get_text(self._provider_data_saved_address)
         self.address_without_html = re.sub("<.*?>", "", self.address)
         self.address_table = self.address_without_html.splitlines()
+        self.address_table_0_splitted = re.findall(r'\S+', self.address_table[0])
 
     def ask_for_offer_for_added_consignment(self):
         self.click(self._my_consignments_menu)
