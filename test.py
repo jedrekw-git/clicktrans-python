@@ -725,16 +725,16 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Prośba wysłana", add_consignment_page.get_page_source())
 
-    # def test_ask_for_offer_for_added_consignment_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     user = home_page.header.login(USER, PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.new_furniture_consignment()
-    #     profile = home_page.header.open_profile_page()
-    #     profile.ask_for_offer_for_added_consignment()
-    #     sleep(4)
-    #     Assert.contains(u"Prośba wysłana", profile.get_page_source())
-    #
+    def test_ask_for_offer_for_added_consignment_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        user = home_page.header.login(USER, PASSWORD)
+        add_consignment_page = home_page.header.add_consignment_page()
+        add_consignment_page.new_furniture_consignment()
+        profile = home_page.header.open_profile_page()
+        profile.ask_for_offer_for_added_consignment()
+        sleep(4)
+        Assert.contains(u"Prośba wysłana", profile.get_page_source())
+
     # def test_user_add_new_consignment_urgent_and_highlited_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()
     #     account_page = home_page.header.login(USER, PASSWORD)

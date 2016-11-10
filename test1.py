@@ -628,103 +628,103 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
 
-    def test_user_send_commentary_from_commentaries_menu_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        user = home_page.header.login(USER, PASSWORD)
-        add_consignment_page = home_page.header.add_consignment_page()
-        add_consignment_page.new_furniture_consignment()
-        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-        view_consignments_page = home_page.header.view_consignments_page()
-        view_consignments_page.search_for_added_consignment()
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
-        submit_offer = view_consignments_page.open_added_consignment()
-        submit_offer.submit_offer()
-        submit_offer.confirm_submit_offer()
-        user = home_page.header.login(USER, PASSWORD)
-        profile = home_page.header.open_profile_page()
-        consignment = profile.open_first_auction()
-        consignment.accept_offer()
-        profile = home_page.header.open_profile_page()
-        profile.user_send_commentary_from_commentaries_menu()
-
-        Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
-
-    def test_provider_reply_to_negative_commentary_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        user = home_page.header.login(USER, PASSWORD)
-        add_consignment_page = home_page.header.add_consignment_page()
-        add_consignment_page.new_furniture_consignment()
-        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-        view_consignments_page = home_page.header.view_consignments_page()
-        view_consignments_page.search_for_added_consignment()
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
-        submit_offer = view_consignments_page.open_added_consignment()
-        submit_offer.submit_offer()
-        submit_offer.confirm_submit_offer()
-        user = home_page.header.login(USER, PASSWORD)
-        profile = home_page.header.open_profile_page()
-        consignment = profile.open_first_auction()
-        consignment.accept_offer()
-        profile = home_page.header.open_profile_page()
-        profile.user_send_negative_commentary()
-        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-        profile = home_page.header.open_profile_page()
-        profile.provider_reply_to_negative_commentary()
-
-        Assert.contains(u"This is my negative commentary", profile.get_page_source())
-        Assert.contains(u"This is my reply", profile.get_page_source())
-
-# There's no possibility to reply to negative commentary as provider, zgłoszone
-
-
-
-
-    def test_provider_send_commentary_from_commentaries_menu_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        user = home_page.header.login(USER, PASSWORD)
-        add_consignment_page = home_page.header.add_consignment_page()
-        add_consignment_page.new_furniture_consignment()
-        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-        view_consignments_page = home_page.header.view_consignments_page()
-        view_consignments_page.search_for_added_consignment()
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
-        submit_offer = view_consignments_page.open_added_consignment()
-        submit_offer.submit_offer()
-        submit_offer.confirm_submit_offer()
-        user = home_page.header.login(USER, PASSWORD)
-        profile = home_page.header.open_profile_page()
-        consignment = profile.open_first_auction()
-        consignment.accept_offer()
-        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-        profile = home_page.header.open_profile_page()
-        profile.provider_send_commentary_from_commentaries_menu()
-
-        Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
-
-        profile.enter_provider_sent_commentaries_tab()
-
-        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(profile._provider_first_sent_commentary_field, "This is my commentary"))
-        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(profile._provider_first_sent_commentary_consignment_uuid, view_consignments_page._title_uuid))
-
-    def test_ask_for_offer_on_provider_page_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        user = home_page.header.login(USER, PASSWORD)
-        add_consignment_page = home_page.header.add_consignment_page()
-        add_consignment_page.new_furniture_consignment()
-        provider_page = home_page.header.view_provider_damian_wiklina_page()
-        provider_page.ask_for_offer_on_provider_page()
-
-        Assert.contains(u"Twoja prośba o ofertę została wysłana do Przewoźnika", provider_page.get_page_source())
-
-    def test_ask_for_offer_while_adding_consignment_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        user = home_page.header.login(USER, PASSWORD)
-        add_consignment_page = home_page.header.add_consignment_page()
-        add_consignment_page.new_furniture_consignment()
-        add_consignment_page.ask_for_offer_while_adding_consignment()
-        sleep(2)
-
-        Assert.contains(u"Prośba wysłana", add_consignment_page.get_page_source())
+#     def test_user_send_commentary_from_commentaries_menu_should_succeed(self):
+#         home_page = HomePage(self.driver).open_home_page()
+#         user = home_page.header.login(USER, PASSWORD)
+#         add_consignment_page = home_page.header.add_consignment_page()
+#         add_consignment_page.new_furniture_consignment()
+#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+#         view_consignments_page = home_page.header.view_consignments_page()
+#         view_consignments_page.search_for_added_consignment()
+#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
+#         submit_offer = view_consignments_page.open_added_consignment()
+#         submit_offer.submit_offer()
+#         submit_offer.confirm_submit_offer()
+#         user = home_page.header.login(USER, PASSWORD)
+#         profile = home_page.header.open_profile_page()
+#         consignment = profile.open_first_auction()
+#         consignment.accept_offer()
+#         profile = home_page.header.open_profile_page()
+#         profile.user_send_commentary_from_commentaries_menu()
+#
+#         Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
+#
+#     def test_provider_reply_to_negative_commentary_should_succeed(self):
+#         home_page = HomePage(self.driver).open_home_page()
+#         user = home_page.header.login(USER, PASSWORD)
+#         add_consignment_page = home_page.header.add_consignment_page()
+#         add_consignment_page.new_furniture_consignment()
+#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+#         view_consignments_page = home_page.header.view_consignments_page()
+#         view_consignments_page.search_for_added_consignment()
+#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
+#         submit_offer = view_consignments_page.open_added_consignment()
+#         submit_offer.submit_offer()
+#         submit_offer.confirm_submit_offer()
+#         user = home_page.header.login(USER, PASSWORD)
+#         profile = home_page.header.open_profile_page()
+#         consignment = profile.open_first_auction()
+#         consignment.accept_offer()
+#         profile = home_page.header.open_profile_page()
+#         profile.user_send_negative_commentary()
+#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+#         profile = home_page.header.open_profile_page()
+#         profile.provider_reply_to_negative_commentary()
+#
+#         Assert.contains(u"This is my negative commentary", profile.get_page_source())
+#         Assert.contains(u"This is my reply", profile.get_page_source())
+#
+# # There's no possibility to reply to negative commentary as provider, zgłoszone
+#
+#
+#
+#
+#     def test_provider_send_commentary_from_commentaries_menu_should_succeed(self):
+#         home_page = HomePage(self.driver).open_home_page()
+#         user = home_page.header.login(USER, PASSWORD)
+#         add_consignment_page = home_page.header.add_consignment_page()
+#         add_consignment_page.new_furniture_consignment()
+#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+#         view_consignments_page = home_page.header.view_consignments_page()
+#         view_consignments_page.search_for_added_consignment()
+#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
+#         submit_offer = view_consignments_page.open_added_consignment()
+#         submit_offer.submit_offer()
+#         submit_offer.confirm_submit_offer()
+#         user = home_page.header.login(USER, PASSWORD)
+#         profile = home_page.header.open_profile_page()
+#         consignment = profile.open_first_auction()
+#         consignment.accept_offer()
+#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+#         profile = home_page.header.open_profile_page()
+#         profile.provider_send_commentary_from_commentaries_menu()
+#
+#         Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
+#
+#         profile.enter_provider_sent_commentaries_tab()
+#
+#         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(profile._provider_first_sent_commentary_field, "This is my commentary"))
+#         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(profile._provider_first_sent_commentary_consignment_uuid, view_consignments_page._title_uuid))
+#
+#     def test_ask_for_offer_on_provider_page_should_succeed(self):
+#         home_page = HomePage(self.driver).open_home_page()
+#         user = home_page.header.login(USER, PASSWORD)
+#         add_consignment_page = home_page.header.add_consignment_page()
+#         add_consignment_page.new_furniture_consignment()
+#         provider_page = home_page.header.view_provider_damian_wiklina_page()
+#         provider_page.ask_for_offer_on_provider_page()
+#
+#         Assert.contains(u"Twoja prośba o ofertę została wysłana do Przewoźnika", provider_page.get_page_source())
+#
+#     def test_ask_for_offer_while_adding_consignment_should_succeed(self):
+#         home_page = HomePage(self.driver).open_home_page()
+#         user = home_page.header.login(USER, PASSWORD)
+#         add_consignment_page = home_page.header.add_consignment_page()
+#         add_consignment_page.new_furniture_consignment()
+#         add_consignment_page.ask_for_offer_while_adding_consignment()
+#         sleep(2)
+#
+#         Assert.contains(u"Prośba wysłana", add_consignment_page.get_page_source())
 
     # def test_ask_for_offer_for_added_consignment_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()
