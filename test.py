@@ -48,11 +48,6 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(registeration_page._email_user_add_new_consignment, registeration_page.get_page_source())
         Assert.contains(u'i kliknij link aktywacyjny, aby ukończyć rejestrację.', registeration_page.get_page_source())
 
-
-    # SPRAWDZIC CZY SIĘ WYSTAWIA
-
-
-
     def test_add_new_consignment_not_logged_in_provider_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         add_consignment_page = home_page.header.add_consignment_page()
@@ -382,24 +377,15 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Zmiany zostały zapisane.", profile_page.get_page_source())
 
-# NO CONFIRMATION, zgłoszone
+    def test_change_password_should_succeed(self):
 
+        home_page = HomePage(self.driver).open_home_page()
+        _saved_password = get_password("change_pass.txt")
+        account_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
+        profile_page = home_page.header.open_profile_page()
+        profile_page.change_password("change_pass.txt")
 
-
-    # def test_change_password_should_succeed(self):
-    #
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     _saved_password = get_password("change_pass1.txt")
-    #     account_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
-    #     profile_page = home_page.header.open_profile_page()
-    #     profile_page.change_password()
-    #
-    #     Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source())
-
-# DOPISAĆ
-
-
-
+        Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source())
 
     def test_reject_offer_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -437,7 +423,6 @@ class SmokeTest(unittest.TestCase):
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.add_question_to_offer()
-        sleep(22)
         consignment.show_offer_details()
 
         Assert.contains(u"Twoja wiadomość została dodana.", consignment.get_page_source())

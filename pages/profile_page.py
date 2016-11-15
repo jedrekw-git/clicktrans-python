@@ -40,7 +40,7 @@ class ProfilePage(BasePage):
     _my_data_tab = (By.XPATH, "//div[2]/div/a[2]")
     _company_data_tab = (By.XPATH, "//div[2]/div/a[3]")
     _notification_settings_tab = (By.LINK_TEXT, "Ustawienia powiadomień")
-    _change_password_tab = (By.LINK_TEXT, "Zmiana hasła")
+    _change_password_tab = (By.PARTIAL_LINK_TEXT, "Zmiana hasła")
     _company_mobile = (By.ID, "company_details_phone")
     _company_name = (By.ID, "company_details_name")
     _company_krs = (By.ID, "company_details_companyNumber")
@@ -64,10 +64,10 @@ class ProfilePage(BasePage):
     _notifications_countries_custom_dropdown = (By.XPATH, "//div[3]/div[2]/div/div")
     _random_notifications_countries_custom_button = (By.XPATH, "//div[%s]"%randint(12,234))
     _save_notifications_button = (By.XPATH, "//button")
-    _change_password_old_field = (By.ID, "guest_user_oldpassword")
-    _change_password_new_field = (By.ID, "guest_user_password")
-    _change_password_new2_field = (By.ID, "repeat_guest_user_password")
-    _change_password_submit = (By.XPATH, "//input[@value='Zapisz zmiany']")
+    _change_password_old_field = (By.ID, "user_change_password_oldPassword")
+    _change_password_new_field = (By.ID, "user_change_password_newPassword_first")
+    _change_password_new2_field = (By.ID, "user_change_password_newPassword_second")
+    _change_password_submit = (By.ID, "user_change_password_submit")
     _my_consignments_menu = (By.XPATH, "//a[3]/h4")
     _ended_transactions_tab = (By.PARTIAL_LINK_TEXT, u"Zakończone transakcją")
     _first_ended_transaction_send_commentary_button = (By.XPATH, "//div[6]/a")
@@ -348,13 +348,13 @@ class ProfilePage(BasePage):
         self.click(self._random_notifications_countries_custom_button)
         self.click(self._save_notifications_button)
 
-    def change_password(self):
+    def change_password(self, file):
         self.click(self._edit_profile_button)
         self.click(self._change_password_tab)
-        self.clear_field_and_send_keys(get_password('change_pass1.txt'), self._change_password_old_field)
-        change_password_value('change_pass1.txt')
-        self.clear_field_and_send_keys(get_password('change_pass1.txt'), self._change_password_new_field)
-        self.clear_field_and_send_keys(get_password('change_pass1.txt'), self._change_password_new2_field)
+        self.clear_field_and_send_keys(get_password(file), self._change_password_old_field)
+        change_password_value(file)
+        self.clear_field_and_send_keys(get_password(file), self._change_password_new_field)
+        self.clear_field_and_send_keys(get_password(file), self._change_password_new2_field)
         self.click(self._change_password_submit)
 
     def open_first_message(self):
