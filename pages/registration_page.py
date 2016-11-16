@@ -56,42 +56,42 @@ class RegistrationPage(BasePage):
         self._email_user_add_new_consignment = "jedrek"+get_random_integer(5)+"@migmail.pl"
 
     def new_user_click_register(self):
-        self.click(self._register_user)
+        self.click(self._register_user, "The register user button couldn't be clicked or wasn't viisble on the page")
 
     def register_user_fill_username_field(self):
-        self.clear_field_and_send_keys(self._username_user_register, self._username_field)
+        self.clear_field_and_send_keys(self._username_user_register, self._username_field, "The user username couldn't be antered to username field on register user page")
 
     def register_user_fill_email_field(self):
-        self.clear_field_and_send_keys(self._email_user_register, self._email_field)
+        self.clear_field_and_send_keys(self._email_user_register, self._email_field, "The user email couldn't be antered to email field on register user page")
 
     def login_unactivated_user_fill_username_field(self):
-        self.clear_field_and_send_keys(self._username_user_login_unactivated, self._username_field)
+        self.clear_field_and_send_keys(self._username_user_login_unactivated, self._username_field, "The unactivated user username couldn't be antered to username field on register user page")
 
     def login_unactivated_user_fill_email_field(self):
-        self.clear_field_and_send_keys(self._email_user_login_unactivated, self._email_field)
+        self.clear_field_and_send_keys(self._email_user_login_unactivated, self._email_field, "The unactivated user email couldn't be antered to email field on register user page")
 
     def add_new_consignment_unactivated_fill_username_field(self):
-        self.clear_field_and_send_keys(self._username_user_add_new_consignment, self._username_field)
+        self.clear_field_and_send_keys(self._username_user_add_new_consignment, self._username_field, "The unactivated user username couldn't be antered to username field on register user page")
 
     def add_new_consignment_unactivated_fill_email_field(self):
-        self.clear_field_and_send_keys(self._email_user_add_new_consignment, self._email_field)
+        self.clear_field_and_send_keys(self._email_user_add_new_consignment, self._email_field, "The unactivated user email couldn't be antered to email field on register user page")
 
     def new_user_fill_data(self):
-        self.clear_field_and_send_keys(self._name, self._name_field)
-        self.clear_field_and_send_keys(self._phone, self._phone_field)
-        self.clear_field_and_send_keys(self._password, self._password_field)
-        self.check(self._rules_acceptance_checkbox)
-        self.check(self._guest_user_acceptance_checkbox)
-        self.check(self._guest_user_accept_info_checkbox)
-        self.click(self._register_button)
+        self.clear_field_and_send_keys(self._name, self._name_field, "The attempt to fill user name into name field on new user fill data page was unsuccessful")
+        self.clear_field_and_send_keys(self._phone, self._phone_field, "The attempt to fill user phone into phone field on new user fill data page was unsuccessful")
+        self.clear_field_and_send_keys(self._password, self._password_field, "The attempt to fill user password into password field on new user fill data page was unsuccessful")
+        self.check(self._rules_acceptance_checkbox, "The attempt to check rules acceptance checkbox on fill new user data page was unsuccessful")
+        self.check(self._guest_user_acceptance_checkbox, "The attempt to check guest user acceptance checkbox on fill new user data page was unsuccessful")
+        self.check(self._guest_user_accept_info_checkbox, "The attempt to check guest user accept info checkbox on fill new user data page was unsuccessful")
+        self.click(self._register_button, "The register submit button on add new user page couldn't be clicked or wasn't visible")
 
     def new_transport_provider(self):
-        self.click(self._register_transport_provider)
-        self.clear_field_and_send_keys(self._username_provider, self._username_field)
-        self.clear_field_and_send_keys(self._password, self._password_field)
-        self.clear_field_and_send_keys(self._email, self._email_field)
-        self.clear_field_and_send_keys(self._name, self._name_field)
-        self.clear_field_and_send_keys(self._phone, self._phone_field)
+        self.click(self._register_transport_provider, "The register transport provider button couldn't be clicked or wasn't visible on the page")
+        self.clear_field_and_send_keys(self._username_provider, self._username_field, "The attempt to enter provider username into username field on new transport provider page was unsuccessful")
+        self.clear_field_and_send_keys(self._password, self._password_field, "The attempt to enter provider password into password field on new transport provider page was unsuccessful")
+        self.clear_field_and_send_keys(self._email, self._email_field, "The attempt to enter provider email into email field on new transport provider page was unsuccessful")
+        self.clear_field_and_send_keys(self._name, self._name_field, "The attempt to enter provider name into name field on new transport provider page was unsuccessful")
+        self.clear_field_and_send_keys(self._phone, self._phone_field, "The attempt to enter provider phone into phone field on new transport provider page was unsuccessful")
         # self.clear_field_and_send_keys(self._mobile, self._mobile_field)
         # self.clear_field_and_send_keys(self._company_name, self._company_name_field)
         # self.clear_field_and_send_keys(self._NIP_value, self._NIP_field)
@@ -103,7 +103,7 @@ class RegistrationPage(BasePage):
         # self.clear_field_and_send_keys(self._building_number_value, self._building_number_field)
         # self.clear_field_and_send_keys(self._www_value, self._www_field)
         # self.clear_field_and_send_keys(self._description_value, self._description_field)
-        self.check(self._rules_acceptance_checkbox)
-        self.check(self._guest_user_acceptance_checkbox)
-        self.check(self._guest_user_accept_info_checkbox)
-        self.click(self._register_button)
+        self.check(self._rules_acceptance_checkbox, "The attempt to check rules acceptance checkbox on fill new provider data page was unsuccessful")
+        self.check(self._guest_user_acceptance_checkbox, "The attempt to check guest user acceptance checkbox on fill new provider data page was unsuccessful")
+        self.check(self._guest_user_accept_info_checkbox, "The attempt to check guest user accept info checkbox on fill new provider data page was unsuccessful")
+        self.click(self._register_button, "The register submit button on add new provider page couldn't be clicked or wasn't visible")

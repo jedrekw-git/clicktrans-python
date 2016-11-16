@@ -37,7 +37,8 @@ class Page(object):
     def find_element(self, locator):
         return self.get_driver().find_element(*locator)
 
-    def send_keys(self, value_to_send, locator):
+    def send_keys(self, value_to_send, locator, info="field was not visible"):
+        self.wait_for_visibility(locator, info)
         self.find_element(locator).send_keys(value_to_send)
         return self
 
@@ -45,9 +46,9 @@ class Page(object):
         element.send_keys(value_to_send)
         return self
 
-    def clear_field_and_send_keys(self, value_to_send, locator):
+    def clear_field_and_send_keys(self, value_to_send, locator, info="field was not visible"):
         self.clear_field(locator)
-        self.send_keys(value_to_send, locator)
+        self.send_keys(value_to_send, locator, info)
 
     def clear_field(self, locator):
         self.find_element(locator).clear()
@@ -117,8 +118,8 @@ class Page(object):
     def quit(self):
         self.get_driver().quit()
 
-    def check(self, locator):
-        if not self.wait_for_visibility(locator).is_selected():
+    def check(self, locator, info):
+        if not self.wait_for_visibility(locator, info).is_selected():
             self.click(locator)
 
     def uncheck(self, locator):

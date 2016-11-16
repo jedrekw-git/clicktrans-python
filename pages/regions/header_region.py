@@ -26,17 +26,17 @@ class HeaderRegion(Page):
 
     def login(self, login, password):
         self.get(self._base_url + "login")
-        self.send_keys(login, self._login_field)
-        self.send_keys(password, self._password_field)
-        self.click(self._login_button)
+        self.send_keys(login, self._login_field, "The attempt to send login value into login field on login page was unsuccessful")
+        self.send_keys(password, self._password_field, "The attempt to send password value into password field on login page was unsuccessful")
+        self.click(self._login_button, "The Submit login button on login page couldn't be clicked or wasn't visible")
 
     def login_after_adding_consignment(self, login, password):
-        self.send_keys(login, self._login_field)
-        self.send_keys(password, self._password_field)
-        self.click(self._login_button)
+        self.send_keys(login, self._login_field, "The attempt to send login value into login field on login page was unsuccessful")
+        self.send_keys(password, self._password_field, "The attempt to send password value into password field on login page was unsuccessful")
+        self.click(self._login_button, "The Submit login button on login page couldn't be clicked or wasn't visible")
 
     def logout(self):
-        self.click(self._logout_button)
+        self.click(self._logout_button, "The logout button couldn't be clicked or wasn't visible")
         sleep(2)
 
     def add_consignment_page(self):

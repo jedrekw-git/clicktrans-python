@@ -27,14 +27,14 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
-        Assert.contains(u"Jeszcze tylko chwila...", add_consignment_page.get_page_source())
-        Assert.contains(u"Twoje ogłoszenie o przesyłce  zostało zapisane, ale musisz się zalogować, aby było widoczne dla Przewoźników.", add_consignment_page.get_page_source())
-        Assert.contains(u"Nie masz konta? <b>Zarejestruj si\u0119 w 1 minut\u0119 (za darmo).</b> Twoje dane s\u0105 chronione i nie b\u0119d\u0105 upublicznione.", add_consignment_page.get_page_source())
+        Assert.contains(u"Jeszcze tylko chwila...", add_consignment_page.get_page_source(), "The text <Jeszcze tylko chwila> didn't appear on confirmation page after entering congigment details consignment, probably the consignment details were wrongly entered")
+        Assert.contains(u"Twoje ogłoszenie o przesyłce  zostało zapisane, ale musisz się zalogować, aby było widoczne dla Przewoźników.", add_consignment_page.get_page_source(), "The text <Twoje ogłoszenie o przesyłce  zostało zapisane, ale musisz się zalogować, aby było widoczne dla Przewoźników> didn't appear on confirmation page after adding consignment, probably the consignment details were wrongly entered")
+        Assert.contains(u"Nie masz konta? <b>Zarejestruj si\u0119 w 1 minut\u0119 (za darmo).</b> Twoje dane s\u0105 chronione i nie b\u0119d\u0105 upublicznione.", add_consignment_page.get_page_source(), "The text <Nie masz konta? <b>Zarejestruj si\u0119 w 1 minut\u0119 (za darmo).</b> Twoje dane s\u0105 chronione i nie b\u0119d\u0105 upublicznione.> didn't appear on confirmation page after adding consignment, probably the consignment details were wrongly entered")
         home_page.header.login_after_adding_consignment(USER, PASSWORD)
 
-        Assert.contains(u"Twoja przesyłka", add_consignment_page.get_page_source())
-        Assert.contains(add_consignment_page._title_uuid, add_consignment_page.get_page_source())
-        Assert.contains(u"została wystawiona!", add_consignment_page.get_page_source())
+        Assert.contains(u"Twoja przesyłka", add_consignment_page.get_page_source(), "The text <Twoja przesyłka> didn't appear on confirmation page after adding consignment and logging")
+        Assert.contains(add_consignment_page._title_uuid, add_consignment_page.get_page_source(), "The consignment title didn't appear on confirmation page after adding consignment and logging")
+        Assert.contains(u"została wystawiona!", add_consignment_page.get_page_source(), "The text <została wystawiona!> didn't appear on confirmation page after adding consignment and logging")
 
     def test_add_new_consignment_not_activated_user_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -45,14 +45,9 @@ class SmokeTest(unittest.TestCase):
         registeration_page.add_new_consignment_unactivated_fill_email_field()
         registeration_page.new_user_fill_data()
 
-        Assert.contains(u"Odbierz pocztę", registeration_page.get_page_source())
-        Assert.contains(registeration_page._email_user_add_new_consignment, registeration_page.get_page_source())
-        Assert.contains(u'i kliknij link aktywacyjny, aby ukończyć rejestrację.', registeration_page.get_page_source())
-
-
-    # SPRAWDZIC CZY SIĘ WYSTAWIA
-
-
+        Assert.contains(u"Odbierz pocztę", registeration_page.get_page_source(), "The text <Odbierz pocztę> wasn't found on confirmastion page after entering new user data")
+        Assert.contains(registeration_page._email_user_add_new_consignment, registeration_page.get_page_source(), "The user email wasn't found on confirmastion page after entering new user data")
+        Assert.contains(u'i kliknij link aktywacyjny, aby ukończyć rejestrację.', registeration_page.get_page_source(), "The text <i kliknij link aktywacyjny, aby ukończyć rejestrację> wasn't found on confirmastion page after entering new user data")
 
     def test_add_new_consignment_not_logged_in_provider_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -383,24 +378,15 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Zmiany zostały zapisane.", profile_page.get_page_source())
 
-# NO CONFIRMATION, zgłoszone
+    def test_change_password_should_succeed(self):
 
+        home_page = HomePage(self.driver).open_home_page()
+        _saved_password = get_password("change_pass1.txt")
+        account_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
+        profile_page = home_page.header.open_profile_page()
+        profile_page.change_password("change_pass1.txt")
 
-
-    # def test_change_password_should_succeed(self):
-    #
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     _saved_password = get_password("change_pass1.txt")
-    #     account_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
-    #     profile_page = home_page.header.open_profile_page()
-    #     profile_page.change_password()
-    #
-    #     Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source())
-
-# DOPISAĆ
-
-
-
+        Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source())
 
     def test_reject_offer_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -438,7 +424,6 @@ class SmokeTest(unittest.TestCase):
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.add_question_to_offer()
-        sleep(22)
         consignment.show_offer_details()
 
         Assert.contains(u"Twoja wiadomość została dodana.", consignment.get_page_source())
@@ -624,114 +609,114 @@ class SmokeTest(unittest.TestCase):
         profile.user_send_commentary_from_ended_transactions_menu()
 
         Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
-#
-#     def test_user_send_commentary_from_commentaries_menu_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         user = home_page.header.login(USER, PASSWORD)
-#         add_consignment_page = home_page.header.add_consignment_page()
-#         add_consignment_page.new_furniture_consignment()
-#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-#         view_consignments_page = home_page.header.view_consignments_page()
-#         view_consignments_page.search_for_added_consignment()
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
-#         submit_offer = view_consignments_page.open_added_consignment()
-#         submit_offer.submit_offer()
-#         submit_offer.confirm_submit_offer()
-#         user = home_page.header.login(USER, PASSWORD)
-#         profile = home_page.header.open_profile_page()
-#         consignment = profile.open_first_auction()
-#         consignment.accept_offer()
-#         profile = home_page.header.open_profile_page()
-#         profile.user_send_commentary_from_commentaries_menu()
-#
-#         Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
-#
-#     def test_provider_reply_to_negative_commentary_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         user = home_page.header.login(USER, PASSWORD)
-#         add_consignment_page = home_page.header.add_consignment_page()
-#         add_consignment_page.new_furniture_consignment()
-#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-#         view_consignments_page = home_page.header.view_consignments_page()
-#         view_consignments_page.search_for_added_consignment()
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
-#         submit_offer = view_consignments_page.open_added_consignment()
-#         submit_offer.submit_offer()
-#         submit_offer.confirm_submit_offer()
-#         user = home_page.header.login(USER, PASSWORD)
-#         profile = home_page.header.open_profile_page()
-#         consignment = profile.open_first_auction()
-#         consignment.accept_offer()
-#         profile = home_page.header.open_profile_page()
-#         profile.user_send_negative_commentary()
-#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-#         profile = home_page.header.open_profile_page()
-#         profile.provider_reply_to_negative_commentary()
-#
-#         Assert.contains(u"This is my negative commentary", profile.get_page_source())
-#         Assert.contains(u"This is my reply", profile.get_page_source())
-#
-# # There's no possibility to reply to negative commentary as provider, zgłoszone
-#
-#
-#
-#
-#     def test_provider_send_commentary_from_commentaries_menu_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         user = home_page.header.login(USER, PASSWORD)
-#         add_consignment_page = home_page.header.add_consignment_page()
-#         add_consignment_page.new_furniture_consignment()
-#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-#         view_consignments_page = home_page.header.view_consignments_page()
-#         view_consignments_page.search_for_added_consignment()
-#         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
-#         submit_offer = view_consignments_page.open_added_consignment()
-#         submit_offer.submit_offer()
-#         submit_offer.confirm_submit_offer()
-#         user = home_page.header.login(USER, PASSWORD)
-#         profile = home_page.header.open_profile_page()
-#         consignment = profile.open_first_auction()
-#         consignment.accept_offer()
-#         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-#         profile = home_page.header.open_profile_page()
-#         profile.provider_send_commentary_from_commentaries_menu()
-#
-#         Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
-#
-#         profile.enter_provider_sent_commentaries_tab()
-#
-#         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(profile._provider_first_sent_commentary_field, "This is my commentary"))
-#         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(profile._provider_first_sent_commentary_consignment_uuid, view_consignments_page._title_uuid))
-#
-#     def test_ask_for_offer_on_provider_page_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         user = home_page.header.login(USER, PASSWORD)
-#         add_consignment_page = home_page.header.add_consignment_page()
-#         add_consignment_page.new_furniture_consignment()
-#         provider_page = home_page.header.view_provider_damian_wiklina_page()
-#         provider_page.ask_for_offer_on_provider_page()
-#
-#         Assert.contains(u"Twoja prośba o ofertę została wysłana do Przewoźnika", provider_page.get_page_source())
-#
-#     def test_ask_for_offer_while_adding_consignment_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         user = home_page.header.login(USER, PASSWORD)
-#         add_consignment_page = home_page.header.add_consignment_page()
-#         add_consignment_page.new_furniture_consignment()
-#         add_consignment_page.ask_for_offer_while_adding_consignment()
-#         sleep(2)
-#
-#         Assert.contains(u"Prośba wysłana", add_consignment_page.get_page_source())
-#
-#     def test_ask_for_offer_for_added_consignment_should_succeed(self):
-#         home_page = HomePage(self.driver).open_home_page()
-#         user = home_page.header.login(USER, PASSWORD)
-#         add_consignment_page = home_page.header.add_consignment_page()
-#         add_consignment_page.new_furniture_consignment()
-#         profile = home_page.header.open_profile_page()
-#         profile.ask_for_offer_for_added_consignment()
-#         sleep(4)
-#         Assert.contains(u"Prośba wysłana", profile.get_page_source())
+
+    def test_user_send_commentary_from_commentaries_menu_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        user = home_page.header.login(USER, PASSWORD)
+        add_consignment_page = home_page.header.add_consignment_page()
+        add_consignment_page.new_furniture_consignment()
+        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+        view_consignments_page = home_page.header.view_consignments_page()
+        view_consignments_page.search_for_added_consignment()
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
+        submit_offer = view_consignments_page.open_added_consignment()
+        submit_offer.submit_offer()
+        submit_offer.confirm_submit_offer()
+        user = home_page.header.login(USER, PASSWORD)
+        profile = home_page.header.open_profile_page()
+        consignment = profile.open_first_auction()
+        consignment.accept_offer()
+        profile = home_page.header.open_profile_page()
+        profile.user_send_commentary_from_commentaries_menu()
+
+        Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
+
+    def test_provider_reply_to_negative_commentary_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        user = home_page.header.login(USER, PASSWORD)
+        add_consignment_page = home_page.header.add_consignment_page()
+        add_consignment_page.new_furniture_consignment()
+        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+        view_consignments_page = home_page.header.view_consignments_page()
+        view_consignments_page.search_for_added_consignment()
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
+        submit_offer = view_consignments_page.open_added_consignment()
+        submit_offer.submit_offer()
+        submit_offer.confirm_submit_offer()
+        user = home_page.header.login(USER, PASSWORD)
+        profile = home_page.header.open_profile_page()
+        consignment = profile.open_first_auction()
+        consignment.accept_offer()
+        profile = home_page.header.open_profile_page()
+        profile.user_send_negative_commentary()
+        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+        profile = home_page.header.open_profile_page()
+        profile.provider_reply_to_negative_commentary()
+
+        Assert.contains(u"This is my negative commentary", profile.get_page_source())
+        Assert.contains(u"This is my reply", profile.get_page_source())
+
+# There's no possibility to reply to negative commentary as provider, zgłoszone
+
+
+
+
+    def test_provider_send_commentary_from_commentaries_menu_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        user = home_page.header.login(USER, PASSWORD)
+        add_consignment_page = home_page.header.add_consignment_page()
+        add_consignment_page.new_furniture_consignment()
+        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+        view_consignments_page = home_page.header.view_consignments_page()
+        view_consignments_page.search_for_added_consignment()
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
+        submit_offer = view_consignments_page.open_added_consignment()
+        submit_offer.submit_offer()
+        submit_offer.confirm_submit_offer()
+        user = home_page.header.login(USER, PASSWORD)
+        profile = home_page.header.open_profile_page()
+        consignment = profile.open_first_auction()
+        consignment.accept_offer()
+        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+        profile = home_page.header.open_profile_page()
+        profile.provider_send_commentary_from_commentaries_menu()
+
+        Assert.contains(u"Komentarz został wystawiony.", consignment.get_page_source())
+
+        profile.enter_provider_sent_commentaries_tab()
+
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(profile._provider_first_sent_commentary_field, "This is my commentary"))
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(profile._provider_first_sent_commentary_consignment_uuid, view_consignments_page._title_uuid))
+
+    def test_ask_for_offer_on_provider_page_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        user = home_page.header.login(USER, PASSWORD)
+        add_consignment_page = home_page.header.add_consignment_page()
+        add_consignment_page.new_furniture_consignment()
+        provider_page = home_page.header.view_provider_damian_wiklina_page()
+        provider_page.ask_for_offer_on_provider_page()
+
+        Assert.contains(u"Twoja prośba o ofertę została wysłana do Przewoźnika", provider_page.get_page_source())
+
+    def test_ask_for_offer_while_adding_consignment_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        user = home_page.header.login(USER, PASSWORD)
+        add_consignment_page = home_page.header.add_consignment_page()
+        add_consignment_page.new_furniture_consignment()
+        add_consignment_page.ask_for_offer_while_adding_consignment()
+        sleep(2)
+
+        Assert.contains(u"Prośba wysłana", add_consignment_page.get_page_source())
+
+    def test_ask_for_offer_for_added_consignment_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        user = home_page.header.login(USER, PASSWORD)
+        add_consignment_page = home_page.header.add_consignment_page()
+        add_consignment_page.new_furniture_consignment()
+        profile = home_page.header.open_profile_page()
+        profile.ask_for_offer_for_added_consignment()
+        sleep(4)
+        Assert.contains(u"Prośba wysłana", profile.get_page_source())
 
     # def test_user_add_new_consignment_urgent_and_highlited_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()

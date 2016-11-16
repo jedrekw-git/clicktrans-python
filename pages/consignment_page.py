@@ -17,7 +17,7 @@ class ConsignmentPage(BasePage):
     _question_to_offer_violation_flag = (By.XPATH, "//div[2]/a/i")
     _question_to_consignment_violation_flag = (By.XPATH, "//div[2]/a/i")
     _violation_content = (By.XPATH, "//div/textarea")
-    _violation_submit = (By.XPATH, "//div/button")
+    _violation_submit = (By.ID, "user_complaint_submit")
     _violation_to_offer_content_field = (By.XPATH, "//div[8]/div[2]/form/div/textarea")
     _violation_to_offer_submit = (By.XPATH, "//div[8]/div[2]/form/div[2]/div[2]/div/button")
     _violation_to_question_to_offer_content_field = (By.XPATH, "//div[9]/div[2]/form/div/textarea")
