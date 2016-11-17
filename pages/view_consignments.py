@@ -29,21 +29,20 @@ class ViewConsignmentsPage(BasePage):
         super(ViewConsignmentsPage, self).__init__(driver, self._title)
 
     def search_for_added_consignment(self):
-        self.click(self._category_furniture)
-        self.send_keys(self._title_uuid, self._auction_search)
-        self.click(self._auction_search_button)
+        self.click(self._category_furniture, "The category <Furniture> button couldn't be clicked or wasn't visible on view consignments page")
+        self.send_keys(self._title_uuid, self._auction_search, "The attempt to enter added consignment title into the search field on view consignments page was unsuccessful")
+        self.click(self._auction_search_button, "The auction search button couldn't be clicked or wasn't visible on view consignments page")
         self.get_driver().execute_script("window.scrollTo(1, 1);")
 
     def open_added_consignment(self):
         # _first_result_value = (By.PARTIAL_LINK_TEXT, self._title_uuid)
         # self.click(_first_result_value)
-        self.click(self._first_result)
+        self.click(self._first_result, "The first result on view consignments page couldn't be clicked or wasn't visible")
         return ConsignmentPage(self.get_driver())
 
     def check_categories(self):
-        self.click(self._category_parcels)
-        self.click(self._search_in_region)
-        # self.send_keys("mazowieckie", self._province_field)
+        self.click(self._category_parcels, "The category <Parcels> button couldn't be clicked or wasn't visible on view consignments page")
+        self.click(self._search_in_region, "The <Search in region> button couldn't be clicked or wasn't visible on view consignments page")
         self.send_keys("m", self._province_field)
         self.send_keys("a", self._province_field)
         self.send_keys("z", self._province_field)
@@ -52,10 +51,10 @@ class ViewConsignmentsPage(BasePage):
         self.send_keys("w", self._province_field)
         sleep(3)
         # self.send_keys('\b', self._province_field)
-        self.condition_click(self._province_dropdown_first_result)
-        self.click(self._province_posting_in_selected_region_checkbox)
-        self.click(self._auction_search_button)
+        self.condition_click(self._province_dropdown_first_result, "The attempt to click first result on province dropdown on view consignments page was unsuccessful")
+        self.click(self._province_posting_in_selected_region_checkbox, "The province posting in selected region checkbox on view consignments page couldn't be clicked or wasn't visible")
+        self.click(self._auction_search_button, "The auction search button couldn't be clicked or wasn't visible on view consignments page")
 
     def click_first_result(self):
-        self.click(self._first_result)
+        self.click(self._first_result, "The first result on view consignments page couldn't be clicked or wasn't visible")
         return ConsignmentPage(self.get_driver())

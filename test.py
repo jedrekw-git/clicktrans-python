@@ -52,14 +52,14 @@ class SmokeTest(unittest.TestCase):
         home_page = HomePage(self.driver).open_home_page()
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
-        Assert.contains(u"Jeszcze tylko chwila...", add_consignment_page.get_page_source())
-        Assert.contains(u"Twoje ogłoszenie o przesyłce  zostało zapisane, ale musisz się zalogować, aby było widoczne dla Przewoźników.", add_consignment_page.get_page_source())
-        Assert.contains(u"Nie masz konta? <b>Zarejestruj si\u0119 w 1 minut\u0119 (za darmo).</b> Twoje dane s\u0105 chronione i nie b\u0119d\u0105 upublicznione.", add_consignment_page.get_page_source())
+        Assert.contains(u"Jeszcze tylko chwila...", add_consignment_page.get_page_source(), "The text <Jeszcze tylko chwila> didn't appear on confirmation page after entering congigment details consignment, probably the consignment details were wrongly entered")
+        Assert.contains(u"Twoje ogłoszenie o przesyłce  zostało zapisane, ale musisz się zalogować, aby było widoczne dla Przewoźników.", add_consignment_page.get_page_source(), "The text <Twoje ogłoszenie o przesyłce  zostało zapisane, ale musisz się zalogować, aby było widoczne dla Przewoźników> didn't appear on confirmation page after adding consignment, probably the consignment details were wrongly entered")
+        Assert.contains(u"Nie masz konta? <b>Zarejestruj si\u0119 w 1 minut\u0119 (za darmo).</b> Twoje dane s\u0105 chronione i nie b\u0119d\u0105 upublicznione.", add_consignment_page.get_page_source(), "The text <Nie masz konta? <b>Zarejestruj si\u0119 w 1 minut\u0119 (za darmo).</b> Twoje dane s\u0105 chronione i nie b\u0119d\u0105 upublicznione> didn't appear on confirmation page after adding consignment, probably the consignment details were wrongly entered")
         home_page.header.login_after_adding_consignment(PROVIDER_USER2, PROVIDER_PASSWORD2)
 
-        Assert.contains(u"Twoja przesyłka", add_consignment_page.get_page_source())
-        Assert.contains(add_consignment_page._title_uuid, add_consignment_page.get_page_source())
-        Assert.contains(u"została wystawiona!", add_consignment_page.get_page_source())
+        Assert.contains(u"Twoja przesyłka", add_consignment_page.get_page_source(), "The text <Twoja przesyłka> didn't appear on confirmation page after adding consignment and logging")
+        Assert.contains(add_consignment_page._title_uuid, add_consignment_page.get_page_source(), "The consignment title didn't appear on confirmation page after adding consignment and logging")
+        Assert.contains(u"została wystawiona!", add_consignment_page.get_page_source(), "The text <została wystawiona!> didn't appear on confirmation page after adding consignment and logging")
 
     def test_add_new_consignment_logged_in_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -68,9 +68,9 @@ class SmokeTest(unittest.TestCase):
         add_consignment_page.new_furniture_consignment()
         add_consignment_page.get_consignment_title_from_result_page()
 
-        Assert.contains(u"Twoja przesyłka", add_consignment_page.get_page_source())
-        Assert.contains(u"została wystawiona!", add_consignment_page.get_page_source())
-        Assert.equal(add_consignment_page.consignment_title_result_page, add_consignment_page._title_uuid)
+        Assert.contains(u"Twoja przesyłka", add_consignment_page.get_page_source(), "The text <Twoja przesyłka> didn't appear on confirmation page after adding consignment")
+        Assert.contains(u"została wystawiona!", add_consignment_page.get_page_source(), "The text <została wystawiona!> didn't appear on confirmation page after adding consignment")
+        Assert.equal(add_consignment_page.consignment_title_result_page, add_consignment_page._title_uuid, "The consignment title didn't appear on confirmation page after adding consignment")
 
     def test_new_consignment_should_appear_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -79,15 +79,15 @@ class SmokeTest(unittest.TestCase):
         add_consignment_page.new_furniture_consignment()
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid))
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid), "The first consignment on view consignments page didn't match consignment title entered into search field, probably the search function didn't work properly")
         view_consignments_page.open_added_consignment()
 
-        Assert.contains(add_consignment_page._title_uuid, view_consignments_page.get_page_source())
-        Assert.contains(u"Wrocław, Polska", view_consignments_page.get_page_source())
-        Assert.contains(u'Warszawa, Polska', view_consignments_page.get_page_source())
-        Assert.contains(u'347.00  km', view_consignments_page.get_page_source())
-        Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source())
-        Assert.contains(u'This is my additional info', view_consignments_page.get_page_source())
+        Assert.contains(add_consignment_page._title_uuid, view_consignments_page.get_page_source(), "THe consignment title didn't appear on added consignment page")
+        Assert.contains(u"Wrocław, Polska", view_consignments_page.get_page_source(), "The text <Wrocław, Polska> didn't appear on added consignment page")
+        Assert.contains(u'Warszawa, Polska', view_consignments_page.get_page_source(), "The text <Warszawa, Polska> didn't appear on added consignment page")
+        Assert.contains(u'347.00  km', view_consignments_page.get_page_source(), "The text <347.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
+        Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), "The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
+        Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), "The text <This is my additional info> didn't appear on added consignment page")
 
     def test_register_user_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -97,9 +97,9 @@ class SmokeTest(unittest.TestCase):
         registeration_page.register_user_fill_email_field()
         registeration_page.new_user_fill_data()
 
-        Assert.contains(u"Odbierz pocztę", registeration_page.get_page_source())
-        Assert.contains(registeration_page._email_user_register, registeration_page.get_page_source())
-        Assert.contains(u'i kliknij link aktywacyjny, aby ukończyć rejestrację.', registeration_page.get_page_source())
+        Assert.contains(u"Odbierz pocztę", registeration_page.get_page_source(), "The text <Odbierz pocztę> didn't appear on confirmation page after registering user, probably the registration didn't work")
+        Assert.contains(registeration_page._email_user_register, registeration_page.get_page_source(), "The registered user email didn't appear on confirmation page after registering user")
+        Assert.contains(u'i kliknij link aktywacyjny, aby ukończyć rejestrację.', registeration_page.get_page_source(), "The text <i kliknij link aktywacyjny, aby ukończyć rejestrację.> didn't appear on confirmation page after registering user")
 
     def test_login_unactivated_user_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -109,25 +109,26 @@ class SmokeTest(unittest.TestCase):
         registeration_page.login_unactivated_user_fill_email_field()
         registeration_page.new_user_fill_data()
         account_page = home_page.header.login(registeration_page._username_user_login_unactivated, registeration_page._password)
-        Assert.contains(u"Twoja rejestracja nie została ukończona", registeration_page.get_page_source())
-        Assert.contains(u"Odbierz pocztę i kliknij link aktywacyjny, aby ukończyć rejestrację.", registeration_page.get_page_source())
+
+        Assert.contains(u"Twoja rejestracja nie została ukończona", registeration_page.get_page_source(), "The text <Twoja rejestracja nie została ukończona> didn't appear on page after logging unactivated user")
+        Assert.contains(u"Odbierz pocztę i kliknij link aktywacyjny, aby ukończyć rejestrację.", registeration_page.get_page_source(), "The text <Odbierz pocztę i kliknij link aktywacyjny, aby ukończyć rejestrację.> didn't appear on page after logging unactivated user")
 
     def test_logout_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         home_page.header.login(USER, PASSWORD)
         home_page.header.logout()
         sleep(3)
-        Assert.contains(u"Prześlesz wszystko i wszędzie!", home_page.get_page_source())
-        Assert.contains(u"Masz pytania? Kontakt:", home_page.get_page_source())
+        Assert.contains(u"Prześlesz wszystko i wszędzie!", home_page.get_page_source(), "The text <Prześlesz wszystko i wszędzie!> didn't appear on home page")
+        Assert.contains(u"Masz pytania? Kontakt:", home_page.get_page_source(), "The text <Masz pytania? Kontakt:> didn't appear on home page")
 
     def test_register_new_transport_provider_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         registeration_page = home_page.header.open_registration_page()
         registeration_page.new_transport_provider()
 
-        Assert.contains(u"Odbierz pocztę", registeration_page.get_page_source())
-        Assert.contains(registeration_page._email, registeration_page.get_page_source())
-        Assert.contains(u'i kliknij link aktywacyjny, aby ukończyć rejestrację.', registeration_page.get_page_source())
+        Assert.contains(u"Odbierz pocztę", registeration_page.get_page_source(), "The text <Odbierz pocztę> didn't appear on confirmation page after registering provider, probably the registration didn't work")
+        Assert.contains(registeration_page._email, registeration_page.get_page_source(), "The registered provider email didn't appear on confirmation page after registering provider")
+        Assert.contains(u'i kliknij link aktywacyjny, aby ukończyć rejestrację.', registeration_page.get_page_source(), "The text <i kliknij link aktywacyjny, aby ukończyć rejestrację.> didn't appear on confirmation page after registering provider")
 
     def test_edit_user_profile_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
