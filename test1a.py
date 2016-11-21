@@ -45,7 +45,7 @@ class SmokeTest(unittest.TestCase):
         registeration_page.add_new_consignment_unactivated_fill_email_field()
         registeration_page.new_user_fill_data()
 
-        Assert.contains(u"Odbierz pocztę", registeration_page.get_page_source(), "The text <Odbierz pocztę> wasn't found on confirmastion page after entering new user data")
+        Assert.contains(u"Odbierz pocztę", registeration_page.get_page_source(), u"The text <Odbierz pocztę> wasn't found on confirmastion page after entering new user data")
         Assert.contains(registeration_page._email_user_add_new_consignment, registeration_page.get_page_source(), "The user email wasn't found on confirmastion page after entering new user data")
         Assert.contains(u'i kliknij link aktywacyjny, aby ukończyć rejestrację.', registeration_page.get_page_source(), "The text <i kliknij link aktywacyjny, aby ukończyć rejestrację> wasn't found on confirmastion page after entering new user data")
 
@@ -149,17 +149,17 @@ class SmokeTest(unittest.TestCase):
         settings = profile_page.edit_consignment()
         settings.edit_consignment_parcel()
 
-        Assert.contains(u"Zmiany w Twojej przesyłce", settings.get_page_source(), "The text <Zmiany w Twojej przesyłce> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
-        Assert.contains(settings._title_uuid, profile_page.get_page_source(), "The edited consignment title didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
-        Assert.contains(u"zostały pomyślnie zapisane.", settings.get_page_source(), "The text <zostały pomyślnie zapisane.> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        Assert.contains(u"Zmiany w Twojej przesyłce", settings.get_page_source(), u"The text <Zmiany w Twojej przesyłce> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        Assert.contains(settings._title_uuid, profile_page.get_page_source(), u"The edited consignment title didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        Assert.contains(u"zostały pomyślnie zapisane.", settings.get_page_source(), u"The text <zostały pomyślnie zapisane.> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
 
         settings.view_added_consignment()
 
         Assert.contains(add_consignment_page._title_uuid, settings.get_page_source(), "The edited consignment title didn't appear on consignment page after editing consignment")
         Assert.contains(u"Katowice, Polska", settings.get_page_source(), "The text <Katowice, Polska> didn't appear on consignment page after editing consignment")
-        Assert.contains(u'Poznań, Polska', settings.get_page_source(), "The text <Poznań, Polska> didn't appear on consignment page after editing consignment")
+        Assert.contains(u'Poznań, Polska', settings.get_page_source(), u"The text <Poznań, Polska> didn't appear on consignment page after editing consignment")
         Assert.contains(u'409.00  km', settings.get_page_source(), "The text <409.00  km> didn't appear on consignment page after editing consignment, probably the distance between cities has changed")
-        Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', settings.get_page_source(), "The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on consignment page after editing consignment")
+        Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', settings.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on consignment page after editing consignment")
         Assert.contains(u'This is my additional info after edit', settings.get_page_source(), "The text <This is my additional info after edit> didn't appear on consignment page after editing consignment")
 
     # PRZEPRASZAMY STRONA NIE ZNALEZIONA, zgłoszone
