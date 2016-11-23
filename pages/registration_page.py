@@ -21,7 +21,7 @@ class RegistrationPage(BasePage):
     _phone = get_random_integer(9)
     _mobile_field = (By.ID, "guest_user_mobile")
     _mobile = get_random_integer(9)
-    _rules_acceptance_checkbox = (By.XPATH, "//label")
+    _rules_acceptance_checkbox = (By.XPATH, "//div[6]/div/div/label")
     _guest_user_acceptance_checkbox = (By.XPATH, "//div[2]/div/label")
     _guest_user_accept_info_checkbox = (By.XPATH, "//div[3]/div/label")
     _register_button = (By.ID, "user_register_submit")
