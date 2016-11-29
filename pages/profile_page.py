@@ -135,7 +135,7 @@ class ProfilePage(BasePage):
     _add_car_button = (By.LINK_TEXT, "Dodaj pojazd")
     _first_car_type_dropdown = (By.XPATH, "//form/div[7]/div/div/div/div")
     _random_first_car_type_button = (By.XPATH, "//div/div/div/div/div[2]/div[%s]"%randint(2,16))
-    _first_car_capacity_dropdown = (By.XPATH, "//div[7]/div/div/div[2]/div/div")
+    _first_car_capacity_dropdown = (By.XPATH, "//div[7]/div/div/div[2]/div")
     _random_first_car_capacity_button = (By.XPATH, "//div[2]/div/div[2]/div[%s]"%randint(2,7))
     _first_car_number_field = (By.XPATH, "//div[3]/input")
     _first_car_number_value = randint(1,4)
