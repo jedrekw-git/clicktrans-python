@@ -1032,7 +1032,7 @@ class SmokeTest(unittest.TestCase):
             fp.set_preference("browser.startup.homepage", "about:blank")
             fp.set_preference("startup.homepage_welcome_url", "about:blank")
             fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
-            fp.set_preference(" xpinstall.signatures.required", "false")
+            fp.set_preference("xpinstall.signatures.required", "false")
             fp.set_preference("toolkit.telemetry.reportingpolicy.firstRun", "false")
             binary = FirefoxBinary('/__stare/firefox45/firefox')
             self.driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp)
