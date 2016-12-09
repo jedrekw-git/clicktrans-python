@@ -155,18 +155,11 @@ class SmokeTest(unittest.TestCase):
 
         settings.view_added_consignment()
 
-        Assert.contains(add_consignment_page._title_uuid, settings.get_page_source(), u"The edited consignment title didn't appear on consignment page after editing consignment")
+        Assert.contains(settings._title_uuid, settings.get_page_source(), u"The edited consignment title didn't appear on consignment page after editing consignment")
         Assert.contains(u"Katowice, Polska", settings.get_page_source(), u"The text <Katowice, Polska> didn't appear on consignment page after editing consignment")
         Assert.contains(u'Poznań, Polska', settings.get_page_source(), u"The text <Poznań, Polska> didn't appear on consignment page after editing consignment")
         Assert.contains(u'409.00  km', settings.get_page_source(), u"The text <409.00  km> didn't appear on consignment page after editing consignment, probably the distance between cities has changed")
-        Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', settings.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on consignment page after editing consignment")
         Assert.contains(u'This is my additional info after edit', settings.get_page_source(), u"The text <This is my additional info after edit> didn't appear on consignment page after editing consignment")
-
-    # PRZEPRASZAMY STRONA NIE ZNALEZIONA, zgłoszone
-
-
-
-
 
     def test_withdraw_consignment_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -288,21 +281,28 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Oferta może zostać wycofana najwcześniej 3 godziny od jej złożenia.", profile.get_page_source(), u"The text <Oferta może zostać wycofana najwcześniej 3 godziny od jej złożenia.> didn't appear on consignment page after trying to withdraw offer")
 
-    # def test_issue_consignment_again_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.new_furniture_consignment()
-    #     profile_page = home_page.header.open_profile_page()
-    #     settings = profile_page.withdraw_consignment()
-    #     profile = home_page.header.open_profile_page()
-    #     edit_settings = profile.issue_consignment_again()
-    #     edit_settings.edit_consignment_cars()
-    #
-    #     Assert.contains(u"Twoja przesyłka", edit_settings.get_page_source())
-    #     Assert.contains(u"została wystawiona!", edit_settings.get_page_source())
-    #
-# EDIT CONSIGNMENT
+    def test_issue_consignment_again_should_succeed(self):
+        home_page = HomePage(self.driver).open_home_page()
+        account_page = home_page.header.login(USER, PASSWORD)
+        add_consignment_page = home_page.header.add_consignment_page()
+        add_consignment_page.new_furniture_consignment()
+        profile_page = home_page.header.open_profile_page()
+        settings = profile_page.withdraw_consignment()
+        profile = home_page.header.open_profile_page()
+        edit_settings = profile.issue_consignment_again()
+        edit_settings.edit_consignment_cars()
+
+        Assert.contains(u"Twoja przesyłka", edit_settings.get_page_source(), u"The text <Twoja przesyłka> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        Assert.contains(edit_settings._title_uuid, profile_page.get_page_source(), u"The edited consignment title didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        Assert.contains(u"została wystawiona!", edit_settings.get_page_source(), u"The text <została wystawiona!> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+
+        edit_settings.view_added_consignment()
+
+        Assert.contains(edit_settings._title_uuid, edit_settings.get_page_source(), u"The edited consignment title didn't appear on consignment page after editing consignment")
+        Assert.contains(u"Katowice, Polska", edit_settings.get_page_source(), u"The text <Katowice, Polska> didn't appear on consignment page after editing consignment")
+        Assert.contains(u'Poznań, Polska', edit_settings.get_page_source(), u"The text <Poznań, Polska> didn't appear on consignment page after editing consignment")
+        Assert.contains(u'409.00  km', edit_settings.get_page_source(), u"The text <409.00  km> didn't appear on consignment page after editing consignment, probably the distance between cities has changed")
+        Assert.contains(u'This is my additional info after edit', edit_settings.get_page_source(), u"The text <This is my additional info after edit> didn't appear on consignment page after editing consignment")
 
     def test_watch_auction_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()

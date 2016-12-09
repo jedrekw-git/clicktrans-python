@@ -19,6 +19,7 @@ class AddConsignmentPage(BasePage):
     _category_dropdown = (By.XPATH, "//div[@id='categories']/form/div/div/div/div/div/div/div")
     _category_furniture = (By.LINK_TEXT, "Meble")
     _category_parcels = (By.XPATH, "//div[7]/a/span")
+    _category_cars = (By.XPATH, "//div[3]/a/span")
     _consignment_title_field = (By.ID, "EditAuction_title")
     _send_city_field = (By.ID, "sendLocation")
     _receive_city_field = (By.ID, "receiveLocation")
@@ -47,6 +48,8 @@ class AddConsignmentPage(BasePage):
     _consignment_width = (By.ID, "EditAuction_item_width")
     _consignment_height = (By.ID, "EditAuction_item_height")
     _consignment_weight = (By.ID, "EditAuction_item_weight")
+    _consignment_cars_brand_field = (By.ID, "EditAuction_item_model")
+    _consignment_cars_brand_value = get_random_string(8)
     _quantity = (By.ID, "EditAuction_item_itemsNumber")
     _type_of_service_dropdown = (By.XPATH, "//div[@id='form']/div[4]/div/div")
     _type_of_service_complex_service_option = (By.XPATH, "//div[4]/div/div[2]/div[2]")
@@ -82,14 +85,13 @@ class AddConsignmentPage(BasePage):
         sleep(2)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
         self.condition_click(self._date_fixed_checkbox, "The date fixed checkbox on add consignment page couldn't be clicked or wasn't visible")
+        sleep(1)
         self.click(self._send_date_field)
         self.clear_field_and_send_keys(self._send_date_from_value, self._send_date_from_field)
         self.clear_field_and_send_keys(self._send_date_to_value, self._send_date_to_field)
-        sleep(5)
         self.click(self._receive_date_field)
         self.clear_field_and_send_keys(self._receive_date_from_value, self._receive_date_from_field)
         self.clear_field_and_send_keys(self._receive_date_to_value, self._receive_date_to_field)
-        sleep(5)
         # if str(datetime.date.today().day) == 30:
         #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
         # elif str(datetime.date.today().day) == 31:
@@ -133,24 +135,30 @@ class AddConsignmentPage(BasePage):
         sleep(2)
         self.click(self._consignment_title_field, "The consignment title field on edit consignment page couldn't be clicked or wasn't visible")
         # self.condition_click(self._date_fixed_checkbox, "The date fixed checkbox on edit consignment page couldn't be clicked or wasn't visible")
-        if str(datetime.date.today().day) == 30:
-            self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
-        elif str(datetime.date.today().day) == 31:
-            self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
-        elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 29:
-            self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
-        else:
-            self.clear_field_and_send_keys(self._send_date_value, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
-        if str(datetime.date.today().day) == 29:
-            self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
-        elif str(datetime.date.today().day) == 30:
-            self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
-        elif str(datetime.date.today().day) == 31:
-            self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
-        elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 28:
-            self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
-        else:
-            self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        self.click(self._send_date_field)
+        self.clear_field_and_send_keys(self._send_date_from_value, self._send_date_from_field)
+        self.clear_field_and_send_keys(self._send_date_to_value, self._send_date_to_field)
+        self.click(self._receive_date_field)
+        self.clear_field_and_send_keys(self._receive_date_from_value, self._receive_date_from_field)
+        self.clear_field_and_send_keys(self._receive_date_to_value, self._receive_date_to_field)
+        # if str(datetime.date.today().day) == 30:
+        #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().day) == 31:
+        #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 29:
+        #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
+        # else:
+        #     self.clear_field_and_send_keys(self._send_date_value, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
+        # if str(datetime.date.today().day) == 29:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().day) == 30:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().day) == 31:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 28:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        # else:
+        #     self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
         self.click(self._consignment_title_field, "The consignment title field on edit consignment page couldn't be clicked or wasn't visible")
         self.condition_click(self._additional_info_button, "The additional info button on edit consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys("5", self._consignment_length, "The attempt to enter <5> to consignment length field on edit consignment page was unsuccessful")
@@ -164,6 +172,50 @@ class AddConsignmentPage(BasePage):
         self.clear_field_and_send_keys("This is my additional info after edit", self._additional_info, "The attempt to enter <This is my additional info after edit> to consignment additional info field on edit consignment page was unsuccessful")
         self.click(self._submit_consignment_button, "The submit consignment button on edit consignment page couldn't be clicked or wasn't visible")
 
+    def edit_consignment_cars(self):
+        self.click(self._category_dropdown, "The category dropdown on edit consignment page couldn't be clicked or wasn't visible")
+        self.click(self._category_cars, "The category <Parcels> on category dropdown on edit consignment page couldn't be clicked or wasn't visible")
+        self.clear_field_and_send_keys(self._title_uuid, self._consignment_title_field, "The attempt to send random consignment title to consignment title field on edit consignment page was unsuccessful")
+        self.clear_field_and_send_keys(u"Katowice", self._send_city_field, "The attempt to enter <Katowice> into send city field on edit consignment page was unsuccessful")
+        sleep(2)
+        self.click(self._receive_city_field, "The receive city field on edit consignment page couldn't be clicked or wasn't visible")
+        self.clear_field_and_send_keys(u"Poznań", self._receive_city_field, "The attempt to enter <Poznań> into receive city field on edit consignment page was unsuccessful")
+        sleep(2)
+        self.click(self._consignment_title_field, "The consignment title field on edit consignment page couldn't be clicked or wasn't visible")
+        self.condition_click(self._date_fixed_checkbox, "The date fixed checkbox on edit consignment page couldn't be clicked or wasn't visible")
+        self.click(self._send_date_field)
+        self.clear_field_and_send_keys(self._send_date_from_value, self._send_date_from_field)
+        self.clear_field_and_send_keys(self._send_date_to_value, self._send_date_to_field)
+        self.click(self._receive_date_field)
+        self.clear_field_and_send_keys(self._receive_date_from_value, self._receive_date_from_field)
+        self.clear_field_and_send_keys(self._receive_date_to_value, self._receive_date_to_field)
+        # if str(datetime.date.today().day) == 30:
+        #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().day) == 31:
+        #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 29:
+        #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
+        # else:
+        #     self.clear_field_and_send_keys(self._send_date_value, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
+        # if str(datetime.date.today().day) == 29:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().day) == 30:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().day) == 31:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        # elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 28:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        # else:
+        #     self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on edit consignment page was unsuccessful")
+        self.click(self._consignment_title_field, "The consignment title field on edit consignment page couldn't be clicked or wasn't visible")
+        self.condition_click(self._additional_info_button, "The additional info button on edit consignment page couldn't be clicked or wasn't visible")
+        self.clear_field_and_send_keys(self._consignment_cars_brand_value, self._consignment_cars_brand_field, "The attempt to enter random text to consignment cars brand and model field on edit consignment page was unsuccessful")
+        self.clear_field_and_send_keys("12", self._consignment_weight, "The attempt to enter <12> to consignment weight field on edit consignment page was unsuccessful")
+        self.clear_field_and_send_keys("200", self._budget, "The attempt to enter <200> to consignment budget field on edit consignment page was unsuccessful")
+        self.clear_field_and_send_keys("This is my additional info after edit", self._additional_info, "The attempt to enter <This is my additional info after edit> to consignment additional info field on edit consignment page was unsuccessful")
+        self.click(self._submit_consignment_button, "The submit consignment button on edit consignment page couldn't be clicked or wasn't visible")
+
+
     def view_added_consignment(self):
         self.click(self._view_added_consignment_button, "The view added consignment button on confirmation page after adding consignment couldn't be clicked or wasn't visible")
         return ConsignmentPage(self.get_driver())
@@ -174,23 +226,6 @@ class AddConsignmentPage(BasePage):
 
     def get_consignment_title_from_result_page_after_payment(self):
         self.consignment_title_result_page_after_payment = self.get_text(self._consignment_title_result_page_after_payment)
-
-    def edit_consignment_cars(self):
-        self.click(self._cars_link)
-        sleep(4)
-        self.clear_field_and_send_keys("Pontiac 100", self._car_model)
-        self.clear_field_and_send_keys(get_random_integer(2), self._car_weight)
-        self.clear_field_and_send_keys(get_random_integer(3), self._car_budget)
-        self.clear_field_and_send_keys(get_random_string(20), self._additional_info)
-        self.click(self._set_price_and_deadline)
-        self.select_index_from_dropdown(4, self._send_province_dropdown)
-        self.clear_field_and_send_keys("Edited", self._send_city)
-        self.clear_field_and_send_keys("50-690", self._send_post_code)
-        self.select_index_from_dropdown(5, self._receive_province)
-        self.clear_field_and_send_keys("Also", self._receive_city)
-        self.clear_field_and_send_keys("05-880", self._receive_post_code)
-        self.select_index_from_dropdown(2, self._period)
-        self.click(self._save_transport_button)
 
     def ask_for_offer_while_adding_consignment(self):
         self.click(self._first_offer, "The first offer button on ask for offer while adding consignment page couldn't be clicked or wasn't visible")
@@ -206,24 +241,31 @@ class AddConsignmentPage(BasePage):
         sleep(2)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
         self.condition_click(self._date_fixed_checkbox, "The date fixed checkbox on add consignment page couldn't be clicked or wasn't visible")
-        if str(datetime.date.today().day) == 30:
-            self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
-        elif str(datetime.date.today().day) == 31:
-            self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
-        elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 29:
-            self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
-        else:
-            self.clear_field_and_send_keys(self._send_date_value, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
-        if str(datetime.date.today().day) == 29:
-            self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
-        elif str(datetime.date.today().day) == 30:
-            self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
-        elif str(datetime.date.today().day) == 31:
-            self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
-        elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 28:
-            self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
-        else:
-            self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
+        sleep(1)
+        self.click(self._send_date_field)
+        self.clear_field_and_send_keys(self._send_date_from_value, self._send_date_from_field)
+        self.clear_field_and_send_keys(self._send_date_to_value, self._send_date_to_field)
+        self.click(self._receive_date_field)
+        self.clear_field_and_send_keys(self._receive_date_from_value, self._receive_date_from_field)
+        self.clear_field_and_send_keys(self._receive_date_to_value, self._receive_date_to_field)
+        # if str(datetime.date.today().day) == 30:
+        #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
+        # elif str(datetime.date.today().day) == 31:
+        #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
+        # elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 29:
+        #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
+        # else:
+        #     self.clear_field_and_send_keys(self._send_date_value, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
+        # if str(datetime.date.today().day) == 29:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
+        # elif str(datetime.date.today().day) == 30:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
+        # elif str(datetime.date.today().day) == 31:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
+        # elif str(datetime.date.today().month) == 2 and str(datetime.date.today().day) == 28:
+        #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
+        # else:
+        #     self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
         self.condition_click(self._additional_info_button, "The additional info button on add consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys("5", self._consignment_length, "The attempt to enter <5> to consignment length field on add consignment page was unsuccessful")
