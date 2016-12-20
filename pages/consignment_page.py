@@ -94,8 +94,11 @@ class ConsignmentPage(BasePage):
         self.click(self._transport_kind_dropdown, "The transport kind dropdown couldn't be clicked or wasn't found on add offer page")
         self.condition_click(self._random_transport_kind_button, "The random transport kind option on transport kind dropdown couldn't be clicked or wasn't found on add offer page")
         self.clear_field_and_send_keys(self._description_value, self._description_field, "The attempt to enter description value into description field on add offer page was unsuccessful")
+        self.get_driver().execute_script("document.getElementById('AddOffer_endDate').removeAttribute('readonly',0);")
         self.clear_field_and_send_keys(self._expiration_date, self._expiration_date_field, "The attempt to enter expiration date into expiration date field on add offer page was unsuccessful")
+        self.get_driver().execute_script("document.getElementById('AddOffer_pickUpDateStart').removeAttribute('readonly',0);")
         self.clear_field_and_send_keys(self._date_from, self._date_from_field, "The attempt to enter date <from> into date <from> field on add offer page was unsuccessful")
+        self.get_driver().execute_script("document.getElementById('AddOffer_pickUpDateEnd').removeAttribute('readonly',0);")
         if str(datetime.date.today().day) == 29:
             self.clear_field_and_send_keys(self._date_to_next_month, self._date_to_field, "The attempt to enter date <to> into date <to> field on add offer page was unsuccessful")
         elif str(datetime.date.today().day) == 30:
