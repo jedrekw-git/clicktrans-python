@@ -4,8 +4,8 @@ from pages.base import BasePage
 
 class HomePage(BasePage):
     _title = "Transport i przeprowadzki | Gie\u0142da Transportowa - Clicktrans.pl"
-    _url = "http://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/"
-    _url2 = "http://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/app_dev.php/"
+    _url2 = "http://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/"
+    _url = "http://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/app_dev.php/"
 
     def __init__(self, driver):
         super(HomePage, self).__init__(driver, self._title, self._url)
