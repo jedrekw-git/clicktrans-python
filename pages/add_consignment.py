@@ -117,6 +117,7 @@ class AddConsignmentPage(BasePage):
         self.clear_field_and_send_keys("2", self._consignment_height, "The attempt to enter <2> to consignment height field on add consignment page was unsuccessful")
         self.clear_field_and_send_keys("15", self._consignment_weight, "The attempt to enter <15> to consignment weight field on add consignment page was unsuccessful")
         self.clear_field_and_send_keys("5", self._quantity, "The attempt to enter <5> to consignment quantity field on add consignment page was unsuccessful")
+        self.get_driver().execute_script("window.scrollTo(1100, 800);")
         self.click(self._type_of_service_dropdown, "The type of service dropdown on add consignment page couldn't be clicked or wasn't visible")
         self.click(self._type_of_service_complex_service_option, "The complex service option in type of service dropdown on add consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys("200", self._budget, "The attempt to enter <200> to consignment budget field on add consignment page was unsuccessful")

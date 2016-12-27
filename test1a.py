@@ -40,7 +40,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed1(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -57,7 +57,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed12(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -74,7 +74,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed123(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -91,7 +91,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed321(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -108,7 +108,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed21(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -125,7 +125,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed41(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -142,7 +142,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed42(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -159,7 +159,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed43(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -176,7 +176,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed44(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -193,7 +193,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed45(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -210,7 +210,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed54(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -227,7 +227,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed53(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -244,7 +244,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed52(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -261,7 +261,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed51(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -278,7 +278,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed15(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -295,7 +295,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed25(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -312,7 +312,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed35(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -329,7 +329,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed45(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -346,7 +346,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed55(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -363,7 +363,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed5(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -380,7 +380,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed6(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -397,7 +397,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed66(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -414,7 +414,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed61(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -431,7 +431,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed62(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -448,7 +448,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed63(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -465,7 +465,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed64(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -482,7 +482,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed65(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -499,7 +499,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed16(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -516,7 +516,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed26(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
@@ -533,7 +533,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
-    def test_new_consignment_should_appear_should_succeed(self):
+    def test_new_consignment_should_appear_should_succeed36(self):
         home_page = HomePage(self.driver).open_home_page()
         account_page = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
