@@ -6,7 +6,7 @@ ACCESS_KEY = os.environ.get('SAUCE_ACCESS_KEY', "0029898f-54be-48b2-9166-9306282
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
 USER = "testujpl2o2"
-PASSWORD = "testuj88"
+PASSWORD = "testujpl"
 
 PROVIDER_USER = "damian-wiklina"
 PROVIDER_PASSWORD = "testuj88"

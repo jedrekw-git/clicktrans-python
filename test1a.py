@@ -299,7 +299,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(USER, add_consignment_page.get_page_source())
         view_consignments_page = home_page.header.view_consignments_page()
         Assert.contains(USER, add_consignment_page.get_page_source())
-        
+
     def test_zz_generate_plot_and_send_email(self):
         self._save_plot()
         # self._convert_to_html()
