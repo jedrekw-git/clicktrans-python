@@ -27,8 +27,8 @@ class ConsignmentPage(BasePage):
     _submit_offer_button = (By.XPATH, "//button")
     _price = (By.ID, "AddOffer_price")
     _minimum_price = (By.ID, "AddOffer_priceMin")
-    _transport_kind_dropdown = (By.XPATH, "//form/div/div[2]/div/div/div")
-    _random_transport_kind_button = (By.XPATH, "//div[2]/div/div/div[2]/div[%s]"%randint(1,4))
+    _transport_kind_dropdown = (By.XPATH, "//form/div/div[3]/div/div")
+    _random_transport_kind_button = (By.XPATH, "//div[3]/div/div/div[2]/div[%s]"%randint(1,4))
     _description_field = (By.ID, "AddOffer_description")
     _description_value = get_random_string(5)+" "+get_random_string(6)+" "+get_random_string(7)
     _month = (By.LINK_TEXT, str(datetime.date.today().month))
@@ -60,7 +60,7 @@ class ConsignmentPage(BasePage):
     _consignment_question_confirm = (By.ID, "AddAuctionMessage_send")
     _consignment_question_reply_content = (By.ID, "AddAuctionMessage_message")
     _consignment_question_reply_confirm = (By.ID, "AddAuctionMessage_send")
-    _accept_offer_button = (By.XPATH, "//div[2]/div/div[2]/a")
+    _accept_offer_button = (By.XPATH, "//div[2]/div/div/a")
     _accept_offer_button2 = (By.LINK_TEXT, u"Akceptuję ofertę")
 
     def report_violation_to_consignmeent(self):
