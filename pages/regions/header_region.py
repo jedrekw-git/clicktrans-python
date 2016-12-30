@@ -25,11 +25,14 @@ class HeaderRegion(Page):
     _base_url = HomePage._url
 
     def login(self, login, password):
-        self.get(self._base_url + "login")
-        self.send_keys(login, self._login_field, "The attempt to send login value into login field on login page was unsuccessful")
-        self.send_keys(password, self._password_field, "The attempt to send password value into password field on login page was unsuccessful")
-        self.click(self._login_button, "The Submit login button on login page couldn't be clicked or wasn't visible")
-
+        while True:
+            if not login in self.get_page_source():
+                self.get(self._base_url + "login")
+                self.send_keys(login, self._login_field, "The attempt to send login value into login field on login page was unsuccessful")
+                self.send_keys(password, self._password_field, "The attempt to send password value into password field on login page was unsuccessful")
+                self.click(self._login_button, "The Submit login button on login page couldn't be clicked or wasn't visible")
+            else:
+                break
     def login_after_adding_consignment(self, login, password):
         self.send_keys(login, self._login_field, "The attempt to send login value into login field on login page was unsuccessful")
         self.send_keys(password, self._password_field, "The attempt to send password value into password field on login page was unsuccessful")

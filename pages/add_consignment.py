@@ -84,6 +84,7 @@ class AddConsignmentPage(BasePage):
         self.send_keys(u"Warszawa", self._receive_city_field, "The attempt to enter <Warszawa> into receive city field on add consignment page was unsuccessful")
         sleep(2)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
+        sleep(2)
         self.condition_click(self._date_fixed_checkbox, "The date fixed checkbox on add consignment page couldn't be clicked or wasn't visible")
         sleep(1)
         self.click(self._send_date_field)
