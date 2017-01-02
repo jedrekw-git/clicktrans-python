@@ -22,7 +22,7 @@ run_locally = True
 #@on_platforms(browsers)
 
 class SmokeTest(unittest.TestCase):
-    
+
     def test_add_new_consignment_not_logged_in_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         add_consignment_page = home_page.header.add_consignment_page()
