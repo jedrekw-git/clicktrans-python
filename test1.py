@@ -22,7 +22,7 @@ run_locally = True
 #@on_platforms(browsers)
 
 class SmokeTest(unittest.TestCase):
-
+    
     def test_add_new_consignment_not_logged_in_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         add_consignment_page = home_page.header.add_consignment_page()
@@ -187,6 +187,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -207,6 +208,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -228,6 +230,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -254,6 +257,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -269,6 +273,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -309,6 +314,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -324,6 +330,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -331,11 +338,13 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.accept_offer()
         home_page = HomePage(self.driver).open_home_page()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         profile = home_page.header.open_profile_page()
         profile.payback_commission()
@@ -394,6 +403,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -401,6 +411,7 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
@@ -414,6 +425,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -421,6 +433,7 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
@@ -435,6 +448,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -442,10 +456,12 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.add_question_to_offer()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_message()
@@ -460,6 +476,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -475,12 +492,14 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid), u"The first consignment on view consignments page didn't match consignment title entered into search field, probably the search function didn't work properly")
         consignment = view_consignments_page.open_added_consignment()
         consignment.provider_add_question_to_consignment()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.user_open_first_message()
@@ -494,6 +513,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         store = home_page.header.open_profile_page()
         store.store_provider_data()
@@ -503,6 +523,7 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
@@ -530,6 +551,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -537,10 +559,12 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.accept_offer()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         profile = home_page.header.open_profile_page()
         profile.make_offer_executed()
@@ -552,6 +576,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -559,10 +584,12 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.accept_offer()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         profile = home_page.header.open_profile_page()
         profile.provider_send_commentary_from_my_offers_menu()
@@ -574,12 +601,14 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid), u"The first consignment on view consignments page didn't match consignment title entered into search field, probably the search function didn't work properly")
         consignment = view_consignments_page.open_added_consignment()
         consignment.provider_add_question_to_consignment()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         profile.user_click_reply_to_question()
@@ -596,6 +625,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -603,6 +633,7 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
@@ -617,6 +648,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -624,6 +656,7 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
@@ -638,6 +671,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -645,12 +679,14 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.accept_offer()
         profile = home_page.header.open_profile_page()
         profile.user_send_negative_commentary()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         profile = home_page.header.open_profile_page()
         profile.provider_reply_to_negative_commentary()
@@ -668,6 +704,7 @@ class SmokeTest(unittest.TestCase):
         user = home_page.header.login(USER, PASSWORD)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
@@ -675,10 +712,12 @@ class SmokeTest(unittest.TestCase):
         submit_offer = view_consignments_page.open_added_consignment()
         submit_offer.submit_offer()
         submit_offer.confirm_submit_offer()
+        home_page.header.logout()
         user = home_page.header.login(USER, PASSWORD)
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.accept_offer()
+        home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         profile = home_page.header.open_profile_page()
         profile.provider_send_commentary_from_commentaries_menu()
@@ -719,304 +758,6 @@ class SmokeTest(unittest.TestCase):
         profile.ask_for_offer_for_added_consignment()
         sleep(4)
         Assert.contains(u"Prośba wysłana", profile.get_page_source(), u"The text <Prośba wysłana> didn't appear on user profile page after asking for offer for added consignment")
-
-    # def test_user_add_new_consignment_urgent_and_highlited_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_urgent()
-    #     add_consignment_page.set_highlited()
-    #     add_consignment_page.save_transport()
-    #
-    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
-    #
-    #     add_consignment_page.pay_with_test_payment()
-    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
-    #
-    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
-    #
-    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
-    #     else:
-    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #
-    # def test_user_add_new_consignment_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_urgent()
-    #     add_consignment_page.save_transport()
-    #
-    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
-    #
-    #     add_consignment_page.pay_with_test_payment()
-    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
-    #
-    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
-    #
-    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
-    #     else:
-    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #
-    # def test_user_add_new_consignment_highlited_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_highlited()
-    #     add_consignment_page.save_transport()
-    #
-    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
-    #
-    #     add_consignment_page.pay_with_test_payment()
-    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
-    #
-    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
-    #
-    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
-    #     else:
-    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #
-    # def test_user_login_while_adding_new_consignment_set_highlited_and_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_urgent()
-    #     add_consignment_page.set_highlited()
-    #     add_consignment_page.save_transport()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #
-    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
-    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
-    #
-    #     add_consignment_page.pay_with_test_payment()
-    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
-    #
-    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
-    #
-    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
-    #     else:
-    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #
-    # def test_user_login_while_adding_new_consignment_set_highlited_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_highlited()
-    #     add_consignment_page.save_transport()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #
-    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
-    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
-    #
-    #     add_consignment_page.pay_with_test_payment()
-    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
-    #
-    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
-    #
-    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
-    #     else:
-    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #
-    # def test_user_login_while_adding_new_consignment_set_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_urgent()
-    #     add_consignment_page.save_transport()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #
-    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
-    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
-    #
-    #     add_consignment_page.pay_with_test_payment()
-    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
-    #
-    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
-    #
-    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
-    #     else:
-    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #
-    # def test_user_after_adding_consignment_set_highlited_and_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.new_furniture_consignment()
-    #     profile_page = home_page.header.open_profile_page()
-    #     profile_page.user_open_my_consignments_menu()
-    #     profile_page.user_click_first_consignment_distinguish_button()
-    #     profile_page.set_consignment_highlited_and_urgent()
-    #     add_consignment_page.pay_with_test_payment()
-    #
-    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
-    #
-    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
-    #     else:
-    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #
-    # def test_user_after_adding_consignment_set_highlited_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.new_furniture_consignment()
-    #     profile_page = home_page.header.open_profile_page()
-    #     profile_page.user_open_my_consignments_menu()
-    #     profile_page.user_click_first_consignment_distinguish_button()
-    #     profile_page.set_consignment_highlited()
-    #     add_consignment_page.pay_with_test_payment()
-    #
-    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
-    #
-    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
-    #     else:
-    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #
-    # def test_user_after_adding_consignment_set_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(USER, PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.new_furniture_consignment()
-    #     profile_page = home_page.header.open_profile_page()
-    #     profile_page.user_open_my_consignments_menu()
-    #     profile_page.user_click_first_consignment_distinguish_button()
-    #     profile_page.set_consignment_urgent()
-    #     add_consignment_page.pay_with_test_payment()
-    #
-    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
-    #
-    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
-    #     else:
-    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
-    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
-    #
-    # def test_provider_add_new_consignment_urgent_and_highlited_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_urgent()
-    #     add_consignment_page.set_highlited()
-    #     add_consignment_page.save_transport()
-    #
-    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
-    #
-    # def test_provider_add_new_consignment_highlited_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_highlited()
-    #     add_consignment_page.save_transport()
-    #
-    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
-    #
-    # def test_provider_add_new_consignment_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_urgent()
-    #     add_consignment_page.save_transport()
-    #
-    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
-    #
-    # def test_provider_login_while_adding_new_consignment_set_highlited_and_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_urgent()
-    #     add_consignment_page.set_highlited()
-    #     add_consignment_page.save_transport()
-    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-    #
-    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
-    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
-    #
-    # def test_provider_login_while_adding_new_consignment_set_highlited_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_highlited()
-    #     add_consignment_page.save_transport()
-    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-    #
-    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
-    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
-    #
-    # def test_provider_login_while_adding_new_consignment_set_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.add_consignment_parcel()
-    #     add_consignment_page.set_urgent()
-    #     add_consignment_page.save_transport()
-    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-    #
-    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
-    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
-    #
-    # def test_provider_after_adding_consignment_set_highlited_and_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.new_furniture_consignment()
-    #     profile_page = home_page.header.open_profile_page()
-    #     profile_page.provider_open_my_consignments_menu()
-    #     profile_page.provider_click_first_consignment_distinguish_button()
-    #     profile_page.set_consignment_highlited_and_urgent()
-    #
-    #     Assert.contains(u"Operacja przebiegła pomyślnie.", add_consignment_page.get_page_source())
-    #
-    # def test_provider_after_adding_consignment_set_highlited_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.new_furniture_consignment()
-    #     profile_page = home_page.header.open_profile_page()
-    #     profile_page.provider_open_my_consignments_menu()
-    #     profile_page.provider_click_first_consignment_distinguish_button()
-    #     profile_page.set_consignment_highlited()
-    #
-    #     Assert.contains(u"Operacja przebiegła pomyślnie.", add_consignment_page.get_page_source())
-    #
-    # def test_provider_after_adding_consignment_set_urgent_should_succeed(self):
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-    #     add_consignment_page = home_page.header.add_consignment_page()
-    #     add_consignment_page.new_furniture_consignment()
-    #     profile_page = home_page.header.open_profile_page()
-    #     profile_page.provider_open_my_consignments_menu()
-    #     profile_page.provider_click_first_consignment_distinguish_button()
-    #     profile_page.set_consignment_urgent()
-    #
-    #     Assert.contains(u"Operacja przebiegła pomyślnie.", add_consignment_page.get_page_source())
 
     def test_zz_generate_plot_and_send_email(self):
         self._save_plot()
