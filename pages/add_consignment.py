@@ -87,12 +87,24 @@ class AddConsignmentPage(BasePage):
         self.clear_field_and_send_keys(self._receive_date_from_value, self._receive_date_from_field)
         self.clear_field_and_send_keys(self._receive_date_to_value, self._receive_date_to_field)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
+        self.condition_click(self._additional_info_button, "The additional info button on add consignment page couldn't be clicked or wasn't visible")
+        self.clear_field_and_send_keys("3", self._consignment_length, "The attempt to enter <3> to consignment length field on add consignment page was unsuccessful")
+        self.clear_field_and_send_keys("4", self._consignment_width, "The attempt to enter <4> to consignment width field on add consignment page was unsuccessful")
+        self.clear_field_and_send_keys("2", self._consignment_height, "The attempt to enter <2> to consignment height field on add consignment page was unsuccessful")
+        self.clear_field_and_send_keys("15", self._consignment_weight, "The attempt to enter <15> to consignment weight field on add consignment page was unsuccessful")
+        self.clear_field_and_send_keys("5", self._quantity, "The attempt to enter <5> to consignment quantity field on add consignment page was unsuccessful")
+        self.get_driver().execute_script("window.scrollTo(1100, 800);")
+        self.click(self._type_of_service_dropdown, "The type of service dropdown on add consignment page couldn't be clicked or wasn't visible")
+        self.click(self._type_of_service_complex_service_option, "The complex service option in type of service dropdown on add consignment page couldn't be clicked or wasn't visible")
+        self.clear_field_and_send_keys("200", self._budget, "The attempt to enter <200> to consignment budget field on add consignment page was unsuccessful")
+        self.clear_field_and_send_keys("This is my additional info", self._additional_info, "The attempt to enter <This is my additional info> to consignment additional info field on add consignment page was unsuccessful")
         self.send_keys(u"Wrocław", self._send_city_field, "The attempt to enter <Wrocław> into send city field on add consignment page was unsuccessful")
         sleep(2)
         self.click(self._receive_city_field, "The receive city field on add consignment page couldn't be clicked or wasn't visible")
         self.send_keys(u"Warszawa", self._receive_city_field, "The attempt to enter <Warszawa> into receive city field on add consignment page was unsuccessful")
         sleep(2)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
+
         # if str(datetime.date.today().day) == 30:
         #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
         # elif str(datetime.date.today().day) == 31:
@@ -111,18 +123,12 @@ class AddConsignmentPage(BasePage):
         #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
         # else:
         #     self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
-        self.condition_click(self._additional_info_button, "The additional info button on add consignment page couldn't be clicked or wasn't visible")
-        self.clear_field_and_send_keys("3", self._consignment_length, "The attempt to enter <3> to consignment length field on add consignment page was unsuccessful")
-        self.clear_field_and_send_keys("4", self._consignment_width, "The attempt to enter <4> to consignment width field on add consignment page was unsuccessful")
-        self.clear_field_and_send_keys("2", self._consignment_height, "The attempt to enter <2> to consignment height field on add consignment page was unsuccessful")
-        self.clear_field_and_send_keys("15", self._consignment_weight, "The attempt to enter <15> to consignment weight field on add consignment page was unsuccessful")
-        self.clear_field_and_send_keys("5", self._quantity, "The attempt to enter <5> to consignment quantity field on add consignment page was unsuccessful")
-        self.get_driver().execute_script("window.scrollTo(1100, 800);")
-        self.click(self._type_of_service_dropdown, "The type of service dropdown on add consignment page couldn't be clicked or wasn't visible")
-        self.click(self._type_of_service_complex_service_option, "The complex service option in type of service dropdown on add consignment page couldn't be clicked or wasn't visible")
-        self.clear_field_and_send_keys("200", self._budget, "The attempt to enter <200> to consignment budget field on add consignment page was unsuccessful")
-        self.clear_field_and_send_keys("This is my additional info", self._additional_info, "The attempt to enter <This is my additional info> to consignment additional info field on add consignment page was unsuccessful")
-        self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
+        while True:
+            if not u"została wystawiona!" in self.get_page_source():
+                self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
+                sleep(3)
+            else:
+                break
         return self._title_uuid
 
     def edit_consignment_parcel(self):
