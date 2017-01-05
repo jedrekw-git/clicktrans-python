@@ -124,7 +124,7 @@ class AddConsignmentPage(BasePage):
         # else:
         #     self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
         while True:
-            if not u"została wystawiona!" in self.get_page_source():
+            if not u"Masz pytania? Kontakt:" in self.get_page_source():
                 self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
                 sleep(3)
             else:
