@@ -123,12 +123,11 @@ class AddConsignmentPage(BasePage):
         #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
         # else:
         #     self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
-        while True:
-            if not u"Masz pytania? Kontakt:" in self.get_page_source():
-                self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
-                sleep(3)
-            else:
-                break
+        try:
+            self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
+            sleep(3)
+        except:
+            self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
         return self._title_uuid
 
     def edit_consignment_parcel(self):
