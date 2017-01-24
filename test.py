@@ -12,6 +12,7 @@ from change_password import *
 from time import gmtime, strftime
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 SCREEN_DUMP_LOCATION = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'screendumps'
@@ -148,7 +149,8 @@ class SmokeTest(unittest.TestCase):
         settings = profile_page.edit_consignment()
         settings.edit_consignment_parcel()
 
-        Assert.contains(u"Zmiany w Twojej przesyłce", settings.get_page_source(), u"The text <Zmiany w Twojej przesyłce> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(settings._edit_consignment_result_field, u"Zmiany w Twojej przesyłce"), u"The text <Zmiany w Twojej przesyłce> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        # Assert.contains(u"Zmiany w Twojej przesyłce", settings.get_page_source(), u"The text <Zmiany w Twojej przesyłce> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
         Assert.contains(settings._title_uuid, profile_page.get_page_source(), u"The edited consignment title didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
         Assert.contains(u"zostały pomyślnie zapisane.", settings.get_page_source(), u"The text <zostały pomyślnie zapisane.> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
 
@@ -296,7 +298,8 @@ class SmokeTest(unittest.TestCase):
         edit_settings = profile.issue_consignment_again()
         edit_settings.edit_consignment_cars()
 
-        Assert.contains(u"Twoja przesyłka", edit_settings.get_page_source(), u"The text <Twoja przesyłka> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(edit_settings._edit_consignment_result_field, u"Twoja przesyłka"), u"The text <Twoja przesyłka> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        # Assert.contains(u"Twoja przesyłka", edit_settings.get_page_source(), u"The text <Twoja przesyłka> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
         Assert.contains(edit_settings._title_uuid, profile_page.get_page_source(), u"The edited consignment title didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
         Assert.contains(u"została wystawiona!", edit_settings.get_page_source(), u"The text <została wystawiona!> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
 
@@ -1067,6 +1070,10 @@ class SmokeTest(unittest.TestCase):
     def setUp(self):
         self.timeout = 30
         if run_locally:
+            # firefox_capabilities = DesiredCapabilities.FIREFOX
+            # firefox_capabilities['marionette'] = True
+            # geckoPath = 'C:\gecko\geckodriver.exe'
+            #  = webdriver.Firefox(capabilities=firefox_capabilities, executable_path=geckoPath)
             self.driver = webdriver.Firefox()
             self.driver.set_window_size(1024,768)
             self.driver.implicitly_wait(self.timeout)
