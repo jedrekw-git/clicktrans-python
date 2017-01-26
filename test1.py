@@ -298,7 +298,7 @@ class SmokeTest(unittest.TestCase):
         edit_settings = profile.issue_consignment_again()
         edit_settings.edit_consignment_cars()
 
-        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(edit_settings._edit_consignment_result_field, u"Twoja przesyłka"), u"The text <Twoja przesyłka> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
+        WebDriverWait(self.driver, 15).until(EC.text_to_be_present_in_element(edit_settings._edit_consignment_result_field, u"Twoja przesyłka"), u"The text <Twoja przesyłka> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
         # Assert.contains(u"Twoja przesyłka", edit_settings.get_page_source(), u"The text <Twoja przesyłka> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
         Assert.contains(edit_settings._title_uuid, profile_page.get_page_source(), u"The edited consignment title didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
         Assert.contains(u"została wystawiona!", edit_settings.get_page_source(), u"The text <została wystawiona!> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
