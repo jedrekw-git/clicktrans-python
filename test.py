@@ -1070,10 +1070,12 @@ class SmokeTest(unittest.TestCase):
     def setUp(self):
         self.timeout = 30
         if run_locally:
+            # os.environ["webdriver.gecko.driver"] = "C:/BACKUP 2017-01/gecko/geckodriver.exe"
             # firefox_capabilities = DesiredCapabilities.FIREFOX
-            # firefox_capabilities['marionette'] = True
-            # geckoPath = 'C:\gecko\geckodriver.exe'
-            #  = webdriver.Firefox(capabilities=firefox_capabilities, executable_path=geckoPath)
+            # firefox_capabilities['binary'] = 'C:/Program Files (x86)/Mozilla Firefox'
+            # fp = webdriver.FirefoxProfile("C:/Users/jj/AppData/Roaming/Mozilla/Firefox/Profiles/woebxsbi.default-1458919598960")
+            # geckoPath = 'C:\BACKUP 2017-01\gecko\geckodriver.exe'
+            # self.driver = webdriver.Firefox(capabilities=firefox_capabilities, firefox_profile=fp)
             self.driver = webdriver.Firefox()
             self.driver.set_window_size(1024,768)
             self.driver.implicitly_wait(self.timeout)
