@@ -22,7 +22,8 @@ class HeaderRegion(Page):
     # _base_url = "http://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/app_dev.php/"
     _logout_button = (By.LINK_TEXT, u"Wyloguj się")
     _continue_to_registration_page_button = (By.LINK_TEXT, u'Zarejestruj się >>')
-    _base_url = HomePage._url
+    # _base_url = HomePage._url
+    _base_url = HomePage._url_https
 
     def login(self, login, password):
         while True:
@@ -33,6 +34,7 @@ class HeaderRegion(Page):
                 self.click(self._login_button, "The Submit login button on login page couldn't be clicked or wasn't visible")
             else:
                 break
+
     def login_after_adding_consignment(self, login, password):
         self.send_keys(login, self._login_field, "The attempt to send login value into login field on login page was unsuccessful")
         self.send_keys(password, self._password_field, "The attempt to send password value into password field on login page was unsuccessful")

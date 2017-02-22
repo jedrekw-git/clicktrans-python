@@ -128,3 +128,10 @@ class Page(object):
 
     def get_value(self, locator):
         return self.wait_for_visibility(locator).get_attribute("value")
+
+    def if_not_visible_click(self, locator_check, locator_click, info = "click on button error", timeout=10):
+        if self.find_element(locator_check).is_displayed():
+            pass
+        else:
+            element = self.wait_for_visibility(locator_click, info, timeout)
+            element.click()
