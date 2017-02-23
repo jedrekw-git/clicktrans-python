@@ -89,7 +89,7 @@ class ProfilePage(BasePage):
     _provider_reply_to_negative_commentary_button = (By.XPATH, "//td[5]/a")
     _provider_reply_to_negative_commentary_content = (By.XPATH, "//textarea[@id='content']")
     _provider_reply_to_negative_commentary_submit_button = (By.XPATH, "(//input[@value='OK'])[3]")
-    _provider_send_commentary_button = (By.XPATH, "/html/body/div[8]/div[8]/div[2]/div[2]/table/tbody/tr[1]/td[4]/div/a")
+    _provider_send_commentary_button = (By.XPATH, "//td[4]/div/a")
     _provider_send_random_commentary_type_button = (By.XPATH, "//form/div/div/div[2]/div[%s]"%randint(1,3))
     _provider_send_commentary_content = (By.ID, "user_opinion_content")
     _provider_send_commentary_submit_button = (By.XPATH, "/html/body/div[10]/div[1]/div[3]/div[2]")
