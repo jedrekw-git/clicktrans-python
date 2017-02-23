@@ -53,7 +53,7 @@ class Page(object):
     def clear_field(self, locator):
         self.find_element(locator).clear()
 
-    def click(self, locator, info="click on button error", timeout=10):
+    def click(self, locator, info="click on button error", timeout=5):
         element = self.wait_for_visibility(locator, info, timeout)
         # self.find_element(locator).click()
         # ycoord = element.location['y']

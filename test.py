@@ -345,7 +345,6 @@ class SmokeTest(unittest.TestCase):
         profile = home_page.header.open_profile_page()
         consignment = profile.open_first_auction()
         consignment.accept_offer()
-        home_page = HomePage(self.driver).open_home_page()
         home_page.header.logout()
         provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         profile = home_page.header.open_profile_page()

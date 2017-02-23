@@ -12,7 +12,7 @@ class HomePage(BasePage):
         super(HomePage, self).__init__(driver, self._title, self._url)
 
     def open_home_page(self):
-        self.get(self._url)
+        self.get(self._url_https)
         self.is_the_current_page()
         # alert = self.get_driver().switch_to_alert()
         # alert.send_keys(login)
