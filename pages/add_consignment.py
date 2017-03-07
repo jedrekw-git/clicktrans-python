@@ -70,6 +70,7 @@ class AddConsignmentPage(BasePage):
     _payu_valid_authorization = (By.XPATH, "/html/body/div/div[2]/div/div[1]/div/table/tbody/tr/td[1]/form/input[1]")
     _first_payment_date_field = (By.XPATH, "/html/body/div[1]/div[3]/div[4]/div[3]/div[1]/div[2]/div[1]/table/tbody/tr[2]/td[3]")
     _edit_consignment_result_field = (By.XPATH, "/html/body/div[8]/div/div[1]/div[1]/div/div/div")
+    _after_adding_consignment_text_field = (By.CSS_SELECTOR, "div.header")
 
     def __init__(self, driver):
         super(AddConsignmentPage, self).__init__(driver, self._title)
