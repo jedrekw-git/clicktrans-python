@@ -60,7 +60,7 @@ class AddConsignmentPage(BasePage):
     _view_added_consignment_button = (By.XPATH, "//div/div/div/div/div/a[2]")
     _consignment_title_result_page = (By.XPATH, "//div/div/div/div/div/div/a")
     _consignment_title_result_page_after_payment = (By.XPATH, "/html/body/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]/div/div[2]/strong/a")
-    _first_offer = (By.XPATH, "//td[7]/button")
+    _first_offer = (By.XPATH, "//button")
     _highlited_checkbox = (By.NAME, "auction_special")
     _urgent_checkbox = (By.NAME, "auction_important")
     _test_payment_radio = (By.XPATH, "//input[@value='t']")

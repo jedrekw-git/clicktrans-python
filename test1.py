@@ -86,7 +86,7 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(add_consignment_page._title_uuid, view_consignments_page.get_page_source(), u"THe consignment title didn't appear on added consignment page")
         Assert.contains(u"Wrocław, Polska", view_consignments_page.get_page_source(), u"The text <Wrocław, Polska> didn't appear on added consignment page")
-        Assert.contains(u'Warszawa, Polska', view_consignments_page.get_page_source(), u"The text <Warszawa, Polska> didn't appear on added consignment page")
+        Assert.contains(u'Warszawa', view_consignments_page.get_page_source(), u"The text <Warszawa, Polska> didn't appear on added consignment page")
         Assert.contains(u'347.00  km', view_consignments_page.get_page_source(), u"The text <347.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
