@@ -66,7 +66,7 @@ class SmokeTest(unittest.TestCase):
             fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
             fp.set_preference("xpinstall.signatures.required", "false")
             fp.set_preference("toolkit.telemetry.reportingpolicy.firstRun", "false")
-            binary = FirefoxBinary('/usr/bin/firefox')
+            binary = FirefoxBinary('/opt/firefox-sdk/bin/firefox')
             self.driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp)
             self.driver.set_window_size(1024,768)
             self.driver.implicitly_wait(self.timeout)
