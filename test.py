@@ -1104,7 +1104,9 @@ class SmokeTest(unittest.TestCase):
             # fp = webdriver.FirefoxProfile("C:/Users/jj/AppData/Roaming/Mozilla/Firefox/Profiles/woebxsbi.default-1458919598960")
             # geckoPath = 'C:\BACKUP 2017-01\gecko\geckodriver.exe'
             # self.driver = webdriver.Firefox(capabilities=firefox_capabilities, firefox_profile=fp)
-            self.driver = webdriver.Firefox()
+            sr_args = ["--verbose", "--log-path=chromedriver.log"]
+            self.driver = webdriver.Chrome(executable_path='C:\Downloads\chromedriver.exe',  service_args=sr_args)
+            # self.driver = webdriver.Firefox()
             self.driver.set_window_size(1024,768)
             self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()

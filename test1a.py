@@ -64,13 +64,23 @@ class SmokeTest(unittest.TestCase):
             # fp.set_preference("browser.startup.homepage", "about:blank")
             # fp.set_preference("startup.homepage_welcome_url", "about:blank")
             # fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
-            # fp.set_preference("xpinstall.signatures.required", "false")
+            # fp.set_preference(" xpinstall.signatures.required", "false")
             # fp.set_preference("toolkit.telemetry.reportingpolicy.firstRun", "false")
-            # binary = FirefoxBinary('/opt/firefox-sdk/bin/firefox')
+            # binary = FirefoxBinary('/__stare/firefox45/firefox')
             # self.driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp)
-            self.driver = webdriver.Firefox()
+            sr_args = ["--verbose", "--log-path=chromedriver.log"]
+            from selenium.webdriver.chrome.options import Options
+            opts = Options()
+            opts.binary_location = "/usr/bin/google-chrome"
+            # opts.binary_location = "/usr/lib/chromium-browser/chromium-browser"
+            opts.add_argument("--no-sandbox") #This make Chromium reachable
+            opts.add_argument("--no-default-browser-check") #Overrides default choices
+            opts.add_argument("--no-first-run")
+            opts.add_argument("--disable-default-apps")
+            self.driver = webdriver.Chrome(executable_path="/usr/lib/chromium-browser/chromedriver", service_args=sr_args, chrome_options=opts)
+            # self.driver = webdriver.Chrome(service_args=sr_args, chrome_options=opts)
             self.driver.set_window_size(1024,768)
-            self.driver.implicitly_wait(self.timeout)
+            # self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
         else:
             self.desired_capabilities['name'] = self.id()
