@@ -1214,7 +1214,7 @@ class SmokeTest(unittest.TestCase):
     #        Plik zawierający Screenshoty i kod html testów które nie przeszły oraz wykres statystyczny: <a href="http://ci.testuj.pl/job/Clicktrans/ws/ClicktransRaportScreeny.html">Screenshoty, HTML i wykres</a><br>
     #        Tabela raportowa z logami wykonanych testów: <a href="http://ci.testuj.pl/job/Clicktrans/ws/ClicktransReportLogi.html">Tabela z logami</a></p>"""
     #
-    #     sender = Mailer('smtp.gmail.com', use_tls=True, usr='jedrzej.wojcieszczyk@testuj.pl', pwd='paluch88')
+    #     sender = Mailer('smtp.gmail.com', use_tls=True, usr='maildoklientow@gmail.com', pwd='useme1988')
     #     sender.send(message)
 #
 #     def _convert_to_html(self):
