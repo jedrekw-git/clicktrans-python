@@ -112,6 +112,7 @@ class ConsignmentPage(BasePage):
         self.send_keys("2", self._transport_period, "The attempt to enter <2> into transport period field on add offer page was unsuccessful")
 
     def confirm_submit_offer(self):
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._submit_offer_confirm))
         self.click(self._submit_offer_confirm, "The submit offer confirm button on add offer page wasn't visible")
 
     def watch_consignment(self):
@@ -125,7 +126,8 @@ class ConsignmentPage(BasePage):
 
     def add_question_to_offer(self):
         self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
-        sleep(2)
+        sleep(1)
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._add_question_button))
         self.click(self._add_question_button, "The add question to offer button in offer details on consignment page wasn't visible")
         self.send_keys("This is my question", self._question_content, "The attempt to enter question to offer content on consignment page was unsuccessful")
         self.click(self._add_question_confirm, "The add question to offer confirm button in offer details on consignment page wasn't visible")
@@ -136,6 +138,8 @@ class ConsignmentPage(BasePage):
         self.click(self._add_question_confirm, "The add question to offer confirm button in offer details on consignment page wasn't visible")
 
     def provider_add_question_to_consignment(self):
+        sleep(1)
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._add_question_to_consignment_button))
         self.click(self._add_question_to_consignment_button, "The add question to consignment button on consignment page wasn't visible")
         self.send_keys("This is my question", self._consignment_question_content, "The attempt to enter question to consignment content on consignment page was unsuccessful")
         self.click(self._consignment_question_confirm, "The add question to consignment confirm button on consignment page wasn't visible")

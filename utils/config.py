@@ -17,7 +17,7 @@ PROVIDER_PASSWORD3 = "testuj88"
 PROVIDER_USER2 = "BRUM-BRUM86"
 PROVIDER_PASSWORD2 = "testuj88"
 
-CHANGE_PASSWORD_USER = "testujpltlen"
+CHANGE_PASSWORD_USER = "testujplprokonto"
 
 # browsers = [{"platform": "Windows 8.1",
 #              "browserName": "firefox",

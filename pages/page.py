@@ -2,9 +2,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import *
 import logging
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 class Page(object):
     def __init__(self, driver, title=None, url=None):
@@ -66,7 +69,16 @@ class Page(object):
         ycoord = self.find_element(locator).location['y']
         self.get_driver().execute_script("window.scrollTo({0}, 0)".format(ycoord))
         wait = WebDriverWait(self.get_driver(), 10, poll_frequency=.2)
-        wait.until(expected_conditions.element_to_be_clickable(locator)).click()
+        wait.until(expected_conditions.visibility_of_element_located(locator)).click()
+
+    def click2(self, locator):
+        self.get_driver().execute_script("arguments[0].click();", self.find_element((locator)))
+
+    def click3(self, locator):
+        wait = WebDriverWait(self.get_driver(), 10)
+        accept = wait.until(EC.presence_of_element_located(locator))
+        actions = ActionChains(self.get_driver())
+        actions.move_to_element(accept).click().perform()
 
     def condition_click(self, locator, info="no error"):
         try:

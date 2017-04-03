@@ -95,8 +95,9 @@ class ProfilePage(BasePage):
     _provider_send_commentary_submit_button = (By.XPATH, "/html/body/div[10]/div[1]/div[3]/div[2]")
     _first_consignment_edit = (By.XPATH, "//div[2]/div/div/a")
     _first_consignment_withdraw = (By.PARTIAL_LINK_TEXT, "Wycofaj ogłoszenie")
+    _withdraw_frame = (By.CLASS_NAME, "ui small modal transition visible active scrolling")
     _random_withdraw_cause = (By.XPATH, "//div[%s]/div/label"%randint(2,5))
-    _withdraw_consignment_submit = (By.ID, "RejectAuction_reject")
+    _withdraw_consignment_submit = (By.CSS_SELECTOR, "html.no-js body.dimmable.dimmed.scrolling div.ui.dimmer.modals.page.transition.visible.active div.ui.small.modal.scrolling.transition.visible.active div.content form.ui.form div.ui.basic.segment button#RejectAuction_reject.ui.right.floated.primary.button")
     _first_consignment_enter = (By.XPATH, "//div[2]/p/a")
     _withdraw_first_offer = (By.PARTIAL_LINK_TEXT, "Wycofaj ofertę")
     _withdraw_first_offer_confirm = (By.XPATH, "//div[2]/div/div[2]/a")
@@ -112,8 +113,8 @@ class ProfilePage(BasePage):
     _set_executed_submit = (By.XPATH, "//div[2]/div/div[2]/a")
     _commission_payback_tab = (By.PARTIAL_LINK_TEXT, u"Zwroty prowizji")
     _commission_payback_request_link = (By.XPATH, "//td[6]/div/div[2]/a")
-    _commission_reason_field = (By.ID, "AddRefund_descriptionCompany")
-    _commission_confirmation_button = (By.XPATH, "/html/body/div[10]/div[2]/div[3]/div")
+    _commission_reason_field = (By.CSS_SELECTOR, 'html.no-js body.dimmable.dimmed.scrolling div.ui.dimmer.modals.page.transition.visible.active div.ui.modal.transition.visible.active.scrolling div.content form.ui.form div.ui.segments div.ui.horizontal.segments.grid div.ui.segment.seven.wide.column div.field textarea#AddRefund_descriptionCompany')
+    _commission_confirmation_button = (By.CSS_SELECTOR, "html.no-js body.dimmable.dimmed.scrolling div.ui.dimmer.modals.page.transition.visible.active div.ui.modal.transition.visible.active.scrolling div.actions div.ui.primary.button")
     # _messages_menu = (By.XPATH, "//div[6]/div/div/ul/li[2]/a")
     _messages_menu = (By.PARTIAL_LINK_TEXT, u"Wiadomości")
     _first_message = (By.XPATH, "//td[2]/a")
@@ -193,6 +194,7 @@ class ProfilePage(BasePage):
         self.click(self._language_dropdown, "The language dropdown couldn't be clicked or waesn't visible on user edit profile page")
         self.click(self._language_polish, "The language <Polish> on language dropdown couldn't be clicked or waesn't visible on user edit profile page")
         self.click(self._my_data_country_dropdown, "The my data country dropdown couldn't be clicked or waesn't visible on user edit profile page")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._random_country_button))
         self.click(self._random_country_button, "The random country button on country dropdown couldn't be clicked or waesn't visible on user edit profile page")
         self.clear_field_and_send_keys(self._change_street, self._street_field, "The attempt to enter new street name into street field on user edit profile page was unsuccessful")
         self.clear_field_and_send_keys(self._change_building_number, self._building_number_field, "The attempt to enter new building number into building number field on user edit profile page was unsuccessful")
@@ -208,8 +210,13 @@ class ProfilePage(BasePage):
     def withdraw_consignment(self):
         self.click(self._my_consignments_menu, "The consignments menu in user profile couldn't be clicked or wasn't visible")
         self.click(self._first_consignment_withdraw, "The first consignment withdraw button in my consignments menu in user profile couldn't be clicked or wasn't visible")
-        self.click(self._random_withdraw_cause, "Trying to click random withdraw cause button while withdrawing consignment from user profile was usnsuccessful")
-        self.click(self._withdraw_consignment_submit, "The withdraw consignment submit button couldn't be clicked or wasn't visible in user profile")
+        sleep(1)
+        # self.get_driver().switch_to.frame(self.find_element(self._withdraw_frame))
+        self.click2(self._random_withdraw_cause)
+        # self.click(self._random_withdraw_cause, "Trying to click random withdraw cause button while withdrawing consignment from user profile was usnsuccessful")
+        # self.get_driver().execute_script("return arguments[0].scrollIntoView(false);", self.find_element(self._withdraw_consignment_submit))
+        self.click2(self._withdraw_consignment_submit)
+        # self.click(self._withdraw_consignment_submit, "The withdraw consignment submit button couldn't be clicked or wasn't visible in user profile")
 
     def open_first_auction(self):
         self.condition_click(self._my_consignments_menu, "The consignments menu in user profile couldn't be clicked or wasn't visible")
@@ -232,7 +239,10 @@ class ProfilePage(BasePage):
         self.click(self._my_offers_menu, "The my offers menu in user profile couldn't be clicked or wasn't visible")
         self.click(self._commission_payback_tab, "The commission payback tab in my offers menu in user profile couldn't be clicked or wasn't visible")
         self.click(self._commission_payback_request_link, "The commission payback request link in my offers menu in user profile couldn't be clicked or wasn't visible")
-        self.clear_field_and_send_keys(get_random_string(10), self._commission_reason_field, "THe attempt to enter random commission payback reason was unsuccessful")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._commission_reason_field))
+        self.send_keys_to_element(self.find_element(self._commission_reason_field), get_random_string(10))
+        # self.send_keys(get_random_string(10), self._commission_reason_field, "THe attempt to enter random commission payback reason was unsuccessful")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._commission_confirmation_button))
         self.click(self._commission_confirmation_button, "The commission payback confirmation button in my offers menu in user profile couldn't be clicked or wasn't visible")
 
     def edit_provider_profile(self):
@@ -243,6 +253,7 @@ class ProfilePage(BasePage):
             except TimeoutException:
                 break
         self.click(self._category_dropdown, "The category dropdown couldn't be clicked or wasn't visible on edit provider profile page")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._random_category_button))
         self.click(self._random_category_button, "The random category button on category dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         while True:
             try:
@@ -324,6 +335,7 @@ class ProfilePage(BasePage):
         self.clear_field_and_send_keys(get_random_string(9), self._company_city, "The attempt to enter random string into company city field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys(self._change_postal_code, self._company_postal, "The attempt to enter random postal code into company postal code field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys("www."+get_random_string(5)+".pl", self._company_www, "The attempt to enter random www address into company www field on provider edit company data page was unsuccessful")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._company_data_save_button))
         self.click(self._company_data_save_button, "The company data save changes button couldn't be clicked or wasn't visible on edit provider company data page")
 
     def edit_provider_notifications(self):
@@ -377,7 +389,9 @@ class ProfilePage(BasePage):
         self.click(self._accepted_tab, "The accepted tab couldn't be clicked or wasn't visible in my offers menu on provider profile page")
         self.get_driver().execute_script("window.scrollTo(1100, 320);")
         self.click(self._set_executed_link, "The set executed link for first consignment couldn't be clicked or wasn't visible in my offers menu on provider profile page")
-        self.click(self._set_executed_submit, "The set executed submit button for first consignment couldn't be clicked or wasn't visible in my offers menu on provider profile page")
+        sleep(2)
+        self.click2(self._set_executed_submit)
+        # self.click(self._set_executed_submit, "The set executed submit button for first consignment couldn't be clicked or wasn't visible in my offers menu on provider profile page")
 
     def provider_send_commentary_from_my_offers_menu(self):
         self.click(self._my_offers_menu, "The my offers menu couldn't be clicked or wasn't visible on provider profile page")
@@ -393,8 +407,13 @@ class ProfilePage(BasePage):
         self.click(self._provider_commentaries_menu, "The commentaries menu couldn't be clicked or wasn't visible on provider profile page")
         self.get_driver().execute_script("window.scrollTo(1, 50);")
         self.click(self._provider_send_commentary_button, "The send commentary button for first consignment couldn't be clicked or wasn't visible in commentaries menu on provider profile page")
-        self.click(self._provider_send_random_commentary_type_button, "The random commentary type button for first consignment couldn't be clicked or wasn't visible in commentaries menu on provider profile page")
-        self.clear_field_and_send_keys("This is my commentary", self._provider_send_commentary_content, "The attempt to enter commentary content while adding commentary from commentaries menu as provider was unsuccessful")
+        sleep(2)
+        self.click2(self._provider_send_random_commentary_type_button)
+        # self.click(self._provider_send_random_commentary_type_button, "The random commentary type button for first consignment couldn't be clicked or wasn't visible in commentaries menu on provider profile page")
+        sleep(2)
+        self.send_keys("This is my commentary", self._provider_send_commentary_content)
+        # self.send_keys_to_element(self.find_element(self._provider_send_commentary_content), "This is my commentary")
+        # self.clear_field_and_send_keys("This is my commentary", self._provider_send_commentary_content, "The attempt to enter commentary content while adding commentary from commentaries menu as provider was unsuccessful")
         self.click(self._provider_send_commentary_submit_button, "The send commentary submit button for first consignment couldn't be clicked or wasn't visible in commentaries menu on provider profile page")
 
     def enter_provider_sent_commentaries_tab(self):

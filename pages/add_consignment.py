@@ -107,7 +107,7 @@ class AddConsignmentPage(BasePage):
         sleep(2)
         self.click(self._placeholder_results1)
         self.click(self._receive_city_field, "The receive city field on add consignment page couldn't be clicked or wasn't visible")
-        self.send_keys(u"Warszawa, Polska", self._receive_city_field, "The attempt to enter <Warszawa> into receive city field on add consignment page was unsuccessful")
+        self.send_keys(u"Radom, Polska", self._receive_city_field, "The attempt to enter <Warszawa> into receive city field on add consignment page was unsuccessful")
         sleep(2)
         self.click(self._placeholder_results2)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
@@ -139,6 +139,7 @@ class AddConsignmentPage(BasePage):
 
     def edit_consignment_parcel(self):
         self.click(self._category_dropdown, "The category dropdown on edit consignment page couldn't be clicked or wasn't visible")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._category_parcels))
         self.click(self._category_parcels, "The category <Parcels> on category dropdown on edit consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys(self._title_uuid, self._consignment_title_field, "The attempt to send random consignment title to consignment title field on edit consignment page was unsuccessful")
         # self.condition_click(self._date_fixed_checkbox, "The date fixed checkbox on edit consignment page couldn't be clicked or wasn't visible")
@@ -253,6 +254,8 @@ class AddConsignmentPage(BasePage):
 
     def add_consignment_parcel(self):
         self.click(self._category_dropdown, "The category dropdown on add consignment page couldn't be clicked or wasn't visible")
+        sleep(1)
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._category_parcels))
         self.click(self._category_parcels, "The category <Parcels> on category dropdown on add consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys(self._title_uuid, self._consignment_title_field, "The attempt to send random consignment title to consignment title field on add consignment page was unsuccessful")
         # self.condition_click(self._date_fixed_checkbox, "The date fixed checkbox on add consignment page couldn't be clicked or wasn't visible")
@@ -265,7 +268,7 @@ class AddConsignmentPage(BasePage):
         self.clear_field_and_send_keys(self._receive_date_from_value, self._receive_date_from_field)
         self.clear_field_and_send_keys(self._receive_date_to_value, self._receive_date_to_field)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
-        self.clear_field_and_send_keys(u"Warszawa, Polska", self._send_city_field, "The attempt to enter <Warszawa> into send city field on add consignment page was unsuccessful")
+        self.clear_field_and_send_keys(u"Radom, Polska", self._send_city_field, "The attempt to enter <Warszawa> into send city field on add consignment page was unsuccessful")
         sleep(2)
         self.click(self._placeholder_results1)
         self.click(self._receive_city_field, "The receive city field on add consignment page couldn't be clicked or wasn't visible")
