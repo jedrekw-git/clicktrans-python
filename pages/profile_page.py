@@ -399,7 +399,8 @@ class ProfilePage(BasePage):
         self.get_driver().execute_script("window.scrollTo(1100, 320);")
         self.click(self._my_offers_send_commentary_button, "The send commentary button couldn't be clicked or wasn't visible in my offers menu on provider profile page")
         sleep(2)
-        self.click(self._random_commentary_type_button, "The random commentary type button couldn't be clicked or wasn't visible in my offers menu on provider profile page while adding commentary")
+        self.click2(self._random_commentary_type_button)
+        # self.click(self._random_commentary_type_button, "The random commentary type button couldn't be clicked or wasn't visible in my offers menu on provider profile page while adding commentary")
         self.clear_field_and_send_keys("This is my commentary", self._my_offers_commentary_content, "The attempt to enter commentary content while adding commentary from my offers menu as provider was unsuccessful")
         self.click(self._my_offers_commentary_submit_button, "The commentary submit button in my offers menu in provider profile couldn't be clicked or wasn't visible")
 
@@ -430,6 +431,7 @@ class ProfilePage(BasePage):
         self.click(self._my_consignments_menu, "The my consignments menu in user profile couldn't be clicked or wasn't visible")
         self.click(self._ended_transactions_tab, "The ended transactions tab in my consignments menu in user profile couldn't be clicked or wasn't visible")
         self.click(self._first_ended_transaction_send_commentary_button, "first ended transaction send commentary button in my consignments menu in user profile couldn't be clicked or wasn't visible")
+        self.click(self._first_ended_transaction_commentary_random_type)
         self.click(self._first_ended_transaction_commentary_random_type, "first ended transaction commentary random type in my consignments menu in user profile couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys("This is my commentary", self._first_ended_transaction_commentary_content, "The attempt to enter first ended transaction commentary content in user profile was unsuccessful")
         self.click(self._first_ended_transaction_submit_commentary_button, "first ended transaction submit commentary button in my consignments menu in user profile couldn't be clicked or wasn't visible")
@@ -437,7 +439,8 @@ class ProfilePage(BasePage):
     def user_send_commentary_from_commentaries_menu(self):
         self.click(self._commentaries_menu, "The commentaries menu in user profile couldn't be clicked or wasn't visible")
         self.click(self._first_transaction_send_commentary_button, "The first transaction send commentary button in commentaries menu in user profile couldn't be clicked or wasn't visible")
-        self.click(self._first_transaction_random_commentary_type_button, "The first transaction random commentary type in commentaries menu in user profile couldn't be clicked or wasn't visible")
+        self.click2(self._first_transaction_random_commentary_type_button)
+        # self.click(self._first_transaction_random_commentary_type_button, "The first transaction random commentary type in commentaries menu in user profile couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys("This is my commentary", self._first_transaction_commentary_content, "The attempt to enter first transaction commentary content in commentaries menu in user profile was unsuccessful")
         self.click(self._first_transaction_submit_commentary_button, "The first transaction submit commentary button in commentaries menu in user profile couldn't be clicked or wasn't visible")
 

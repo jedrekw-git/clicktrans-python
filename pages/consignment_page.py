@@ -77,6 +77,7 @@ class ConsignmentPage(BasePage):
 
     def report_violation_to_question_to_offer(self):
         self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._question_to_offer_violation_flag))
         self.click(self._question_to_offer_violation_flag, "The question to offer violation flag couldn't be clicked or wasn't visible on consignment page")
         self.clear_field_and_send_keys("This is my report", self._violation_to_question_to_offer_content_field, "The attempt to enter text into violation content field while adding violation to question to offer was unsuccessful")
         self.click(self._violation_to_question_to_offer_submit, "The add violation to question to offer submit button couldn't be clicked or wasn't visible on consignment page")
@@ -121,6 +122,7 @@ class ConsignmentPage(BasePage):
     def reject_offer(self):
         self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
         sleep(2)
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._reject_offer_button))
         self.click(self._reject_offer_button, "The reject offer button in offer details on consignment page wasn't visible")
         self.click(self._reject_offer_confirm, "The reject offer confirm button in offer details on consignment page wasn't visible")
 
