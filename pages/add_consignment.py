@@ -132,7 +132,7 @@ class AddConsignmentPage(BasePage):
         #     self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
         try:
             self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
-            sleep(3)
+            WebDriverWait(self.get_driver(), 10).until(EC.text_to_be_present_in_element(self._after_adding_consignment_text_field, u"została wystawiona!"), u"The text <została wystawiona> didn't appear on page after adding consignment, probably the consignment wasn't added")
         except:
             self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
         return self._title_uuid

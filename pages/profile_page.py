@@ -200,7 +200,7 @@ class ProfilePage(BasePage):
         self.clear_field_and_send_keys(self._change_building_number, self._building_number_field, "The attempt to enter new building number into building number field on user edit profile page was unsuccessful")
         self.clear_field_and_send_keys(self._change_postal_code, self._postal_code_field, "The attempt to enter new postal code into postal code field on user edit profile page was unsuccessful")
         self.clear_field_and_send_keys(self._change_city, self._city_field, "The attempt to enter new city into city field on user edit profile page was unsuccessful")
-        self.click(self._save_button, "The attempt to click save button on user edit profile page was unsuccessful")
+        self.condition_click(self._save_button, "The attempt to click save button on user edit profile page was unsuccessful")
 
     def edit_consignment(self):
         self.click(self._my_consignments_menu, "The consignments menu in user profile couldn't be clicked or wasn't visible")
@@ -261,7 +261,7 @@ class ProfilePage(BasePage):
             except TimeoutException:
                 break
         self.click(self._provider_country_dropdown, "The provider country dropdown couldn't be clicked or wasn't visible on edit provider profile page")
-        self.click(self._provider_random_country_button, "The random country button on provider country dropdown couldn't be clicked or wasn't visible on edit provider profile page")
+        self.condition_click(self._provider_random_country_button, "The random country button on provider country dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         while True:
             try:
                 self.click(self._remove_first_route_button, "Remove first route button is not clickable on edit provider profile page", 2)
