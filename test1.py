@@ -406,15 +406,15 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Zmiany zostały zapisane.", profile_page.get_page_source(), u"The text <Zmiany zostały zapisane.> didn't appear on profile page after editing provider notifications")
 
-    def test_change_password_should_succeed(self):
-
-        home_page = HomePage(self.driver).open_home_page()
-        _saved_password = get_password("change_pass.txt")
-        account_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
-        profile_page = home_page.header.open_profile_page()
-        profile_page.change_password("change_pass.txt")
-
-        Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source(), u"The text <Hasło zostało zmienione> didn't appear or profile page after changing password")
+    # def test_change_password_should_succeed(self):
+    #
+    #     home_page = HomePage(self.driver).open_home_page()
+    #     _saved_password = get_password("change_pass.txt")
+    #     account_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
+    #     profile_page = home_page.header.open_profile_page()
+    #     profile_page.change_password("change_pass.txt")
+    #
+    #     Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source(), u"The text <Hasło zostało zmienione> didn't appear or profile page after changing password")
 
     def test_reject_offer_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
