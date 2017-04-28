@@ -27,11 +27,15 @@ class HeaderRegion(Page):
 
     def login(self, login, password):
         while True:
+            i=0
             if not login in self.get_page_source():
+                i=i+1
                 self.get(self._base_url + "login")
                 self.send_keys(login, self._login_field, "The attempt to send login value into login field on login page was unsuccessful")
                 self.send_keys(password, self._password_field, "The attempt to send password value into password field on login page was unsuccessful")
                 self.click(self._login_button, "The Submit login button on login page couldn't be clicked or wasn't visible")
+            if i==3:
+                break
             else:
                 break
 
