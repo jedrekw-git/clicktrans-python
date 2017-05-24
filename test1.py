@@ -87,7 +87,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(add_consignment_page._title_uuid, view_consignments_page.get_page_source(), u"THe consignment title didn't appear on added consignment page")
         Assert.contains(u"Wrocław, Polska", view_consignments_page.get_page_source(), u"The text <Wrocław, Polska> didn't appear on added consignment page")
         Assert.contains(u'Radom', view_consignments_page.get_page_source(), u"The text <Warszawa, Polska> didn't appear on added consignment page")
-        Assert.contains(u'357.00  km', view_consignments_page.get_page_source(), u"The text <347.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
+        Assert.contains(u'351.00  km', view_consignments_page.get_page_source(), u"The text <347.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
@@ -149,7 +149,7 @@ class SmokeTest(unittest.TestCase):
         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(add_consignment_page._after_adding_consignment_text_field, u"została wystawiona!"), u"The text <została wystawiona> didn't appear on page after adding consignment, probably the consignment wasn't added")
         profile_page = home_page.header.open_profile_page()
         settings = profile_page.edit_consignment()
-        settings.edit_consignment_parcel()
+        settings.edit_consignment_cars()
 
         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(settings._edit_consignment_result_field, u"Zmiany w Twojej przesyłce"), u"The text <Zmiany w Twojej przesyłce> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
         # Assert.contains(u"Zmiany w Twojej przesyłce", settings.get_page_source(), u"The text <Zmiany w Twojej przesyłce> didn't appear on confirmation page after editing consignment, probably the edit didn't work well")
@@ -188,6 +188,8 @@ class SmokeTest(unittest.TestCase):
         consignment.report_violation_to_consignmeent()
 
         Assert.contains(u"Zgłoszenie zostało odnotowane", consignment.get_page_source(), u"The text <Zgłoszenie zostało odnotowane> didn't appear on consignment page after reporting violation")
+
+# There's no possibility to report violation to consignment, there's no flag
 
     def test_report_violation_to_offer_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -250,6 +252,8 @@ class SmokeTest(unittest.TestCase):
         consignment.report_violation_to_question_to_consignment()
 
         Assert.contains(u"Zgłoszenie zostało odnotowane", consignment.get_page_source(), u"The text <Zgłoszenie zostało odnotowane> didn't appear on consignment page after reporting violation to question to consignment")
+
+# no possibility to add question to consignment
 
     def test_check_categories_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -406,15 +410,15 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Zmiany zostały zapisane.", profile_page.get_page_source(), u"The text <Zmiany zostały zapisane.> didn't appear on profile page after editing provider notifications")
 
-    # def test_change_password_should_succeed(self):
-    #
-    #     home_page = HomePage(self.driver).open_home_page()
-    #     _saved_password = get_password("change_pass.txt")
-    #     account_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
-    #     profile_page = home_page.header.open_profile_page()
-    #     profile_page.change_password("change_pass.txt")
-    #
-    #     Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source(), u"The text <Hasło zostało zmienione> didn't appear or profile page after changing password")
+    def test_change_password_should_succeed(self):
+
+        home_page = HomePage(self.driver).open_home_page()
+        _saved_password = get_password("change_pass.txt")
+        account_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
+        profile_page = home_page.header.open_profile_page()
+        profile_page.change_password("change_pass.txt")
+
+        Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source(), u"The text <Hasło zostało zmienione> didn't appear or profile page after changing password")
 
     def test_reject_offer_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -509,6 +513,8 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u"Twoje pytanie zostało dodane.", consignment.get_page_source(), u"The text <Twoje pytanie zostało dodane.> didn't appear on consignment page after adding question to consignment")
         Assert.contains(u"This is my question", consignment.get_page_source(), u"The text <This is my question> didn't appear on consignment page after adding question to consignment")
 
+#brak mozliwosci dodania pytania do przesyłki
+
     def test_user_reply_to_question_to_consignment_from_provider_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
         user = home_page.header.login(USER, PASSWORD)
@@ -530,6 +536,8 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Twoja odpowiedź została dodana.", consignment.get_page_source(), u"The text <Twoja odpowiedź została dodana.> didn't appear on consignment page after replying to question to consignment")
         Assert.contains(u"This is my reply", consignment.get_page_source(), u"The text <This is my reply> didn't appear on consignment page after replying to question to consignment")
+
+#brak mozliwosci dodania pytania do przesyłki
 
     def test_accept_offer_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -650,6 +658,8 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(u"Twoja odpowiedź została dodana.", profile.get_page_source(), u"The text <Twoja odpowiedź została dodana> didn't appear on consignment page after replying to provider question to consignment")
         Assert.contains(u"This is my reply", profile.get_page_source(), u"The text <This is my reply> didn't appear on consignment page after replying to provider question to consignment")
 
+#brak mozliwosci dodania pytania do przesyłki
+
     # def test_user_send_commentary_from_ended_transactions_menu_should_succeed(self):
     #     home_page = HomePage(self.driver).open_home_page()
     #     user = home_page.header.login(USER, PASSWORD)
@@ -704,37 +714,37 @@ class SmokeTest(unittest.TestCase):
 # chrome
 
 
-    def test_provider_reply_to_negative_commentary_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
-        user = home_page.header.login(USER, PASSWORD)
-        add_consignment_page = home_page.header.add_consignment_page()
-        add_consignment_page.new_furniture_consignment()
-        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(add_consignment_page._after_adding_consignment_text_field, u"została wystawiona!"), u"The text <została wystawiona> didn't appear on page after adding consignment, probably the consignment wasn't added")
-        home_page.header.logout()
-        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-        view_consignments_page = home_page.header.view_consignments_page()
-        view_consignments_page.search_for_added_consignment()
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid), u"The first consignment on view consignments page didn't match consignment title entered into search field, probably the search function didn't work properly")
-        submit_offer = view_consignments_page.open_added_consignment()
-        submit_offer.submit_offer()
-        submit_offer.confirm_submit_offer()
-        home_page.header.logout()
-        user = home_page.header.login(USER, PASSWORD)
-        profile = home_page.header.open_profile_page()
-        consignment = profile.open_first_auction()
-        consignment.accept_offer()
-        profile = home_page.header.open_profile_page()
-        profile.user_send_negative_commentary()
-        home_page.header.logout()
-        provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
-        profile = home_page.header.open_profile_page()
-        profile.provider_reply_to_negative_commentary()
-
-        Assert.contains(u"This is my negative commentary", profile.get_page_source(), u"The text <This is my negative commentary> didn't appear on provider profile page after replying to negative commentary")
-        Assert.contains(u"This is my reply", profile.get_page_source(), u"The text <This is my reply> didn't appear on provider profile page after replying to negative commentary")
+    # def test_provider_reply_to_negative_commentary_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_home_page()
+    #     user = home_page.header.login(USER, PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.new_furniture_consignment()
+    #     WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(add_consignment_page._after_adding_consignment_text_field, u"została wystawiona!"), u"The text <została wystawiona> didn't appear on page after adding consignment, probably the consignment wasn't added")
+    #     home_page.header.logout()
+    #     provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #     view_consignments_page = home_page.header.view_consignments_page()
+    #     view_consignments_page.search_for_added_consignment()
+    #     WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid), u"The first consignment on view consignments page didn't match consignment title entered into search field, probably the search function didn't work properly")
+    #     submit_offer = view_consignments_page.open_added_consignment()
+    #     submit_offer.submit_offer()
+    #     submit_offer.confirm_submit_offer()
+    #     home_page.header.logout()
+    #     user = home_page.header.login(USER, PASSWORD)
+    #     profile = home_page.header.open_profile_page()
+    #     consignment = profile.open_first_auction()
+    #     consignment.accept_offer()
+    #     profile = home_page.header.open_profile_page()
+    #     profile.user_send_negative_commentary()
+    #     home_page.header.logout()
+    #     provider = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #     profile = home_page.header.open_profile_page()
+    #     profile.provider_reply_to_negative_commentary()
+    #
+    #     Assert.contains(u"This is my negative commentary", profile.get_page_source(), u"The text <This is my negative commentary> didn't appear on provider profile page after replying to negative commentary")
+    #     Assert.contains(u"This is my reply", profile.get_page_source(), u"The text <This is my reply> didn't appear on provider profile page after replying to negative commentary")
 
 # There's no possibility to reply to negative commentary as provider, zgłoszone
-
+#chrome
 
 
 

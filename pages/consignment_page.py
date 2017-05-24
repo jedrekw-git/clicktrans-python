@@ -13,15 +13,15 @@ class ConsignmentPage(BasePage):
     _title = "Consignment"
 
     _consignment_violation_flag = (By.XPATH, "//div[2]/div[3]/a/i")
-    _offer_violation_flag = (By.XPATH, "//td/a/i")
+    _offer_violation_flag = (By.XPATH, "//p[6]/a/i")
     _question_to_offer_violation_flag = (By.XPATH, "//div[2]/a/i")
     _question_to_consignment_violation_flag = (By.XPATH, "//div[2]/a/i")
     _violation_content = (By.XPATH, "//div/textarea")
     _violation_submit = (By.ID, "user_complaint_submit")
-    _violation_to_offer_content_field = (By.XPATH, "//div[8]/div[2]/form/div/textarea")
-    _violation_to_offer_submit = (By.XPATH, "//div[8]/div[2]/form/div[2]/div[2]/div/button")
-    _violation_to_question_to_offer_content_field = (By.XPATH, "//div[9]/div[2]/form/div/textarea")
-    _violation_to_question_to_offer_submit = (By.XPATH, "//div[9]/div[2]/form/div[2]/div[2]/div/button")
+    _violation_to_offer_content_field = (By.ID, "user_complaint_content")
+    _violation_to_offer_submit = (By.ID, "user_complaint_submit")
+    _violation_to_question_to_offer_content_field = (By.XPATH, "//div[3]/div[2]/form/div/textarea")
+    _violation_to_question_to_offer_submit = (By.XPATH, "//div[3]/div[2]/form/div[2]/div[2]/div/button")
     _violation_to_question_to_consignment_content_field = (By.XPATH, "//div[6]/div[2]/form/div/textarea")
     _violation_to_question_to_consignment_submit = (By.XPATH, "//div[6]/div[2]/form/div[2]/div[2]/div/button")
     _submit_offer_button = (By.XPATH, "//button")
@@ -48,7 +48,7 @@ class ConsignmentPage(BasePage):
     _expiration_date = datetime.date.today().strftime('%Y-%m-%d 23:59')
     _expiration_date_first_10_days2 = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-0"+str(datetime.date.today().day)+" 23:59"
     _watch_consignment_link = (By.PARTIAL_LINK_TEXT, u"Obserwuj ogłoszenie")
-    _offer_details = (By.XPATH, "//td[6]")
+    _offer_details = (By.XPATH, "//div[2]/div[3]/strong")
     _reject_offer_button = (By.PARTIAL_LINK_TEXT, u"Odrzuć ofertę")
     _reject_offer_random_reason = (By.XPATH, "//div/div/div/div[%s]/div/label"%randint(1,6))
     _reject_offer_confirm = (By.ID, "RejectOffer_reject")
@@ -60,7 +60,7 @@ class ConsignmentPage(BasePage):
     _consignment_question_confirm = (By.ID, "AddAuctionMessage_send")
     _consignment_question_reply_content = (By.ID, "AddAuctionMessage_message")
     _consignment_question_reply_confirm = (By.ID, "AddAuctionMessage_send")
-    _accept_offer_button = (By.XPATH, "//div[2]/div/div/a")
+    _accept_offer_button = (By.LINK_TEXT, u"Akceptuj ofertę")
     _accept_offer_button2 = (By.LINK_TEXT, u"Akceptuję ofertę")
 
     def report_violation_to_consignmeent(self):
@@ -89,7 +89,7 @@ class ConsignmentPage(BasePage):
 
     def submit_offer(self):
         sleep(2)
-        self.click(self._submit_offer_button, "THe submit offer button couldn't be clicked or wasn't found on consignment page")
+        # self.click(self._submit_offer_button, "The submit offer button couldn't be clicked or wasn't found on consignment page")
         self.send_keys("111", self._price, "The attempt to enter price of offer into price field was unsuccessful")
         self.send_keys("22", self._minimum_price, "The attempt to enter minimum price of offer into minimum price field was unsuccessful")
         self.click(self._transport_kind_dropdown, "The transport kind dropdown couldn't be clicked or wasn't found on add offer page")
@@ -129,13 +129,14 @@ class ConsignmentPage(BasePage):
     def add_question_to_offer(self):
         self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
         sleep(1)
-        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._add_question_button))
-        self.click(self._add_question_button, "The add question to offer button in offer details on consignment page wasn't visible")
+        # self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._add_question_button))
+        # self.click(self._add_question_button, "The add question to offer button in offer details on consignment page wasn't visible")
         self.send_keys("This is my question", self._question_content, "The attempt to enter question to offer content on consignment page was unsuccessful")
         self.click(self._add_question_confirm, "The add question to offer confirm button in offer details on consignment page wasn't visible")
 
     def reply_to_question(self):
-        self.click(self._add_question_button, "The add question to offer button in offer details on consignment page wasn't visible")
+        # self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
+        # self.click(self._add_question_button, "The add question to offer button in offer details on consignment page wasn't visible")
         self.send_keys("This is my answer", self._question_content, "The attempt to enter question to offer content on consignment page was unsuccessful")
         self.click(self._add_question_confirm, "The add question to offer confirm button in offer details on consignment page wasn't visible")
 

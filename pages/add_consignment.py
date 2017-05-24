@@ -71,6 +71,7 @@ class AddConsignmentPage(BasePage):
     _first_payment_date_field = (By.XPATH, "/html/body/div[1]/div[3]/div[4]/div[3]/div[1]/div[2]/div[1]/table/tbody/tr[2]/td[3]")
     _edit_consignment_result_field = (By.XPATH, "/html/body/div[8]/div/div[1]/div[1]/div/div/div")
     _after_adding_consignment_text_field = (By.CSS_SELECTOR, "div.header")
+    _view_consignments_header = (By.XPATH, "//a[2]/h2")
 
     def __init__(self, driver):
         super(AddConsignmentPage, self).__init__(driver, self._title)
@@ -132,7 +133,7 @@ class AddConsignmentPage(BasePage):
         #     self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
         try:
             self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
-            WebDriverWait(self.get_driver(), 10).until(EC.text_to_be_present_in_element(self._after_adding_consignment_text_field, u"została wystawiona!"), u"The text <została wystawiona> didn't appear on page after adding consignment, probably the consignment wasn't added")
+            WebDriverWait(self.get_driver(), 10).until(EC.text_to_be_present_in_element(self._view_consignments_header, u"Przeglądaj przesyłki"), u"The text <Przeglądaj przesyłki> didn't appear on page after adding consignment, probably the consignment wasn't added")
         except:
             self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
         return self._title_uuid
@@ -204,12 +205,13 @@ class AddConsignmentPage(BasePage):
         self.clear_field_and_send_keys(self._receive_date_to_value, self._receive_date_to_field)
         self.click(self._consignment_title_field, "The consignment title field on edit consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys(u"Katowice, Polska", self._send_city_field, "The attempt to enter <Katowice> into send city field on edit consignment page was unsuccessful")
-        sleep(2)
-        self.click(self._placeholder_results1)
+        sleep(1)
+        self.click(self._consignment_title_field, "The consignment title field on edit consignment page couldn't be clicked or wasn't visible")
+        # self.click(self._placeholder_results1)
         self.click(self._receive_city_field, "The receive city field on edit consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys(u"Poznań, Polska", self._receive_city_field, "The attempt to enter <Poznań> into receive city field on edit consignment page was unsuccessful")
-        sleep(2)
-        self.click(self._placeholder_results2)
+        sleep(1)
+        # self.click(self._placeholder_results2)
         self.click(self._consignment_title_field, "The consignment title field on edit consignment page couldn't be clicked or wasn't visible")
         # if str(datetime.date.today().day) == 30:
         #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")

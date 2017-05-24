@@ -99,8 +99,8 @@ class ProfilePage(BasePage):
     _random_withdraw_cause = (By.XPATH, "//div[%s]/div/label"%randint(2,5))
     _withdraw_consignment_submit = (By.CSS_SELECTOR, "html.no-js body.dimmable.dimmed.scrolling div.ui.dimmer.modals.page.transition.visible.active div.ui.small.modal.scrolling.transition.visible.active div.content form.ui.form div.ui.basic.segment button#RejectAuction_reject.ui.right.floated.primary.button")
     _first_consignment_enter = (By.XPATH, "//div[2]/p/a")
-    _withdraw_first_offer = (By.PARTIAL_LINK_TEXT, "Wycofaj ofertę")
-    _withdraw_first_offer_confirm = (By.XPATH, "//div[2]/div/div[2]/a")
+    _withdraw_first_offer = (By.PARTIAL_LINK_TEXT, u"Wycofaj ofertę")
+    _withdraw_first_offer_confirm = (By.LINK_TEXT, u"Wycofaj")
     _unactual_tab = (By.PARTIAL_LINK_TEXT, u"Nieaktualne")
     _my_offers_menu = (By.XPATH, "//a[3]/h4")
     _first_consignment_issue_again = (By.XPATH, "//a[contains(text(),'Wystaw ponownie')]")
@@ -143,7 +143,7 @@ class ProfilePage(BasePage):
     _second_car_type_dropdown = (By.XPATH, "//div[7]/div/div[2]/div/div")
     _random_second_car_type_button = (By.XPATH, "//div/div[2]/div/div/div[2]/div[%s]"%randint(2,16))
     _second_car_capacity_dropdown = (By.XPATH, "//div[7]/div/div[2]/div[2]/div")
-    _random_second_car_capacity_button = (By.XPATH, "//div[2]/div[2]/div/div[2]/div[%s]"%randint(2,7))
+    _random_second_car_capacity_button = (By.XPATH, "//div[2]/div[2]/div/div[2]/div[%s]"%randint(1,6))
     _second_car_number_field = (By.ID, "company_profile_vehicles_1_quantity")
     _second_car_number_value = randint(1,4)
     _company_description_field = (By.XPATH, "//textarea")
@@ -297,6 +297,7 @@ class ProfilePage(BasePage):
         self.click(self._second_car_type_dropdown, "The second car type dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         self.click(self._random_second_car_type_button, "The random second car type button on second car type dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         self.click(self._second_car_capacity_dropdown, "The second car capacity dropdown couldn't be clicked or wasn't visible on edit provider profile page")
+        sleep(1)
         self.click(self._random_second_car_capacity_button, "The second car capacity button on car capacity dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         self.clear_field_and_send_keys(self._second_car_number_value, self._second_car_number_field, "The attempt to enter second car number value into second car number field on edit provider profile page was unsuccessful")
         self.clear_field_and_send_keys(self._company_description_value, self._company_description_field, "The attempt to enter company description value into company description field on edit provider profile page was unsuccessful")
@@ -357,6 +358,7 @@ class ProfilePage(BasePage):
             except TimeoutException:
                 break
         self.click(self._notifications_countries_custom_dropdown, "The notifications countries custom dropdown couldn't be clicked or wasn't visible on edit provider notifications page")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._random_notifications_countries_custom_button))
         self.click(self._random_notifications_countries_custom_button, "The random notifications countries custom button on notifications countries custom dropdown couldn't be clicked or wasn't visible on edit provider notifications page")
         self.click(self._save_notifications_button, "The save notifications changes button couldn't be clicked or wasn't visible on edit provider notifications page")
 
