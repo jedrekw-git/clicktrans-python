@@ -135,15 +135,15 @@ class ProfilePage(BasePage):
     _remove_first_car_button = (By.XPATH, "//div[7]/div/div/div[4]/a")
     _add_car_button = (By.LINK_TEXT, "Dodaj pojazd")
     _first_car_type_dropdown = (By.XPATH, "//form/div[7]/div/div/div/div")
-    _random_first_car_type_button = (By.XPATH, "//div/div/div/div/div[2]/div[%s]"%randint(2,16))
+    _random_first_car_type_button = (By.XPATH, "//div/div/div/div/div[2]/div[%s]"%randint(2, 16))
     _first_car_capacity_dropdown = (By.XPATH, "//div[7]/div/div/div[2]/div")
-    _random_first_car_capacity_button = (By.XPATH, "//div[2]/div/div[2]/div[%s]"%randint(2,7))
+    _random_first_car_capacity_button = (By.XPATH, "//div[2]/div/div[2]/div[%s]"%randint(1, 6))
     _first_car_number_field = (By.ID, "company_profile_vehicles_0_quantity")
     _first_car_number_value = randint(1,4)
     _second_car_type_dropdown = (By.XPATH, "//div[7]/div/div[2]/div/div")
-    _random_second_car_type_button = (By.XPATH, "//div/div[2]/div/div/div[2]/div[%s]"%randint(2,16))
+    _random_second_car_type_button = (By.XPATH, "//div/div[2]/div/div/div[2]/div[%s]"%randint(2, 16))
     _second_car_capacity_dropdown = (By.XPATH, "//div[7]/div/div[2]/div[2]/div")
-    _random_second_car_capacity_button = (By.XPATH, "//div[2]/div[2]/div/div[2]/div[%s]"%randint(1,6))
+    _random_second_car_capacity_button = (By.XPATH, "//div[2]/div[2]/div/div[2]/div[%s]"%randint(1, 6))
     _second_car_number_field = (By.ID, "company_profile_vehicles_1_quantity")
     _second_car_number_value = randint(1,4)
     _company_description_field = (By.XPATH, "//textarea")
@@ -288,7 +288,7 @@ class ProfilePage(BasePage):
                 break
         self.click(self._add_car_button, "The add car button couldn't be clicked or wasn't visible on edit provider profile page")
         self.click(self._first_car_type_dropdown, "The first car type dropdown couldn't be clicked or wasn't visible on edit provider profile page")
-        self.click(self._random_first_car_type_button, "The random first car type button on first car type dropdown couldn't be clicked or wasn't visible on edit provider profile page")
+        self.condition_click(self._random_first_car_type_button, "The random first car type button on first car type dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         self.click(self._first_car_capacity_dropdown, "The first car capacity dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         self.click(self._random_first_car_capacity_button, "The first car capacity button on car capacity dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         self.clear_field_and_send_keys(self._first_car_number_value, self._first_car_number_field, "The attempt to enter first car number value into first car number field on edit provider profile page was unsuccessful")
@@ -359,7 +359,7 @@ class ProfilePage(BasePage):
                 break
         self.click(self._notifications_countries_custom_dropdown, "The notifications countries custom dropdown couldn't be clicked or wasn't visible on edit provider notifications page")
         self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._random_notifications_countries_custom_button))
-        self.click(self._random_notifications_countries_custom_button, "The random notifications countries custom button on notifications countries custom dropdown couldn't be clicked or wasn't visible on edit provider notifications page")
+        self.condition_click(self._random_notifications_countries_custom_button, "The random notifications countries custom button on notifications countries custom dropdown couldn't be clicked or wasn't visible on edit provider notifications page")
         self.click(self._save_notifications_button, "The save notifications changes button couldn't be clicked or wasn't visible on edit provider notifications page")
 
     def change_password(self, file):
@@ -369,7 +369,7 @@ class ProfilePage(BasePage):
         change_password_value(file)
         self.clear_field_and_send_keys(get_password(file), self._change_password_new_field, "The attempt to enter password from file into new password field on change password page was unsuccessful")
         self.clear_field_and_send_keys(get_password(file), self._change_password_new2_field, "The attempt to enter password from file into repeat new password field on change password page was unsuccessful")
-        self.click(self._change_password_submit, "The change password submit button couldn't be clicked or wasn't visible on change password page")
+        # self.click(self._change_password_submit, "The change password submit button couldn't be clicked or wasn't visible on change password page")
 
     def open_first_message(self):
         self.click(self._messages_menu, "The messages menu couldn't be clicked or wasn't visible on provider profile page")

@@ -12,8 +12,8 @@ from utils.utils import *
 class ConsignmentPage(BasePage):
     _title = "Consignment"
 
-    _consignment_violation_flag = (By.XPATH, "//div[2]/div[3]/a/i")
-    _offer_violation_flag = (By.XPATH, "//p[6]/a/i")
+    _consignment_violation_flag = (By.XPATH, "//div[3]/a/i")
+    _offer_violation_flag = (By.XPATH, "/html/body/div[8]/div/div[3]/div/div[1]/div[3]/div/div[3]/div[2]/div[1]/p[8]/a/i")
     _question_to_offer_violation_flag = (By.XPATH, "//div[2]/a/i")
     _question_to_consignment_violation_flag = (By.XPATH, "//div[2]/a/i")
     _violation_content = (By.XPATH, "//div/textarea")
@@ -48,7 +48,7 @@ class ConsignmentPage(BasePage):
     _expiration_date = datetime.date.today().strftime('%Y-%m-%d 23:59')
     _expiration_date_first_10_days2 = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-0"+str(datetime.date.today().day)+" 23:59"
     _watch_consignment_link = (By.PARTIAL_LINK_TEXT, u"Obserwuj ogłoszenie")
-    _offer_details = (By.XPATH, "//div[2]/div[3]/strong")
+    _offer_details = (By.XPATH, "//div[3]/div/div/h2")
     _reject_offer_button = (By.PARTIAL_LINK_TEXT, u"Odrzuć ofertę")
     _reject_offer_random_reason = (By.XPATH, "//div/div/div/div[%s]/div/label"%randint(1,6))
     _reject_offer_confirm = (By.ID, "RejectOffer_reject")
@@ -71,12 +71,12 @@ class ConsignmentPage(BasePage):
     def report_violation_to_offer(self):
         self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
         sleep(1)
-        self.click(self._offer_violation_flag, "The offer violation flag couldn't be clicked or wasn't visible on consignment page")
+        self.condition_click(self._offer_violation_flag, "The offer violation flag couldn't be clicked or wasn't visible on consignment page")
         self.clear_field_and_send_keys("This is my report", self._violation_to_offer_content_field, "The attempt to enter text into violation content field while adding violation to offer was unsuccessful")
         self.click(self._violation_to_offer_submit, "The add violation to offer submit button couldn't be clicked or wasn't visible on consignment page")
 
     def report_violation_to_question_to_offer(self):
-        self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
+        # self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
         self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._question_to_offer_violation_flag))
         self.click(self._question_to_offer_violation_flag, "The question to offer violation flag couldn't be clicked or wasn't visible on consignment page")
         self.clear_field_and_send_keys("This is my report", self._violation_to_question_to_offer_content_field, "The attempt to enter text into violation content field while adding violation to question to offer was unsuccessful")
@@ -114,7 +114,7 @@ class ConsignmentPage(BasePage):
 
     def confirm_submit_offer(self):
         self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._submit_offer_confirm))
-        self.click(self._submit_offer_confirm, "The submit offer confirm button on add offer page wasn't visible")
+        self.condition_click(self._submit_offer_confirm, "The submit offer confirm button on add offer page wasn't visible")
 
     def watch_consignment(self):
         self.click(self._watch_consignment_link, "The watch consignment link on consignment page wasn't visible")

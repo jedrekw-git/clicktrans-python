@@ -112,7 +112,7 @@ class AddConsignmentPage(BasePage):
         sleep(2)
         self.click(self._placeholder_results2)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
-
+        sleep(1)
         # if str(datetime.date.today().day) == 30:
         #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")
         # elif str(datetime.date.today().day) == 31:
