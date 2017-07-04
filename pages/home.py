@@ -16,6 +16,7 @@ class HomePage(BasePage):
 
     def open_home_page(self):
         self.get(self._url_https)
+        # self.get(self._url)
         # self.get_driver().Navigate().GoToUrl(self._url_https)
         # alert = WebDriverWait(self.get_driver(), 10).until(EC.alert_is_present())
         # alert.authenticateUsing()

@@ -57,7 +57,7 @@ class AddConsignmentPage(BasePage):
     _budget = (By.ID, "EditAuction_budget")
     _additional_info = (By.ID, "EditAuction_description")
     _save_edit_consignment = (By.XPATH, "//input[@value='Zapisz zmiany']")
-    _view_added_consignment_button = (By.XPATH, "//div/div/div/div/div/a[2]")
+    _view_added_consignment_button = (By.XPATH, "//a[contains(text(),'Zobacz przesyłkę')]")
     _consignment_title_result_page = (By.XPATH, "//div/div/div/div/div/div/a")
     _consignment_title_result_page_after_payment = (By.XPATH, "/html/body/div[1]/div[3]/div[2]/div[2]/div[2]/div[1]/div/div[2]/strong/a")
     _first_offer = (By.XPATH, "//button")
@@ -69,7 +69,7 @@ class AddConsignmentPage(BasePage):
     _payu_accept_button = (By.XPATH, "//input")
     _payu_valid_authorization = (By.XPATH, "/html/body/div/div[2]/div/div[1]/div/table/tbody/tr/td[1]/form/input[1]")
     _first_payment_date_field = (By.XPATH, "/html/body/div[1]/div[3]/div[4]/div[3]/div[1]/div[2]/div[1]/table/tbody/tr[2]/td[3]")
-    _edit_consignment_result_field = (By.XPATH, "/html/body/div[8]/div/div[1]/div[1]/div/div/div")
+    _edit_consignment_result_field = (By.XPATH, "//span")
     _after_adding_consignment_text_field = (By.CSS_SELECTOR, "div.header")
     _view_consignments_header = (By.XPATH, "//a[2]/h2")
 

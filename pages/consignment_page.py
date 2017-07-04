@@ -48,7 +48,7 @@ class ConsignmentPage(BasePage):
     _expiration_date = datetime.date.today().strftime('%Y-%m-%d 23:59')
     _expiration_date_first_10_days2 = str(datetime.date.today().year)+"-"+str(datetime.date.today().month)+"-0"+str(datetime.date.today().day)+" 23:59"
     _watch_consignment_link = (By.PARTIAL_LINK_TEXT, u"Obserwuj ogłoszenie")
-    _offer_details = (By.XPATH, "//div[3]/div/div/h2")
+    _offer_details = (By.XPATH, "//div[3]/div/div[3]/strong")
     _reject_offer_button = (By.PARTIAL_LINK_TEXT, u"Odrzuć ofertę")
     _reject_offer_random_reason = (By.XPATH, "//div/div/div/div[%s]/div/label"%randint(1,6))
     _reject_offer_confirm = (By.ID, "RejectOffer_reject")

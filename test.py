@@ -38,6 +38,7 @@ class SmokeTest(unittest.TestCase):
 
     def test_add_new_consignment_not_activated_user_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
+        sleep(20)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
         registeration_page = home_page.header.continue_to_registration_page()
@@ -87,7 +88,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(add_consignment_page._title_uuid, view_consignments_page.get_page_source(), u"THe consignment title didn't appear on added consignment page")
         Assert.contains(u"Wrocław, Polska", view_consignments_page.get_page_source(), u"The text <Wrocław, Polska> didn't appear on added consignment page")
         Assert.contains(u'Radom', view_consignments_page.get_page_source(), u"The text <Warszawa, Polska> didn't appear on added consignment page")
-        Assert.contains(u'351.00  km', view_consignments_page.get_page_source(), u"The text <347.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
+        Assert.contains(u'376.00  km', view_consignments_page.get_page_source(), u"The text <376.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
