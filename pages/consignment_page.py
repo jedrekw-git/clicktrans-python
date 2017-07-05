@@ -13,7 +13,7 @@ class ConsignmentPage(BasePage):
     _title = "Consignment"
 
     _consignment_violation_flag = (By.XPATH, "//div[3]/a/i")
-    _offer_violation_flag = (By.XPATH, "/html/body/div[8]/div/div[3]/div/div[1]/div[3]/div/div[3]/div[2]/div[1]/p[8]/a/i")
+    _offer_violation_flag = (By.XPATH, "//p/a/i")
     _question_to_offer_violation_flag = (By.XPATH, "//div[2]/a/i")
     _question_to_consignment_violation_flag = (By.XPATH, "//div[2]/a/i")
     _violation_content = (By.XPATH, "//div/textarea")

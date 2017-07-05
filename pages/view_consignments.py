@@ -42,14 +42,15 @@ class ViewConsignmentsPage(BasePage):
 
     def check_categories(self):
         self.click(self._category_parcels, "The category <Parcels> button couldn't be clicked or wasn't visible on view consignments page")
-        self.click(self._search_in_region, "The <Search in region> button couldn't be clicked or wasn't visible on view consignments page")
+        self.condition_click(self._search_in_region, "The <Search in region> button couldn't be clicked or wasn't visible on view consignments page")
         self.send_keys("m", self._province_field)
         self.send_keys("a", self._province_field)
         self.send_keys("z", self._province_field)
+        sleep(1)
         self.send_keys("o", self._province_field)
         sleep(1)
         self.send_keys("w", self._province_field)
-        sleep(3)
+        sleep(4)
         # self.send_keys('\b', self._province_field)
         self.condition_click(self._province_dropdown_first_result, "The attempt to click first result on province dropdown on view consignments page was unsuccessful")
         self.click(self._province_posting_in_selected_region_checkbox, "The province posting in selected region checkbox on view consignments page couldn't be clicked or wasn't visible")

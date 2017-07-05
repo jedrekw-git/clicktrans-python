@@ -242,8 +242,8 @@ class ProfilePage(BasePage):
         self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._commission_reason_field))
         self.send_keys_to_element(self.find_element(self._commission_reason_field), get_random_string(10))
         # self.send_keys(get_random_string(10), self._commission_reason_field, "THe attempt to enter random commission payback reason was unsuccessful")
-        self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._commission_confirmation_button))
-        self.click(self._commission_confirmation_button, "The commission payback confirmation button in my offers menu in user profile couldn't be clicked or wasn't visible")
+        # self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._commission_confirmation_button))
+        self.condition_click(self._commission_confirmation_button, "The commission payback confirmation button in my offers menu in user profile couldn't be clicked or wasn't visible")
 
     def edit_provider_profile(self):
         self.click(self._provider_profile_button, "The provider edit profile button couldn't be clicked or wasn't visible in provider profile")
@@ -323,7 +323,7 @@ class ProfilePage(BasePage):
         self.click(self._save_button, "The save changes button couldn't be clicked or wasn't visible on edit provider data page")
 
     def edit_provider_company_data(self):
-        self.click(self._provider_profile_button, "The provider edit profile button couldn't be clicked or wasn't visible in provider profile")
+        self.condition_click(self._provider_profile_button, "The provider edit profile button couldn't be clicked or wasn't visible in provider profile")
         self.click(self._company_data_tab, "The company data tab couldn't be clicked or wasn't visible on edit provider profile page")
         self.clear_field_and_send_keys(get_random_string(10), self._company_name, "The attempt to enter random string into company name field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys(get_random_string(10), self._company_krs, "The attempt to enter random string into company krs field on provider edit company datapage was unsuccessful")
@@ -340,7 +340,7 @@ class ProfilePage(BasePage):
         self.click(self._company_data_save_button, "The company data save changes button couldn't be clicked or wasn't visible on edit provider company data page")
 
     def edit_provider_notifications(self):
-        self.click(self._provider_profile_button, "The provider edit profile button couldn't be clicked or wasn't visible in provider profile")
+        self.condition_click(self._provider_profile_button, "The provider edit profile button couldn't be clicked or wasn't visible in provider profile")
         self.click(self._notification_settings_tab, "The notification settings tab couldn't be clicked or wasn't visible on edit provider profile page")
         self.click(self._random_notification_period_radio, "The random notification period radio couldn't be clicked or wasn't visible on edit provider notifications page")
         self.click(self._notification_category_custom_radio, "The notification category custom radio couldn't be clicked or wasn't visible on edit provider notifications page")
@@ -369,7 +369,7 @@ class ProfilePage(BasePage):
         change_password_value(file)
         self.clear_field_and_send_keys(get_password(file), self._change_password_new_field, "The attempt to enter password from file into new password field on change password page was unsuccessful")
         self.clear_field_and_send_keys(get_password(file), self._change_password_new2_field, "The attempt to enter password from file into repeat new password field on change password page was unsuccessful")
-        # self.click(self._change_password_submit, "The change password submit button couldn't be clicked or wasn't visible on change password page")
+        self.click(self._change_password_submit, "The change password submit button couldn't be clicked or wasn't visible on change password page")
 
     def open_first_message(self):
         self.click(self._messages_menu, "The messages menu couldn't be clicked or wasn't visible on provider profile page")
@@ -454,7 +454,7 @@ class ProfilePage(BasePage):
         self.click(self._first_transaction_submit_commentary_button, "The first transaction submit commentary button in commentaries menu in user profile couldn't be clicked or wasn't visible")
 
     def store_provider_data(self):
-        self.click(self._provider_profile_button, "The provider edit profile button couldn't be clicked or wasn't visible in provider profile")
+        self.condition_click(self._provider_profile_button, "The provider edit profile button couldn't be clicked or wasn't visible in provider profile")
         self.click(self._my_data_tab, "The my data tab couldn't be clicked or wasn't visible in provider profile")
         self.name1 = self.get_text(self._provider_data_saved_name)
         self.tel = self.get_text(self._provider_data_saved_tel)

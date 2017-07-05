@@ -190,7 +190,6 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Zgłoszenie zostało odnotowane", consignment.get_page_source(), u"The text <Zgłoszenie zostało odnotowane> didn't appear on consignment page after reporting violation")
 
-# There's no possibility to report violation to consignment, there's no flag
 
     def test_report_violation_to_offer_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
