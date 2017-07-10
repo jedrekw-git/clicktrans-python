@@ -945,7 +945,7 @@ class SmokeTest(unittest.TestCase):
         from mailer import Message
 
         message = Message(From="jedrzej.wojcieszczyk@testuj.pl",
-                          To=["sergii.demianchuk@Clicktrans.pl", "2.michal.b@clicktrans.pl"])
+                          To=["sergii.demianchuk@Clicktrans.pl", "2.michal.b@clicktrans.pl", "dariusz.grycz@clicktrans.pl", "sebastian.nieciecki@clicktrans.pl"])
         message.Subject = "Raport Clicktrans3 Testy Automatyczne Jenkins"
         message.Html = """<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p>Cześć!<br>
            Oto wygenerowany automatycznie raport z testów Clicktrans 3<br><br>
