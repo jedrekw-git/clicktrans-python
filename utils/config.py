@@ -5,8 +5,8 @@ USERNAME = os.environ.get('SAUCE_USERNAME', "testuj")
 ACCESS_KEY = os.environ.get('SAUCE_ACCESS_KEY', "0029898f-54be-48b2-9166-9306282bef0c")
 sauce = SauceClient(USERNAME, ACCESS_KEY)
 
-USER = "testujpl2o2"
-PASSWORD = "testujpl"
+USER = "testujplprokonto"
+PASSWORD = "testuj88"
 
 PROVIDER_USER = "damian-wiklina"
 PROVIDER_PASSWORD = "testuj88"
@@ -17,7 +17,7 @@ PROVIDER_PASSWORD3 = "testuj88"
 PROVIDER_USER2 = "BRUM-BRUM86"
 PROVIDER_PASSWORD2 = "testuj88"
 
-CHANGE_PASSWORD_USER = "testujplprokonto"
+CHANGE_PASSWORD_USER = "testujpl2prokonto"
 
 # browsers = [{"platform": "Windows 8.1",
 #              "browserName": "firefox",
