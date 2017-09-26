@@ -9,6 +9,8 @@ from time import sleep
 from utils.config import *
 from utils.utils import *
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 
 
@@ -36,7 +38,7 @@ class ProfilePage(BasePage):
     _phone_field = (By.ID, "user_edit_phone")
     _change_phone = get_random_integer(9)
     _save_button = (By.ID, "user_edit_submit")
-    _company_data_save_button = (By.ID, "company_details_submit")
+    _company_data_save_button = (By.CSS_SELECTOR, "html.no-js body div.ui.container.main-container div.ui.stackable.grid div.twelve.wide.column div.ui.bottom.attached.segment.company-details form.ui.form div button#company_details_submit.ui.large.primary.button")
     _my_data_tab = (By.XPATH, "//div[2]/div/a[2]")
     _company_data_tab = (By.XPATH, "//div[2]/div/a[3]")
     _notification_settings_tab = (By.LINK_TEXT, "Ustawienia powiadomień")
@@ -54,6 +56,8 @@ class ProfilePage(BasePage):
     _company_building = (By.ID, "company_details_address_buildingNr")
     _company_www = (By.ID, "company_details_website")
     _company_description = (By.ID, "company_description")
+    _company_upload_file_button = (By.XPATH, '//*[@id="lcn-file-uploader-1"]/div/div[2]/input')
+    _company_uploaded_file_button = (By.XPATH, '//*[@id="lcn-file-uploader-1"]/div/ul/li/div/img')
     _random_notification_period_radio = (By.XPATH, "//div[%s]/div/label"%randint(2,6))
     _notification_category_custom_radio = (By.XPATH, "//div[2]/div/div/div/label")
     _notification_category_dropdown = (By.XPATH, "//div/div/div[2]/div[2]/div/div")
@@ -113,7 +117,7 @@ class ProfilePage(BasePage):
     _set_executed_submit = (By.XPATH, "//div[2]/div/div[2]/a")
     _commission_payback_tab = (By.PARTIAL_LINK_TEXT, u"Zwroty prowizji")
     _commission_payback_request_link = (By.XPATH, "//td[6]/div/div[2]/a")
-    _commission_reason_field = (By.CSS_SELECTOR, 'html.no-js body.dimmable.dimmed.scrolling div.ui.dimmer.modals.page.transition.visible.active div.ui.modal.transition.visible.active.scrolling div.content form.ui.form div.ui.segments div.ui.horizontal.segments.grid div.ui.segment.seven.wide.column div.field textarea#AddRefund_descriptionCompany')
+    _commission_reason_field = (By.CSS_SELECTOR, "html.no-js body.dimmable.dimmed.scrolling div.ui.dimmer.modals.page.transition.visible.active div.ui.modal.transition.visible.active.scrolling div.content form.ui.form div.ui.segments div.ui.horizontal.segments.grid div.ui.segment.seven.wide.column div.field textarea#AddRefund_descriptionCompany")
     _commission_confirmation_button = (By.CSS_SELECTOR, "html.no-js body.dimmable.dimmed.scrolling div.ui.dimmer.modals.page.transition.visible.active div.ui.modal.transition.visible.active.scrolling div.actions div.ui.primary.button")
     # _messages_menu = (By.XPATH, "//div[6]/div/div/ul/li[2]/a")
     _messages_menu = (By.PARTIAL_LINK_TEXT, u"Wiadomości")
@@ -181,7 +185,8 @@ class ProfilePage(BasePage):
     _submit_distinguish_consignment = (By.ID, "add_auction_button")
     # _provider_my_consignments_menu = (By.XPATH, "//div[6]/div/div/ul/li[4]/a")
     _provider_my_consignments_menu = (By.PARTIAL_LINK_TEXT, u"Moje przesyłki")
-    _executed_result_field = (By.XPATH, "/html/body/div[7]/div")
+    _executed_result_field = (By.XPATH, "//div[@class='ui success message']")
+    _changes_saved_field = (By.XPATH, "//div[9]/div")
 
     def __init__(self, driver):
         super(ProfilePage, self).__init__(driver, self._title)
@@ -195,7 +200,7 @@ class ProfilePage(BasePage):
         self.click(self._language_polish, "The language <Polish> on language dropdown couldn't be clicked or waesn't visible on user edit profile page")
         self.click(self._my_data_country_dropdown, "The my data country dropdown couldn't be clicked or waesn't visible on user edit profile page")
         self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._random_country_button))
-        self.click(self._random_country_button, "The random country button on country dropdown couldn't be clicked or waesn't visible on user edit profile page")
+        self.condition_click(self._random_country_button, "The random country button on country dropdown couldn't be clicked or waesn't visible on user edit profile page")
         self.clear_field_and_send_keys(self._change_street, self._street_field, "The attempt to enter new street name into street field on user edit profile page was unsuccessful")
         self.clear_field_and_send_keys(self._change_building_number, self._building_number_field, "The attempt to enter new building number into building number field on user edit profile page was unsuccessful")
         self.clear_field_and_send_keys(self._change_postal_code, self._postal_code_field, "The attempt to enter new postal code into postal code field on user edit profile page was unsuccessful")
@@ -239,7 +244,7 @@ class ProfilePage(BasePage):
         self.click(self._my_offers_menu, "The my offers menu in user profile couldn't be clicked or wasn't visible")
         self.click(self._commission_payback_tab, "The commission payback tab in my offers menu in user profile couldn't be clicked or wasn't visible")
         self.click(self._commission_payback_request_link, "The commission payback request link in my offers menu in user profile couldn't be clicked or wasn't visible")
-        self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._commission_reason_field))
+        # self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._commission_reason_field))
         self.send_keys_to_element(self.find_element(self._commission_reason_field), get_random_string(10))
         # self.send_keys(get_random_string(10), self._commission_reason_field, "THe attempt to enter random commission payback reason was unsuccessful")
         # self.get_driver().execute_script("return arguments[0].scrollIntoView(true);", self.find_element(self._commission_confirmation_button))
@@ -307,7 +312,7 @@ class ProfilePage(BasePage):
         sleep(2)
         self.click(self._issue_VAT_NP_invoices_dropdown, "The issue VAT NP invoices dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         self.click(self._random_issue_VAT_NP_invoices_button, "The random issue VAT NP invoices button on issue VAT NP invoices dropdown couldn't be clicked or wasn't visible on edit provider profile page")
-        self.click(self._issue_VAT_invoices_dropdown, "The issue VAT invoices dropdown couldn't be clicked or wasn't visible on edit provider profile page")
+        self.condition_click(self._issue_VAT_invoices_dropdown, "The issue VAT invoices dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         self.click(self._random_issue_VAT_invoices_button, "The random issue VAT invoices button on issue VAT invoices dropdown couldn't be clicked or wasn't visible on edit provider profile page")
         self.clear_field_and_send_keys(get_random_integer(1), self._employee_number_field, "The attempt to enter random integer into employee number field on edit provider profile page was unsuccessful")
         self.clear_field_and_send_keys(get_random_integer(1), self._driver_number_field, "The attempt to enter random integer into driver number field on edit provider profile page was unsuccessful")
@@ -330,14 +335,18 @@ class ProfilePage(BasePage):
         self.clear_field_and_send_keys(get_random_integer(10), self._company_nip, "The attempt to enter random integer into company nip field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys(self._change_phone, self._company_mobile, "The attempt to enter random integer into company mobile number field on provider edit company data page was unsuccessful")
         self.click(self._company_country_dropdown, "The company country dropdown couldn't be clicked or wasn't visible on edit provider company data page")
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._random_company_country_button))
         self.click(self._random_company_country_button, "The random country on company country dropdown couldn't be clicked or wasn't visible on edit provider company data page")
         self.clear_field_and_send_keys(self._change_street, self._company_street, "The attempt to enter random string into company street field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys(get_random_integer(2), self._company_building, "The attempt to enter random integer into company building number field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys(get_random_string(9), self._company_city, "The attempt to enter random string into company city field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys(self._change_postal_code, self._company_postal, "The attempt to enter random postal code into company postal code field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys("www."+get_random_string(5)+".pl", self._company_www, "The attempt to enter random www address into company www field on provider edit company data page was unsuccessful")
-        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._company_data_save_button))
-        self.click(self._company_data_save_button, "The company data save changes button couldn't be clicked or wasn't visible on edit provider company data page")
+        # self.send_keys_to_element(self.find_element(self._company_upload_file_button), os.path.join(os.path.abspath(''),"img.jpg"))
+        # WebDriverWait(self.get_driver(), 20).until(EC.text_to_be_present_in_element(self._company_uploaded_file_button, ".jpg"), "File was not uploaded on provider edit company data page")
+        # self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._company_data_save_button))
+        self.click(self._company_data_save_button)
+        # self.click(self._company_data_save_button, "The company data save changes button couldn't be clicked or wasn't visible on edit provider company data page")
 
     def edit_provider_notifications(self):
         self.condition_click(self._provider_profile_button, "The provider edit profile button couldn't be clicked or wasn't visible in provider profile")

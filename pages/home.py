@@ -10,6 +10,7 @@ class HomePage(BasePage):
     _url_https = "https://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/"
     _url2 = "http://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/app_dev.php/"
     _url_test = "https://clicktrans_dev:czx1mcc713d@www.dev.clicktrans.pl/"
+    _url_testowe = "https://clicktrans_dev:czx1mcc713d@testowe.clicktrans.pl/"
 
     def __init__(self, driver):
         super(HomePage, self).__init__(driver, self._title, self._url)
@@ -28,3 +29,6 @@ class HomePage(BasePage):
         # self.send_keys(password)
         # self.accept_alert()
         return self
+
+    def open_page_testowe(self):
+        self.get(self._url_testowe)

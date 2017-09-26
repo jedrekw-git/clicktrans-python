@@ -24,7 +24,7 @@ run_locally = True
 class SmokeTest(unittest.TestCase):
 
     def test_add_new_consignment_not_logged_in_should_succeed(self):
-        home_page = HomePage(self.driver).open_home_page()
+        home_page = HomePage(self.driver).open_page_testowe()
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
         Assert.contains(u"Jeszcze tylko chwila...", add_consignment_page.get_page_source(), u"The text <Jeszcze tylko chwila> didn't appear on confirmation page after entering congigment details consignment, probably the consignment details were wrongly entered")
@@ -88,7 +88,7 @@ class SmokeTest(unittest.TestCase):
         Assert.contains(add_consignment_page._title_uuid, view_consignments_page.get_page_source(), u"THe consignment title didn't appear on added consignment page")
         Assert.contains(u"Wrocław, Polska", view_consignments_page.get_page_source(), u"The text <Wrocław, Polska> didn't appear on added consignment page")
         Assert.contains(u'Radom', view_consignments_page.get_page_source(), u"The text <Warszawa, Polska> didn't appear on added consignment page")
-        Assert.contains(u'376.00  km', view_consignments_page.get_page_source(), u"The text <376.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
+        Assert.contains(u'357.00  km', view_consignments_page.get_page_source(), u"The text <376.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
 
@@ -378,6 +378,7 @@ class SmokeTest(unittest.TestCase):
         account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         profile_page = home_page.header.open_profile_page()
         profile_page.edit_provider_profile()
+        sleep(2)
 
         Assert.contains(u"Zmiany zostały zapisane.", profile_page.get_page_source(), u"The text <Zmiany zostały zapisane.> didn't appear on profile page after editing provider profile")
         Assert.equal(profile_page._route_from_value, profile_page.get_value(profile_page._route_from_field), u"The edited route <From> value didn't appear on profile page after editing provider profile")
@@ -395,11 +396,12 @@ class SmokeTest(unittest.TestCase):
 
     def test_edit_provider_company_data_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        account_page = home_page.header.login(PROVIDER_USER3, PROVIDER_PASSWORD3)
+        account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
         profile_page = home_page.header.open_profile_page()
         profile_page.edit_provider_company_data()
 
         Assert.contains(u"Zmiany zostały zapisane.", profile_page.get_page_source(), u"The text <Zmiany zostały zapisane.> didn't appear on profile page after editing provider company data")
+        # WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(profile_page._changes_saved_field, u"Zmiany zostały zapisane."), u"The text <Zmiany zostały zapisane.> didn't appear on profile page after editing provider company data")
         Assert.contains(u"Dane na Twoim koncie oczekują na sprawdzenie przez pracownika Clicktrans.pl. Do weryfikacji danych może być potrzebne nadesłanie dokumentów potwierdzających. Powiadomimy Cię o tym e-mailem.", profile_page.get_page_source(), u"The text <Dane na Twoim koncie oczekują na sprawdzenie przez pracownika Clicktrans.pl. Do weryfikacji danych może być potrzebne nadesłanie dokumentów potwierdzających. Powiadomimy Cię o tym e-mailem> disn't appear on profile page after editing provider company data")
 
     def test_edit_provider_notifications_should_succeed(self):

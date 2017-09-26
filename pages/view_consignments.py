@@ -22,7 +22,7 @@ class ViewConsignmentsPage(BasePage):
     _auction_search = (By.ID, "AuctionSearch_title")
     _auction_search_button = (By.ID, "AuctionSearch_submit")
     _first_result = (By.XPATH, "//h3/a")
-    _first_result_posting_province = (By.XPATH, "//span")
+    _first_result_posting_province = (By.XPATH, "//td[3]/span")
     _title_uuid = 1
 
     def __init__(self, driver):
