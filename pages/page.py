@@ -63,6 +63,7 @@ class Page(object):
         # self.get_driver().execute_script("window.scrollTo(0, {0})".format(ycoord))
         # wait = WebDriverWait(self.get_driver(), 10, poll_frequency=.2)
         # wait.until(expected_conditions.element_to_be_clickable(locator))
+        self.scroll_element_to_middle_of_page(locator)
         element.click()
 
     def click1(self, locator):
@@ -147,3 +148,13 @@ class Page(object):
         else:
             element = self.wait_for_visibility(locator_click, info, timeout)
             element.click()
+
+    def if_visible_click(self, locator):
+        if self.find_element(locator).is_displayed():
+            self.click(locator)
+        else:
+            pass
+
+    def scroll_element_to_middle_of_page(self, locator):
+        self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(locator))
+        self.get_driver().execute_script("window.scrollBy(0, -400);")

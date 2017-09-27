@@ -2,6 +2,7 @@
 from pages.base import BasePage
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
 class HomePage(BasePage):
@@ -11,12 +12,14 @@ class HomePage(BasePage):
     _url2 = "http://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/app_dev.php/"
     _url_test = "https://clicktrans_dev:czx1mcc713d@www.dev.clicktrans.pl/"
     _url_testowe = "https://clicktrans_dev:czx1mcc713d@testowe.clicktrans.pl/"
+    _old_browser_close_alert = (By.CSS_SELECTOR, "i.close.icon")
 
     def __init__(self, driver):
         super(HomePage, self).__init__(driver, self._title, self._url)
 
     def open_home_page(self):
         self.get(self._url_https)
+        self.if_visible_click(self._old_browser_close_alert)
         # self.get(self._url)
         # self.get_driver().Navigate().GoToUrl(self._url_https)
         # alert = WebDriverWait(self.get_driver(), 10).until(EC.alert_is_present())

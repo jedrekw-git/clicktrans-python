@@ -24,7 +24,7 @@ run_locally = True
 class SmokeTest(unittest.TestCase):
 
     def test_add_new_consignment_not_logged_in_should_succeed(self):
-        home_page = HomePage(self.driver).open_page_testowe()
+        home_page = HomePage(self.driver).open_home_page()
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
         Assert.contains(u"Jeszcze tylko chwila...", add_consignment_page.get_page_source(), u"The text <Jeszcze tylko chwila> didn't appear on confirmation page after entering congigment details consignment, probably the consignment details were wrongly entered")
@@ -38,7 +38,6 @@ class SmokeTest(unittest.TestCase):
 
     def test_add_new_consignment_not_activated_user_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
-        sleep(20)
         add_consignment_page = home_page.header.add_consignment_page()
         add_consignment_page.new_furniture_consignment()
         registeration_page = home_page.header.continue_to_registration_page()

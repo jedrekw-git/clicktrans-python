@@ -342,7 +342,7 @@ class ProfilePage(BasePage):
         self.clear_field_and_send_keys(get_random_string(9), self._company_city, "The attempt to enter random string into company city field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys(self._change_postal_code, self._company_postal, "The attempt to enter random postal code into company postal code field on provider edit company data page was unsuccessful")
         self.clear_field_and_send_keys("www."+get_random_string(5)+".pl", self._company_www, "The attempt to enter random www address into company www field on provider edit company data page was unsuccessful")
-        # self.send_keys_to_element(self.find_element(self._company_upload_file_button), os.path.join(os.path.abspath(''),"img.jpg"))
+        self.send_keys_to_element(self.find_element(self._company_upload_file_button), os.path.join(os.path.abspath(''),"img.jpg"))
         # WebDriverWait(self.get_driver(), 20).until(EC.text_to_be_present_in_element(self._company_uploaded_file_button, ".jpg"), "File was not uploaded on provider edit company data page")
         # self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._company_data_save_button))
         self.click(self._company_data_save_button)
