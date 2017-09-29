@@ -917,7 +917,7 @@ class SmokeTest(unittest.TestCase):
         plt.axis('equal')
         print "\n WYKRES:\n", filename
         plt.savefig(filename)
-        text_file = open("Clicktrans3testoweRaportScreeny.txt", "a")
+        text_file = open("Clicktrans3RaportScreeny.txt", "a")
         text_file.write("<br><br>Wykres statystyczny: <img src=""http://ci.testuj.pl/job/Clicktrans3testowe/ws/screendumps/"+self._saved_filename_plot+".png>")
         text_file.close()
 
@@ -927,7 +927,7 @@ class SmokeTest(unittest.TestCase):
             method=self._testMethodName)
         print 'screenshot:', filename
         self.driver.get_screenshot_as_file(filename)
-        text_file = open("Clicktrans3testoweRaportScreeny.txt", "a")
+        text_file = open("Clicktrans3RaportScreeny.txt", "a")
         text_file.write("<br><br>{method} Screenshot and HTML:<br>".format(
             method=self._testMethodName)+"<br>Screenshot: <a href=""http://ci.testuj.pl/job/Clicktrans3testowe/ws/screendumps/"+self._saved_filename+".png>"+self._saved_filename+"</a>")
         text_file.close()
@@ -937,7 +937,7 @@ class SmokeTest(unittest.TestCase):
         print 'page HTML:', filename
         with open(filename, 'w') as f:
             f.write(self.driver.page_source.encode('utf-8'))
-        text_file = open("Clicktrans3testoweRaportScreeny.txt", "a")
+        text_file = open("Clicktrans3RaportScreeny.txt", "a")
         text_file.write("<br>Html: <a href=""http://ci.testuj.pl/job/Clicktrans3testowe/ws/screendumps/"+self._saved_filename+".html>"+self._saved_filename+"</a>")
         text_file.close()
 
@@ -955,7 +955,7 @@ class SmokeTest(unittest.TestCase):
         sender = Mailer('smtp.gmail.com', use_tls=True, usr='maildoklientow@gmail.com', pwd='useme1988')
         sender.send(message)
 
-open("Clicktrans3testoweRaportScreeny.txt", 'w').close()
+open("Clicktrans3RaportScreeny.txt", 'w').close()
 suite = unittest.TestLoader().loadTestsFromTestCase(SmokeTest)
 outfile = open("Clicktrans3testoweReportLogi.html", "wb")
 runner = HTMLTestRunner(stream=outfile, title='Test Report', description='Clicktrans3 Testowe', verbosity=2)

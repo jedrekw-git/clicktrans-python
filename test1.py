@@ -918,7 +918,7 @@ class SmokeTest(unittest.TestCase):
         print "\n WYKRES:\n", filename
         plt.savefig(filename)
         text_file = open("Clicktrans3RaportScreeny.txt", "a")
-        text_file.write("<br><br>Wykres statystyczny: <a href=""http://ci.testuj.pl/job/Clicktrans3/ws/screendumps/"+self._saved_filename_plot+".png>Wykres</a>")
+        text_file.write("<br><br>Wykres statystyczny: <img src=""http://ci.testuj.pl/job/Clicktrans3/ws/screendumps/"+self._saved_filename_plot+".png>")
         text_file.close()
 
     def take_screenshot(self):
