@@ -917,8 +917,8 @@ class SmokeTest(unittest.TestCase):
         plt.axis('equal')
         print "\n WYKRES:\n", filename
         plt.savefig(filename)
-        text_file = open("Clicktrans3RaportScreeny.txt", "a")
-        text_file.write("<br><br>Wykres statystyczny: <a href=""http://ci.testuj.pl/job/Clicktrans3/ws/screendumps/"+self._saved_filename_plot+".png>Wykres</a>")
+        text_file = open("Clicktrans3testoweRaportScreeny.txt", "a")
+        text_file.write("<br><br>Wykres statystyczny: <img src=""http://ci.testuj.pl/job/Clicktrans3testowe/ws/screendumps/"+self._saved_filename_plot+".png>")
         text_file.close()
 
     def take_screenshot(self):
@@ -927,9 +927,9 @@ class SmokeTest(unittest.TestCase):
             method=self._testMethodName)
         print 'screenshot:', filename
         self.driver.get_screenshot_as_file(filename)
-        text_file = open("Clicktrans3RaportScreeny.txt", "a")
+        text_file = open("Clicktrans3testoweRaportScreeny.txt", "a")
         text_file.write("<br><br>{method} Screenshot and HTML:<br>".format(
-            method=self._testMethodName)+"<br>Screenshot: <a href=""http://ci.testuj.pl/job/Clicktrans3/ws/screendumps/"+self._saved_filename+".png>"+self._saved_filename+"</a>")
+            method=self._testMethodName)+"<br>Screenshot: <a href=""http://ci.testuj.pl/job/Clicktrans3testowe/ws/screendumps/"+self._saved_filename+".png>"+self._saved_filename+"</a>")
         text_file.close()
 
     def dump_html(self):
@@ -937,8 +937,8 @@ class SmokeTest(unittest.TestCase):
         print 'page HTML:', filename
         with open(filename, 'w') as f:
             f.write(self.driver.page_source.encode('utf-8'))
-        text_file = open("Clicktrans3RaportScreeny.txt", "a")
-        text_file.write("<br>Html: <a href=""http://ci.testuj.pl/job/Clicktrans3/ws/screendumps/"+self._saved_filename+".html>"+self._saved_filename+"</a>")
+        text_file = open("Clicktrans3testoweRaportScreeny.txt", "a")
+        text_file.write("<br>Html: <a href=""http://ci.testuj.pl/job/Clicktrans3testowe/ws/screendumps/"+self._saved_filename+".html>"+self._saved_filename+"</a>")
         text_file.close()
 
     def _send_email(self):
@@ -947,18 +947,18 @@ class SmokeTest(unittest.TestCase):
 
         message = Message(From="jedrzej.wojcieszczyk@testuj.pl",
                           To=["sergii.demianchuk@Clicktrans.pl", "2.michal.b@clicktrans.pl", "dariusz.grycz@clicktrans.pl", "sebastian.nieciecki@clicktrans.pl"])
-        message.Subject = "Raport Clicktrans3 Testy Automatyczne Jenkins"
+        message.Subject = "Raport Clicktrans3 Testowe Testy Automatyczne Jenkins"
         message.Html = """<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p>Cześć!<br>
-           Oto wygenerowany automatycznie raport z testów Clicktrans 3<br><br>
-           Tabela raportowa z logami wykonanych testów, a pod nią linki do screenshotów i kodu html testów które nie przeszły oraz wykres statystyczny:  <a href="http://ci.testuj.pl/job/Clicktrans3/ws/Clicktrans3ReportLogi.html">Tabela z logami, screenshoty i wykres</a></p>"""
+           Oto wygenerowany automatycznie raport z testów Clicktrans 3 Testowe<br><br>
+           Tabela raportowa z logami wykonanych testów, a pod nią linki do screenshotów i kodu html testów które nie przeszły oraz wykres statystyczny:  <a href="http://ci.testuj.pl/job/Clicktrans3testowe/ws/Clicktrans3testoweReportLogi.html">Tabela z logami, screenshoty i wykres</a></p>"""
 
         sender = Mailer('smtp.gmail.com', use_tls=True, usr='maildoklientow@gmail.com', pwd='useme1988')
         sender.send(message)
 
-open("Clicktrans3RaportScreeny.txt", 'w').close()
+open("Clicktrans3testoweRaportScreeny.txt", 'w').close()
 suite = unittest.TestLoader().loadTestsFromTestCase(SmokeTest)
-outfile = open("Clicktrans3ReportLogi.html", "wb")
-runner = HTMLTestRunner(stream=outfile, title='Test Report', description='Clicktrans3', verbosity=2)
+outfile = open("Clicktrans3testoweReportLogi.html", "wb")
+runner = HTMLTestRunner(stream=outfile, title='Test Report', description='Clicktrans3 Testowe', verbosity=2)
 runner.run(suite)
 
      # htmltestrunner.main()
