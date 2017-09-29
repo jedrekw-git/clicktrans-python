@@ -22,7 +22,7 @@ class HeaderRegion(Page):
     # _base_url = "http://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/app_dev.php/"
     _logout_button = (By.LINK_TEXT, u"Wyloguj się")
     _continue_to_registration_page_button = (By.LINK_TEXT, u'Zarejestruj się >>')
-    _base_url = HomePage._url
+    _base_url = HomePage._base_url
     # _base_url = HomePage._url_https
 
     def login(self, login, password):

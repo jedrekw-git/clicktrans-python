@@ -19,7 +19,6 @@ class HomePage(BasePage):
 
     def open_home_page(self):
         self.get(self._url_https)
-        self.if_visible_click(self._old_browser_close_alert)
         # self.get(self._url)
         # self.get_driver().Navigate().GoToUrl(self._url_https)
         # alert = WebDriverWait(self.get_driver(), 10).until(EC.alert_is_present())
@@ -31,7 +30,10 @@ class HomePage(BasePage):
         # self.send_keys(Keys.TAB)
         # self.send_keys(password)
         # self.accept_alert()
+        HomePage._base_url = self._url_https
         return self
 
     def open_page_testowe(self):
         self.get(self._url_testowe)
+        HomePage._base_url = self._url_testowe
+        return self
