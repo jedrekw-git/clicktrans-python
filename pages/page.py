@@ -53,7 +53,7 @@ class Page(object):
             WebDriverWait(self.get_driver(), 0).until(
                 EC.presence_of_element_located(locator), info)
         except:
-            raise TimeoutException
+            raise TimeoutException(info)
         self.get_driver().implicitly_wait(30)
 
     def send_keys(self, value_to_send, locator, info="field was not visible"):

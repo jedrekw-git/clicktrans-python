@@ -8,11 +8,11 @@ from utils.config import *
 import os
 from datetime import datetime
 from time import sleep
+from change_password import *
 from time import gmtime, strftime
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from change_password import *
-from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 SCREEN_DUMP_LOCATION = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), 'screendumps'
@@ -816,10 +816,308 @@ class SmokeTest(unittest.TestCase):
 
         Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source(), u"The text <Hasło zostało zmienione> didn't appear or profile page after changing password")
 
-    def test_zz_generate_plot_and_send_email(self):
-        self._save_plot()
-        # self._convert_to_html()
-        self._send_email()
+    # def test_user_add_new_consignment_urgent_and_highlited_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_urgent()
+    #     add_consignment_page.set_highlited()
+    #     add_consignment_page.save_transport()
+    #
+    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
+    #
+    #     add_consignment_page.pay_with_test_payment()
+    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
+    #
+    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
+    #
+    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
+    #     else:
+    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #
+    # def test_user_add_new_consignment_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_urgent()
+    #     add_consignment_page.save_transport()
+    #
+    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
+    #
+    #     add_consignment_page.pay_with_test_payment()
+    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
+    #
+    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
+    #
+    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
+    #     else:
+    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #
+    # def test_user_add_new_consignment_highlited_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_highlited()
+    #     add_consignment_page.save_transport()
+    #
+    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
+    #
+    #     add_consignment_page.pay_with_test_payment()
+    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
+    #
+    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
+    #
+    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
+    #     else:
+    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #
+    # def test_user_login_while_adding_new_consignment_set_highlited_and_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_urgent()
+    #     add_consignment_page.set_highlited()
+    #     add_consignment_page.save_transport()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #
+    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
+    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
+    #
+    #     add_consignment_page.pay_with_test_payment()
+    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
+    #
+    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
+    #
+    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
+    #     else:
+    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #
+    # def test_user_login_while_adding_new_consignment_set_highlited_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_highlited()
+    #     add_consignment_page.save_transport()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #
+    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
+    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
+    #
+    #     add_consignment_page.pay_with_test_payment()
+    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
+    #
+    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
+    #
+    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
+    #     else:
+    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #
+    # def test_user_login_while_adding_new_consignment_set_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_urgent()
+    #     add_consignment_page.save_transport()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #
+    #     Assert.contains(u"Twoje ogłoszenie zostało zapisane i będzie opublikowane po dokonaniu wpłaty.", add_consignment_page.get_page_source())
+    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
+    #
+    #     add_consignment_page.pay_with_test_payment()
+    #     # Assert.contains(strftime("%d.%m.%Y", gmtime()), add_consignment_page.get_first_payment_date())
+    #
+    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
+    #
+    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
+    #     else:
+    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #
+    # def test_user_after_adding_consignment_set_highlited_and_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.new_furniture_consignment()
+    #     profile_page = home_page.header.open_profile_page()
+    #     profile_page.user_open_my_consignments_menu()
+    #     profile_page.user_click_first_consignment_distinguish_button()
+    #     profile_page.set_consignment_highlited_and_urgent()
+    #     add_consignment_page.pay_with_test_payment()
+    #
+    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
+    #
+    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
+    #     else:
+    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #
+    # def test_user_after_adding_consignment_set_highlited_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.new_furniture_consignment()
+    #     profile_page = home_page.header.open_profile_page()
+    #     profile_page.user_open_my_consignments_menu()
+    #     profile_page.user_click_first_consignment_distinguish_button()
+    #     profile_page.set_consignment_highlited()
+    #     add_consignment_page.pay_with_test_payment()
+    #
+    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
+    #
+    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
+    #     else:
+    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #
+    # def test_user_after_adding_consignment_set_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(USER, PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.new_furniture_consignment()
+    #     profile_page = home_page.header.open_profile_page()
+    #     profile_page.user_open_my_consignments_menu()
+    #     profile_page.user_click_first_consignment_distinguish_button()
+    #     profile_page.set_consignment_urgent()
+    #     add_consignment_page.pay_with_test_payment()
+    #
+    #     add_consignment_page.get_consignment_title_from_result_page_after_payment()
+    #
+    #     if u"Twoja przesy\u0142ka" in add_consignment_page.get_page_source():
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #         Assert.contains(u"zosta\u0142a wystawiona! Wyr\xf3\u017cnienie og\u0142oszenia b\u0119dzie widoczne od razu po zaksi\u0119gowaniu wp\u0142aty w systemie PayU.", add_consignment_page.get_page_source())
+    #     else:
+    #         Assert.contains(u"Operacja przebiegła pomyślnie. Wyróżnienie Twojego ogłoszenia będzie widoczne od razu po zaksięgowaniu wpłaty w systemie PayU. Zobacz swoje ogłoszenie:", add_consignment_page.get_page_source())
+    #         Assert.equal(add_consignment_page.consignment_title_result_page_after_payment, add_consignment_page._title_uuid)
+    #
+    # def test_provider_add_new_consignment_urgent_and_highlited_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_urgent()
+    #     add_consignment_page.set_highlited()
+    #     add_consignment_page.save_transport()
+    #
+    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
+    #
+    # def test_provider_add_new_consignment_highlited_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_highlited()
+    #     add_consignment_page.save_transport()
+    #
+    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
+    #
+    # def test_provider_add_new_consignment_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_urgent()
+    #     add_consignment_page.save_transport()
+    #
+    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
+    #
+    # def test_provider_login_while_adding_new_consignment_set_highlited_and_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_urgent()
+    #     add_consignment_page.set_highlited()
+    #     add_consignment_page.save_transport()
+    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #
+    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
+    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
+    #
+    # def test_provider_login_while_adding_new_consignment_set_highlited_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_highlited()
+    #     add_consignment_page.save_transport()
+    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #
+    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
+    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
+    #
+    # def test_provider_login_while_adding_new_consignment_set_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.add_consignment_parcel()
+    #     add_consignment_page.set_urgent()
+    #     add_consignment_page.save_transport()
+    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #
+    #     Assert.contains(u"Twoja przesy\u0142ka zosta\u0142a wystawiona! Op\u0142ata za wyr\xf3\u017cnienie og\u0142oszenia zosta\u0142a doliczona do Twojego salda (zak\u0142adka Moje konto &gt; Rozliczenia).", add_consignment_page.get_page_source())
+    #     Assert.contains(u"Zalogowałeś się", add_consignment_page.get_page_source())
+    #
+    # def test_provider_after_adding_consignment_set_highlited_and_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.new_furniture_consignment()
+    #     profile_page = home_page.header.open_profile_page()
+    #     profile_page.provider_open_my_consignments_menu()
+    #     profile_page.provider_click_first_consignment_distinguish_button()
+    #     profile_page.set_consignment_highlited_and_urgent()
+    #
+    #     Assert.contains(u"Operacja przebiegła pomyślnie.", add_consignment_page.get_page_source())
+    #
+    # def test_provider_after_adding_consignment_set_highlited_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.new_furniture_consignment()
+    #     profile_page = home_page.header.open_profile_page()
+    #     profile_page.provider_open_my_consignments_menu()
+    #     profile_page.provider_click_first_consignment_distinguish_button()
+    #     profile_page.set_consignment_highlited()
+    #
+    #     Assert.contains(u"Operacja przebiegła pomyślnie.", add_consignment_page.get_page_source())
+    #
+    # def test_provider_after_adding_consignment_set_urgent_should_succeed(self):
+    #     home_page = HomePage(self.driver).open_page_testowe()
+    #     account_page = home_page.header.login(PROVIDER_USER, PROVIDER_PASSWORD)
+    #     add_consignment_page = home_page.header.add_consignment_page()
+    #     add_consignment_page.new_furniture_consignment()
+    #     profile_page = home_page.header.open_profile_page()
+    #     profile_page.provider_open_my_consignments_menu()
+    #     profile_page.provider_click_first_consignment_distinguish_button()
+    #     profile_page.set_consignment_urgent()
+    #
+    #     Assert.contains(u"Operacja przebiegła pomyślnie.", add_consignment_page.get_page_source())
+
+    # def test_zz_generate_plot_and_send_email(self):
+    #     self._save_plot()
+    #     self._convert_to_html()
+    #     self._send_email()
 
     def tally(self):
         return len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)
@@ -827,27 +1125,18 @@ class SmokeTest(unittest.TestCase):
     def setUp(self):
         self.timeout = 30
         if run_locally:
-            # fp = webdriver.FirefoxProfile()
-            # fp.set_preference("browser.startup.homepage", "about:blank")
-            # fp.set_preference("startup.homepage_welcome_url", "about:blank")
-            # fp.set_preference("startup.homepage_welcome_url.additional", "about:blank")
-            # fp.set_preference(" xpinstall.signatures.required", "false")
-            # fp.set_preference("toolkit.telemetry.reportingpolicy.firstRun", "false")
-            # binary = FirefoxBinary('/__stare/firefox45/firefox')
-            # self.driver = webdriver.Firefox(firefox_binary=binary, firefox_profile=fp)
+            # os.environ["webdriver.gecko.driver"] = "C:/BACKUP 2017-01/gecko/geckodriver.exe"
+            # firefox_capabilities = DesiredCapabilities.FIREFOX
+            # firefox_capabilities['binary'] = 'C:/Program Files (x86)/Mozilla Firefox'
+            # fp = webdriver.FirefoxProfile("C:/Users/jj/AppData/Roaming/Mozilla/Firefox/Profiles/woebxsbi.default-1458919598960")
+            # geckoPath = 'C:\BACKUP 2017-01\gecko\geckodriver.exe'
+            # self.driver = webdriver.Firefox(capabilities=firefox_capabilities, firefox_profile=fp)
             sr_args = ["--verbose", "--log-path=chromedriver.log"]
-            from selenium.webdriver.chrome.options import Options
-            opts = Options()
-            opts.binary_location = "/usr/bin/google-chrome"
-            # opts.binary_location = "/usr/lib/chromium-browser/chromium-browser"
-            opts.add_argument("--no-sandbox") #This make Chromium reachable
-            opts.add_argument("--no-default-browser-check") #Overrides default choices
-            opts.add_argument("--no-first-run")
-            opts.add_argument("--disable-default-apps")
-            self.driver = webdriver.Chrome(executable_path="/usr/lib/chromium-browser/chromedriver", service_args=sr_args, chrome_options=opts)
-            # self.driver = webdriver.Chrome(service_args=sr_args, chrome_options=opts)
-            self.driver.set_window_size(1024,768)
-            # self.driver.implicitly_wait(self.timeout)
+            self.driver = webdriver.Chrome(executable_path='C:\Downloads\chromedriver.exe',  service_args=sr_args)
+            # self.driver = webdriver.Firefox()
+            # self.driver.set_window_size(1024,768)
+            self.driver.maximize_window()
+            self.driver.implicitly_wait(self.timeout)
             self.errors_and_failures = self.tally()
         else:
             self.desired_capabilities['name'] = self.id()
@@ -868,100 +1157,110 @@ class SmokeTest(unittest.TestCase):
                     for ix, handle in enumerate(self.driver.window_handles):
                         self._windowid = ix
                         self.driver.switch_to.window(handle)
-                        self.take_screenshot()
-                        self.dump_html()
+                        # self.take_screenshot()
+                        # self.dump_html()
                 self.driver.quit()
 
-    def _get_filename(self):
-        timestamp = datetime.now().isoformat().replace(':', '.')[:19]
-        self._saved_filename = "{classname}.{method}-window{windowid}-{timestamp}".format(
-            classname=self.__class__.__name__,
-            method=self._testMethodName,
-            windowid=self._windowid,
-            timestamp=timestamp
-        )
-        return "{folder}/{classname}.{method}-window{windowid}-{timestamp}".format(
-            folder=SCREEN_DUMP_LOCATION,
-            classname=self.__class__.__name__,
-            method=self._testMethodName,
-            windowid=self._windowid,
-            timestamp=timestamp
-        )
+#     def _get_filename(self):
+#         timestamp = datetime.now().isoformat().replace(':', '.')[:19]
+#         self._saved_filename = "{classname}.{method}-window{windowid}-{timestamp}".format(
+#             classname=self.__class__.__name__,
+#             method=self._testMethodName,
+#             windowid=self._windowid,
+#             timestamp=timestamp
+#         )
+#         return "{folder}/{classname}.{method}-window{windowid}-{timestamp}".format(
+#             folder=SCREEN_DUMP_LOCATION,
+#             classname=self.__class__.__name__,
+#             method=self._testMethodName,
+#             windowid=self._windowid,
+#             timestamp=timestamp
+#         )
+#
+#     def _get_filename_for_plot(self):
+#         timestamp = datetime.now().isoformat().replace(':', '.')[:19]
+#         self._saved_filename_plot = "{classname}.plot-{timestamp}".format(
+#             classname=self.__class__.__name__,
+#             timestamp=timestamp
+#         )
+#         return "{folder}/{classname}.plot-{timestamp}".format(
+#             folder=SCREEN_DUMP_LOCATION,
+#             classname=self.__class__.__name__,
+#             timestamp=timestamp
+#             )
+#
+#     def _save_plot(self):
+#         import matplotlib.pyplot as plt
+#         filename = self._get_filename_for_plot() + ".png"
+#         err = len(self._resultForDoCleanups.errors)
+#         fail = len(self._resultForDoCleanups.failures)
+#
+#         # The slices will be ordered and plotted counter-clockwise.
+#         labels = 'Errors', 'Failures', 'Passes'
+#         sizes = [err, fail, 61-fail-err]
+#         colors = ['red', 'gold', 'green']
+#         explode = (0.1, 0.1, 0.1)
+#
+#         plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+#                 autopct='%1.1f%%', shadow=True, startangle=90)
+#         plt.axis('equal')
+#         print "\n WYKRES:\n", filename
+#         plt.savefig(filename)
+#         text_file = open("ClicktransRaportScreeny.txt", "a")
+#         text_file.write("<br><br>Wykres statystyczny: <a href=""http://ci.testuj.pl/job/Clicktrans/ws/screendumps/"+self._saved_filename_plot+".png>Wykres</a>")
+#         text_file.close()
+#
+#     def take_screenshot(self):
+#         filename = self._get_filename() + ".png"
+#         print "\n{method} SCREENSHOT AND HTML:\n".format(
+#             method=self._testMethodName)
+#         print 'screenshot:', filename
+#         self.driver.get_screenshot_as_file(filename)
+#         text_file = open("ClicktransRaportScreeny.txt", "a")
+#         text_file.write("<br><br>{method} SCREENSHOT AND HTML:<br>".format(
+#             method=self._testMethodName)+"<br>Screenshot: <a href=""http://ci.testuj.pl/job/Clicktrans/ws/screendumps/"+self._saved_filename+".png>"+self._saved_filename+"</a>")
+#         text_file.close()
+#
+#     def dump_html(self):
+#         filename = self._get_filename() + '.html'
+#         print 'page HTML:', filename
+#         with open(filename, 'w') as f:
+#             f.write(self.driver.page_source.encode('utf-8'))
+#         text_file = open("ClicktransRaportScreeny.txt", "a")
+#         text_file.write("<br>Html: <a href=""http://ci.testuj.pl/job/Clicktrans/ws/screendumps/"+self._saved_filename+".html>"+self._saved_filename+"</a>")
+#         text_file.close()
+#
+    # def _send_email(self):
+    #     from mailer import Mailer
+    #     from mailer import Message
+    #
+    #     message = Message(From="jedrzej.wojcieszczyk@testuj.pl",
+    #                       To=["sergii.demianchuk@clicktrans.pl", "michal.brzezinski@clicktrans.pl"])
+    #     message.Subject = "RAPORT CLICKTRANS TESTY AUTOMATYCZNE JENKINS"
+    #     message.Html = """<p>Cześć!<br>
+    #        Oto wygenerowany automatycznie raport z testów Clicktrans.pl<br>
+    #        Plik zawierający Screenshoty i kod html testów które nie przeszły oraz wykres statystyczny: <a href="http://ci.testuj.pl/job/Clicktrans/ws/ClicktransRaportScreeny.html">Screenshoty, HTML i wykres</a><br>
+    #        Tabela raportowa z logami wykonanych testów: <a href="http://ci.testuj.pl/job/Clicktrans/ws/ClicktransReportLogi.html">Tabela z logami</a></p>"""
+    #
+    #     sender = Mailer('smtp.gmail.com', use_tls=True, usr='maildoklientow@gmail.com', pwd='useme1988')
+    #     sender.send(message)
+#
+#     def _convert_to_html(self):
+#         html_file = open("ClicktransRaportScreeny.html", "a")
+#         html_file.write("<!DOCTYPE html><html><head><title>Clicktrans Report</title></head><body>")
+#         f = open('ClicktransRaportScreeny.txt')
+#         for line in f.readlines():
+#             html_file.write(line)
+#         f.close()
+#         html_file.write("</body></html>")
+#         html_file.close()
+#
+# open("ClicktransRaportScreeny.txt", 'w').close()
+# open("ClicktransRaportScreeny.html", 'w').close()
+# suite = unittest.TestLoader().loadTestsFromTestCase(SmokeTest)
+# outfile = open("ClicktransReportLogi.html", "wb")
+# runner = HTMLTestRunner(stream=outfile, title='Test Report', description='Clicktrans', verbosity=2)
+# runner.run(suite)
 
-    def _get_filename_for_plot(self):
-        timestamp = datetime.now().isoformat().replace(':', '.')[:19]
-        self._saved_filename_plot = "{classname}.plot-{timestamp}".format(
-            classname=self.__class__.__name__,
-            timestamp=timestamp
-        )
-        return "{folder}/{classname}.plot-{timestamp}".format(
-            folder=SCREEN_DUMP_LOCATION,
-            classname=self.__class__.__name__,
-            timestamp=timestamp
-            )
-
-    def _save_plot(self):
-        import matplotlib.pyplot as plt
-        filename = self._get_filename_for_plot() + ".png"
-        err = len(self._resultForDoCleanups.errors)
-        fail = len(self._resultForDoCleanups.failures)
-
-        # The slices will be ordered and plotted counter-clockwise.
-        labels = 'Errors', 'Failures', 'Passes'
-        sizes = [err, fail, 61-fail-err]
-        colors = ['red', 'gold', 'green']
-        explode = (0.1, 0.1, 0.1)
-
-        plt.pie(sizes, explode=explode, labels=labels, colors=colors,
-                autopct='%1.1f%%', shadow=True, startangle=90)
-        plt.axis('equal')
-        print "\n WYKRES:\n", filename
-        plt.savefig(filename)
-        text_file = open("Clicktrans3RaportScreeny.txt", "a")
-        text_file.write("<br><br>Wykres statystyczny: <img src=""http://ci.testuj.pl/job/Clicktrans3testowe/ws/screendumps/"+self._saved_filename_plot+".png>")
-        text_file.close()
-
-    def take_screenshot(self):
-        filename = self._get_filename() + ".png"
-        print "\n{method} Screenshot and HTML:\n".format(
-            method=self._testMethodName)
-        print 'screenshot:', filename
-        self.driver.get_screenshot_as_file(filename)
-        text_file = open("Clicktrans3RaportScreeny.txt", "a")
-        text_file.write("<br><br>{method} Screenshot and HTML:<br>".format(
-            method=self._testMethodName)+"<br>Screenshot: <a href=""http://ci.testuj.pl/job/Clicktrans3testowe/ws/screendumps/"+self._saved_filename+".png>"+self._saved_filename+"</a>")
-        text_file.close()
-
-    def dump_html(self):
-        filename = self._get_filename() + '.html'
-        print 'page HTML:', filename
-        with open(filename, 'w') as f:
-            f.write(self.driver.page_source.encode('utf-8'))
-        text_file = open("Clicktrans3RaportScreeny.txt", "a")
-        text_file.write("<br>Html: <a href=""http://ci.testuj.pl/job/Clicktrans3testowe/ws/screendumps/"+self._saved_filename+".html>"+self._saved_filename+"</a>")
-        text_file.close()
-
-    def _send_email(self):
-        from mailer import Mailer
-        from mailer import Message
-
-        message = Message(From="jedrzej.wojcieszczyk@testuj.pl",
-                          To=["sergii.demianchuk@Clicktrans.pl", "2.michal.b@clicktrans.pl", "dariusz.grycz@clicktrans.pl", "sebastian.nieciecki@clicktrans.pl"])
-        message.Subject = "Raport Clicktrans3 Testowe Testy Automatyczne Jenkins"
-        message.Html = """<head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"></head><p>Cześć!<br>
-           Oto wygenerowany automatycznie raport z testów Clicktrans 3 Testowe<br><br>
-           Tabela raportowa z logami wykonanych testów, a pod nią linki do screenshotów i kodu html testów które nie przeszły oraz wykres statystyczny:  <a href="http://ci.testuj.pl/job/Clicktrans3testowe/ws/Clicktrans3testoweReportLogi.html">Tabela z logami, screenshoty i wykres</a></p>"""
-
-        sender = Mailer('smtp.gmail.com', use_tls=True, usr='maildoklientow@gmail.com', pwd='useme1988')
-        sender.send(message)
-
-open("Clicktrans3RaportScreeny.txt", 'w').close()
-suite = unittest.TestLoader().loadTestsFromTestCase(SmokeTest)
-outfile = open("Clicktrans3testoweReportLogi.html", "wb")
-runner = HTMLTestRunner(stream=outfile, title='Test Report', description='Clicktrans3 Testowe', verbosity=2)
-runner.run(suite)
-
-     # htmltestrunner.main()
-     # unittest.main()
-     # import xmlrunner
-     # unittest.main(testRunner=xmlrunner.XMLTestRunner(output='test-reports'))
+if __name__ == '__main__':
+     unittest.main()
