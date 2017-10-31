@@ -564,18 +564,18 @@ class SmokeTest(unittest.TestCase):
         sleep(3)
 
         Assert.contains("Gratulacje", consignment.get_page_source(), u"The text <Gratulacje> didn't appear on consignment page after accepting offer")
-        Assert.contains(u"Wybrałeś ofertę Przewoźnika <b>"+PROVIDER_USER, consignment.get_page_source(), u"The text <Wybrałeś ofertę Przewoźnika <b>PROVIDER_USER_NAME> didn't appear on consignment page after accepting offer")
-        Assert.contains(u"Co dalej? Skontaktuj si\u0119 z Przewo\u017anikiem <b>"+PROVIDER_USER+u"</b> w celu realizacji us\u0142ugi transportowej:", consignment.get_page_source(), u"The text <Co dalej? Skontaktuj si\u0119 z Przewo\u017anikiem <b>PROVIDER_USER_NAME</b> w celu realizacji us\u0142ugi transportowej:> didn't appear on consignment page after accepting offer")
-        Assert.contains(u"Imi\u0119 i nazwisko:</b> "+store.name1, consignment.get_page_source(), u"The text <Imi\u0119 i nazwisko:</b> STORED_NAME_FROM_PROFILE> didn't appear on consignment page after accepting offer")
-        Assert.contains(u"tel.:</b> "+store.tel, consignment.get_page_source(), u"The text <tel.:</b> STORED_PHONE_FORM_PROFILE> didn't appear on consignment page after accepting offer")
-        Assert.contains(u"e-mail:</b> "+store.mail, consignment.get_page_source(), u"The text <e-mail:</b> STORED_EMAIL_FROM_PROFILE> didn't appear on consignment page after accepting offer")
+        Assert.contains(u"Wybrałeś ofertę Przewoźnika <strong>"+PROVIDER_USER, consignment.get_page_source(), u"The text <Wybrałeś ofertę Przewoźnika <b>PROVIDER_USER_NAME> didn't appear on consignment page after accepting offer")
+        Assert.contains(u"Skontaktuj się z nim w celu finalizacji usługi.", consignment.get_page_source(), u"The text <Skontaktuj się z nim w celu finalizacji usługi.> didn't appear on consignment page after accepting offer")
+        Assert.contains(store.name1, consignment.get_page_source(), u"The text <STORED_NAME_FROM_PROFILE> didn't appear on consignment page after accepting offer")
+        Assert.contains(store.tel, consignment.get_page_source(), u"The text <STORED_PHONE_FORM_PROFILE> didn't appear on consignment page after accepting offer")
+        Assert.contains(store.mail, consignment.get_page_source(), u"The text <STORED_EMAIL_FROM_PROFILE> didn't appear on consignment page after accepting offer")
         Assert.contains(store.www, consignment.get_page_source(), u"The text <STORED_WWW_FROM_PROFILE> didn't appear on consignment page after accepting offer")
         # Assert.contains(store.address_table_0_splitted[0]+" "+store.address_table_0_splitted[1], consignment.get_page_source(), u"The text <STORED_PROVIDER_ADDRESS_LINE_!> didn't appear on consignment page after accepting offer")
         Assert.contains(store.address_table[0], consignment.get_page_source(), u"The text <STORED_PROVIDER_ADDRESS_LINE_!> didn't appear on consignment page after accepting offer")
         Assert.contains(store.address_table[1], consignment.get_page_source(), u"The text <STORED_PROVIDER_ADDRESS_LINE_2> didn't appear on consignment page after accepting offer")
         Assert.contains(store.address_table[2], consignment.get_page_source(), u"The text <STORED_PROVIDER_ADDRESS_LINE_3> didn't appear on consignment page after accepting offer")
-        Assert.contains(u"Pobierz list przewozowy, który będzie potwierdzeniem nadania Twojej przesyłki", consignment.get_page_source(), u"The text <Pobierz list przewozowy, który będzie potwierdzeniem nadania Twojej przesyłki> didn't appear on consignment page after accepting offer")
-        Assert.contains(u"(Ogłoszenie nieaktualne. Użytkownik wybrał już ofertę)", consignment.get_page_source(), u"The text <(Ogłoszenie nieaktualne. Użytkownik wybrał już ofertę)> didn't appear on consignment page after accepting offer")
+        Assert.contains(u"Dane kontaktowe Przewoźnika zostały również wysłane na Twoją skrzynkę e-mail. Znajdziesz je także w dowolnym momencie w zakładce <strong>Moje Konto</strong>.", consignment.get_page_source(), u"The text <Dane kontaktowe Przewoźnika zostały również wysłane na Twoją skrzynkę e-mail. Znajdziesz je także w dowolnym momencie w zakładce <strong>Moje Konto</strong>.> didn't appear on consignment page after accepting offer")
+        Assert.contains(u"Pobierz list przewozowy", consignment.get_page_source(), u"The text <Pobierz list przewozowy> didn't appear on consignment page after accepting offer")
 
 #  PROVIDER ADDRESS TABLE[0] IS SHOWN WITH 2 SPACES, zgłoszone, ale poprawione splittem
 
