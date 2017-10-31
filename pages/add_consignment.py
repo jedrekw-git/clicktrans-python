@@ -157,11 +157,9 @@ class AddConsignmentPage(BasePage):
         self.click(self._consignment_title_field, "The consignment title field on edit consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys(u"Katowice, Polska", self._send_city_field, "The attempt to enter <Katowice> into send city field on edit consignment page was unsuccessful")
         sleep(2)
-        self.click(self._placeholder_results1)
         self.click(self._receive_city_field, "The receive city field on edit consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys(u"Poznań, Polska", self._receive_city_field, "The attempt to enter <Poznań> into receive city field on edit consignment page was unsuccessful")
         sleep(2)
-        self.click(self._placeholder_results2)
         self.click(self._consignment_title_field, "The consignment title field on edit consignment page couldn't be clicked or wasn't visible")
         # if str(datetime.date.today().day) == 30:
         #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on edit consignment page was unsuccessful")
@@ -275,11 +273,9 @@ class AddConsignmentPage(BasePage):
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys(u"Radom, Polska", self._send_city_field, "The attempt to enter <Warszawa> into send city field on add consignment page was unsuccessful")
         sleep(2)
-        self.click(self._placeholder_results1)
         self.click(self._receive_city_field, "The receive city field on add consignment page couldn't be clicked or wasn't visible")
         self.clear_field_and_send_keys(u"Poznań, Polska", self._receive_city_field, "The attempt to enter <Poznań> into receive city field on add consignment page was unsuccessful")
         sleep(2)
-        self.click(self._placeholder_results2)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
         # if str(datetime.date.today().day) == 30:
         #     self.clear_field_and_send_keys(self._send_date_value_next_month, self._send_date_field, "The attempt to send date to send date field on add consignment page was unsuccessful")

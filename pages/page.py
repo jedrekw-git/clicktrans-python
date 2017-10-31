@@ -19,6 +19,9 @@ class Page(object):
         # if self._title:
         #     self.is_the_current_page()
 
+    def get_driver(self):
+        return self._driver
+
     def is_the_current_page(self):
         if self._title:
             WebDriverWait(self.get_driver(), 10).until(lambda s: self.get_driver().title)
@@ -29,9 +32,13 @@ class Page(object):
         #             "Expected page title: %s. Actual page title: %s" % (self._title, self.get_driver().title))
         return True
 
-    def wait_for_visibility(self, locator, info="no error", timeout=10):
+    def wait_for_visibility(self, locator, info="no error", timeout=5):
         return WebDriverWait(self.get_driver(), timeout).until(
             expected_conditions.visibility_of_element_located(locator), info)
+
+    def wait_until_element_present(self, locator, info="no error"):
+        return WebDriverWait(self.get_driver(), 5).until(
+            expected_conditions.presence_of_element_located(locator), info)
 
     def hit_enter(self, element):
         element.send_keys(Keys.RETURN)
@@ -39,6 +46,15 @@ class Page(object):
 
     def find_element(self, locator):
         return self.get_driver().find_element(*locator)
+
+    def check_find_element(self, locator, info="no error"):
+        self.get_driver().implicitly_wait(1)
+        try:
+            WebDriverWait(self.get_driver(), 0).until(
+                EC.presence_of_element_located(locator), info)
+        except:
+            raise TimeoutException
+        self.get_driver().implicitly_wait(30)
 
     def send_keys(self, value_to_send, locator, info="field was not visible"):
         self.wait_for_visibility(locator, info)
@@ -57,7 +73,8 @@ class Page(object):
         self.find_element(locator).clear()
 
     def click(self, locator, info="click on button error", timeout=5):
-        element = self.wait_for_visibility(locator, info, timeout)
+        self.check_find_element(locator, info)
+        element = self.wait_for_visibility(locator, info)
         # self.find_element(locator).click()
         # ycoord = element.location['y']
         # self.get_driver().execute_script("window.scrollTo(0, {0})".format(ycoord))
@@ -72,8 +89,11 @@ class Page(object):
         wait = WebDriverWait(self.get_driver(), 10, poll_frequency=.2)
         wait.until(expected_conditions.visibility_of_element_located(locator)).click()
 
-    def click2(self, locator):
-        self.get_driver().execute_script("arguments[0].click();", self.find_element((locator)))
+    def click2(self, locator, info):
+            try:
+                self.get_driver().execute_script("arguments[0].click();", self.find_element((locator)))
+            except NoSuchElementException:
+                raise TimeoutException(info)
 
     def click3(self, locator):
         wait = WebDriverWait(self.get_driver(), 10)
@@ -121,9 +141,6 @@ class Page(object):
 
     def get_page_source(self):
         return self.get_driver().page_source
-
-    def get_driver(self):
-        return self._driver
 
     def get(self, url):
         return self.get_driver().get(url)

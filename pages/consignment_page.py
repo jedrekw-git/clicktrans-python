@@ -20,8 +20,8 @@ class ConsignmentPage(BasePage):
     _violation_submit = (By.ID, "user_complaint_submit")
     _violation_to_offer_content_field = (By.ID, "user_complaint_content")
     _violation_to_offer_submit = (By.ID, "user_complaint_submit")
-    _violation_to_question_to_offer_content_field = (By.XPATH, "//div[3]/div[2]/form/div/textarea")
-    _violation_to_question_to_offer_submit = (By.XPATH, "//div[3]/div[2]/form/div[2]/div[2]/div/button")
+    _violation_to_question_to_offer_content_field = (By.XPATH, "//div[4]/div[2]/form/div/textarea")
+    _violation_to_question_to_offer_submit = (By.XPATH, "//div[4]/div[2]/form/div[2]/div[2]/div/button")
     _violation_to_question_to_consignment_content_field = (By.XPATH, "//div[6]/div[2]/form/div/textarea")
     _violation_to_question_to_consignment_submit = (By.XPATH, "//div[6]/div[2]/form/div[2]/div[2]/div/button")
     _submit_offer_button = (By.XPATH, "//button")
@@ -79,6 +79,7 @@ class ConsignmentPage(BasePage):
         # self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
         self.get_driver().execute_script("return arguments[0].scrollIntoView();", self.find_element(self._question_to_offer_violation_flag))
         self.click(self._question_to_offer_violation_flag, "The question to offer violation flag couldn't be clicked or wasn't visible on consignment page")
+        sleep(2)
         self.clear_field_and_send_keys("This is my report", self._violation_to_question_to_offer_content_field, "The attempt to enter text into violation content field while adding violation to question to offer was unsuccessful")
         self.click(self._violation_to_question_to_offer_submit, "The add violation to question to offer submit button couldn't be clicked or wasn't visible on consignment page")
 
