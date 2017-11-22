@@ -22,8 +22,8 @@ class ConsignmentPage(BasePage):
     _violation_to_offer_submit = (By.ID, "user_complaint_submit")
     _violation_to_question_to_offer_content_field = (By.XPATH, "//div[4]/div[2]/form/div/textarea")
     _violation_to_question_to_offer_submit = (By.XPATH, "//div[4]/div[2]/form/div[2]/div[2]/div/button")
-    _violation_to_question_to_consignment_content_field = (By.XPATH, "//div[6]/div[2]/form/div/textarea")
-    _violation_to_question_to_consignment_submit = (By.XPATH, "//div[6]/div[2]/form/div[2]/div[2]/div/button")
+    _violation_to_question_to_consignment_content_field = (By.XPATH, "(//textarea[@id='user_complaint_content'])[2]")
+    _violation_to_question_to_consignment_submit = (By.XPATH, "(//button[@id='user_complaint_submit'])[2]")
     _submit_offer_button = (By.XPATH, "//button")
     _price = (By.ID, "AddOffer_price")
     _minimum_price = (By.ID, "AddOffer_priceMin")
@@ -62,6 +62,21 @@ class ConsignmentPage(BasePage):
     _consignment_question_reply_confirm = (By.ID, "AddAuctionMessage_send")
     _accept_offer_button = (By.LINK_TEXT, u"Akceptuj ofertę")
     _accept_offer_button2 = (By.LINK_TEXT, u"Akceptuję ofertę")
+    _quick_commision_button = (By.LINK_TEXT, u"Zmień na Szybkie Zlecenie")
+    _quick_commision_price_field = (By.ID, "SetPriceEditAuction_bookingSetPrice_price")
+    _quick_commision_price_value = get_random_integer(2)
+    _quick_commision_lenght_field = (By.ID, "SetPriceEditAuction_item_length")
+    _quick_commision_lenght_value = get_random_integer(2)
+    _quick_commision_width_field = (By.ID, "SetPriceEditAuction_item_width")
+    _quick_commision_width_value = get_random_integer(2)
+    _quick_commision_height_field = (By.ID, "SetPriceEditAuction_item_height")
+    _quick_commision_height_value = get_random_integer(2)
+    _quick_commision_weight_field = (By.ID, "SetPriceEditAuction_item_weight")
+    _quick_commision_weight_value = get_random_integer(2)
+    _quick_commision_items_number_field = (By.ID, "SetPriceEditAuction_item_itemsNumber")
+    _quick_commision_items_number_value = get_random_integer(1)
+
+
 
     def report_violation_to_consignmeent(self):
         self.click(self._consignment_violation_flag, "The consignment violation flag couldn't be clicked or didn't appear on consignment page")
@@ -161,3 +176,12 @@ class ConsignmentPage(BasePage):
 
     def show_offer_details(self):
         self.click(self._offer_details, "The offer details button couldn't be clicked or wasn't visible on consignment page")
+
+    def change_to_quick_commision(self):
+        self.click(self._quick_commision_button, "The quick commisison button on consignement page couldn't be clicked or wasn't visible")
+        self.clear_field_and_send_keys(self._quick_commision_price_value, self._quick_commision_price_field)
+        self.clear_field_and_send_keys(self._quick_commision_lenght_value, self._quick_commision_lenght_field)
+        self.clear_field_and_send_keys(self._quick_commision_width_value, self._quick_commision_width_field)
+        self.clear_field_and_send_keys(self._quick_commision_height_value, self._quick_commision_height_field)
+        self.clear_field_and_send_keys(self._quick_commision_weight_value, self._quick_commision_weight_field)
+        self.clear_field_and_send_keys(self._quick_commision_items_number_value, self._quick_commision_items_number_field)

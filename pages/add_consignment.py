@@ -44,7 +44,7 @@ class AddConsignmentPage(BasePage):
     _receive_date_value = _tomorrow.strftime('%Y-%m-%d')+" - "+_2_days_ahead.strftime('%Y-%m-%d')
     _receive_date_value_next_month = str(datetime.date.today().year)+"-"+str(datetime.date.today().month+1)+"-1 - "+str(datetime.date.today().year)+"-"+str(datetime.date.today().month+1)+"-2"
     _additional_info_button = (By.XPATH, "//div[3]/div/label")
-    _submit_consignment_button = (By.NAME, "EditAuction[submit]")
+    _submit_consignment_button = (By.ID, "EditAuction_submit")
     _consignment_length = (By.ID, "EditAuction_item_length")
     _consignment_width = (By.ID, "EditAuction_item_width")
     _consignment_height = (By.ID, "EditAuction_item_height")
@@ -70,7 +70,7 @@ class AddConsignmentPage(BasePage):
     _payu_valid_authorization = (By.XPATH, "/html/body/div/div[2]/div/div[1]/div/table/tbody/tr/td[1]/form/input[1]")
     _first_payment_date_field = (By.XPATH, "/html/body/div[1]/div[3]/div[4]/div[3]/div[1]/div[2]/div[1]/table/tbody/tr[2]/td[3]")
     _edit_consignment_result_field = (By.XPATH, "//div/div/div/span")
-    _after_adding_consignment_text_field = (By.CSS_SELECTOR, "div.header")
+    _after_adding_consignment_text_field = (By.CSS_SELECTOR, "h1")
     _view_consignments_header = (By.XPATH, "//a[2]/h2")
 
     def __init__(self, driver):
@@ -86,17 +86,17 @@ class AddConsignmentPage(BasePage):
         # self.condition_click(self._date_fixed_checkbox, "The date fixed checkbox on add consignment page couldn't be clicked or wasn't visible")
         sleep(1)
         self.get_driver().execute_script("document.getElementsByName('EditAuction[sendDate]')[0].removeAttribute('readonly',0);")
-        self.clear_field_and_send_keys(self._send_date_value, self._send_date_field)
-        self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
+        # self.clear_field_and_send_keys(self._send_date_value, self._send_date_field)
+        # self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
         self.get_driver().execute_script("document.getElementById('EditAuction_receiveDate').removeAttribute('readonly',0);")
-        self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field)
-        self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
-        # self.click(self._send_date_field)
-        # self.clear_field_and_send_keys(self._send_date_from_value, self._send_date_from_field)
-        # self.clear_field_and_send_keys(self._send_date_to_value, self._send_date_to_field)
-        # self.click(self._receive_date_field)
-        # self.clear_field_and_send_keys(self._receive_date_from_value, self._receive_date_from_field)
-        # self.clear_field_and_send_keys(self._receive_date_to_value, self._receive_date_to_field)
+        # self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field)
+        # self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
+        self.click(self._send_date_field)
+        self.clear_field_and_send_keys(self._send_date_from_value, self._send_date_from_field)
+        self.clear_field_and_send_keys(self._send_date_to_value, self._send_date_to_field)
+        self.click(self._receive_date_field)
+        self.clear_field_and_send_keys(self._receive_date_from_value, self._receive_date_from_field)
+        self.clear_field_and_send_keys(self._receive_date_to_value, self._receive_date_to_field)
         self.click(self._consignment_title_field, "The consignment title field on add consignment page couldn't be clicked or wasn't visible")
         self.if_not_visible_click(self._consignment_length, self._additional_info_button)
         # self.condition_click(self._additional_info_button, "The additional info button on add consignment page couldn't be clicked or wasn't visible")
@@ -134,11 +134,7 @@ class AddConsignmentPage(BasePage):
         #     self.clear_field_and_send_keys(self._receive_date_value_next_month, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
         # else:
         #     self.clear_field_and_send_keys(self._receive_date_value, self._receive_date_field, "The attempt to send date to receive date field on add consignment page was unsuccessful")
-        try:
-            self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
-            WebDriverWait(self.get_driver(), 10).until(EC.text_to_be_present_in_element(self._view_consignments_header, u"Przeglądaj przesyłki"), u"The text <Przeglądaj przesyłki> didn't appear on page after adding consignment, probably the consignment wasn't added")
-        except:
-            self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
+        self.click(self._submit_consignment_button, "The submit consignment button on add consignment page couldn't be clicked or wasn't visible")
         return self._title_uuid
 
     def edit_consignment_parcel(self):
