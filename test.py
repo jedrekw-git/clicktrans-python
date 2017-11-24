@@ -82,14 +82,23 @@ class SmokeTest(unittest.TestCase):
         view_consignments_page = home_page.header.view_consignments_page()
         view_consignments_page.search_for_added_consignment()
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid), u"The first consignment on view consignments page didn't match consignment title entered into search field, probably the search function didn't work properly")
-        view_consignments_page.open_added_consignment()
+        consignment = view_consignments_page.open_added_consignment()
 
         Assert.contains(add_consignment_page._title_uuid, view_consignments_page.get_page_source(), u"THe consignment title didn't appear on added consignment page")
         Assert.contains(u"Wrocław, Polska", view_consignments_page.get_page_source(), u"The text <Wrocław, Polska> didn't appear on added consignment page")
         Assert.contains(u'Radom', view_consignments_page.get_page_source(), u"The text <Warszawa, Polska> didn't appear on added consignment page")
-        Assert.contains(u'357.00  km', view_consignments_page.get_page_source(), u"The text <376.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
+        Assert.contains(u'357.00  km', view_consignments_page.get_page_source(), u"The text <357.00  km> didn't appear on added consignment page, probably the distance between cities has changed")
         Assert.contains(u'Kompleksowa usługa: transport, załadunek i rozładunek', view_consignments_page.get_page_source(), u"The text <Kompleksowa usługa: transport, załadunek i rozładunek> didn't appear on added consignment page")
         Assert.contains(u'This is my additional info', view_consignments_page.get_page_source(), u"The text <This is my additional info> didn't appear on added consignment page")
+        Assert.contains(add_consignment_page._send_date_from_value, view_consignments_page.get_text(consignment._consignement_send_date_from_field), u"The set in add consignement send date <from> didn't appear on consignement page in consignement send-receive dates field")
+        Assert.contains(add_consignment_page._send_date_to_value, view_consignments_page.get_text(consignment._consignement_send_date_to_field), u"The set in add consignement send date <to> didn't appear on consignement page in consignement send-receive dates field")
+        Assert.contains(add_consignment_page._receive_date_from_value, view_consignments_page.get_text(consignment._consignement_receive_date_from_field), u"The set in add consignement receive date <from> didn't appear on consignement page in consignement send-receive dates field")
+        Assert.contains(add_consignment_page._receive_date_to_value, view_consignments_page.get_text(consignment._consignement_receive_date_to_field), u"The set in add consignement receive date <to> didn't appear on consignement page in consignement send-receive dates field")
+        Assert.contains(add_consignment_page._consignment_length_value, view_consignments_page.get_text(consignment._consignement_length_field), u"The set in add consignement length value didn't appear on consignement page in suitable place")
+        Assert.contains(add_consignment_page._consignment_width_value, view_consignments_page.get_text(consignment._consignement_width_field), u"The set in add consignement width value didn't appear on consignement page in suitable place")
+        Assert.contains(add_consignment_page._consignment_height_value, view_consignments_page.get_text(consignment._consignement_height_field), u"The set in add consignement height value didn't appear on consignement page in suitable place")
+        Assert.contains(add_consignment_page._consignment_weight_value, view_consignments_page.get_text(consignment._consignement_weight_field), u"The set in add consignement weight value didn't appear on consignement page in suitable place")
+        Assert.contains(add_consignment_page._quantity_value, view_consignments_page.get_text(consignment._consignement_items_number_field), u"The set in add consignement items number value didn't appear on consignement page in suitable place")
 
     def test_change_consignement_to_quick_commision_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
@@ -101,10 +110,24 @@ class SmokeTest(unittest.TestCase):
         view_consignments_page.search_for_added_consignment()
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(view_consignments_page._first_result, view_consignments_page._title_uuid), u"The first consignment on view consignments page didn't match consignment title entered into search field, probably the search function didn't work properly")
         consignment = view_consignments_page.open_added_consignment()
-        consignment.provider_add_question_to_consignment()
+        consignment.change_to_quick_commision()
 
+        Assert.contains(u"Gratulacje! Twoja przesyłka została zmieniona na Szybkie Zlecenie. Wkrótce powinien zgłosić się Przewoźnik do Twojego zlecenia i poinformujemy Cię o tym mailem. Tylko najlepsi z naszych Przewoźników będą mogli wykonać Twoje zlecenie.", consignment.get_page_source(), u"the confirmation info obout successful change to quick commision on consignement page didn't show")
 
-
+        Assert.contains(consignment._quick_commision_change_price_value, consignment.get_text(consignment._added_quick_commision_price_field), u"The set quick commision price didn't appear on consignement page in added quick commision box")
+        Assert.contains(consignment._quick_commision_change_send_date_from_value, consignment.get_text(consignment._added_quick_commision_send_date_from_field), u"The set quick commision send date <from> didn't appear on consignement page in added quick commision box")
+        Assert.contains(consignment._quick_commision_change_send_date_to_value, consignment.get_text(consignment._added_quick_commision_send_date_to_field), u"The set quick commision send date <to> didn't appear on consignement page in added quick commision box")
+        Assert.contains(consignment._quick_commision_change_receive_date_from_value, consignment.get_text(consignment._added_quick_commision_receive_date_from_field), u"The set quick commision receive date <from> didn't appear on consignement page in added quick commision box")
+        Assert.contains(consignment._quick_commision_change_receive_date_to_value, consignment.get_text(consignment._added_quick_commision_receive_date_to_field), u"The set quick commision receive date <to> didn't appear on consignement page in added quick commision box")
+        Assert.contains(consignment._quick_commision_change_send_date_from_value, consignment.get_text(consignment._consignement_send_date_from_field), u"The set quick commision send date <from> didn't appear on consignement page in consignement send-receive dates field")
+        Assert.contains(consignment._quick_commision_change_send_date_to_value, consignment.get_text(consignment._consignement_send_date_to_field), u"The set quick commision send date <to> didn't appear on consignement page in consignement send-receive dates field")
+        Assert.contains(consignment._quick_commision_change_receive_date_from_value, consignment.get_text(consignment._consignement_receive_date_from_field), u"The set quick commision receive date <from> didn't appear on consignement page in consignement send-receive dates field")
+        Assert.contains(consignment._quick_commision_change_receive_date_to_value, consignment.get_text(consignment._consignement_receive_date_to_field), u"The set quick commision receive date <to> didn't appear on consignement page in consignement send-receive dates field")
+        Assert.contains(consignment._quick_commision_change_lenght_value, consignment.get_text(consignment._consignement_length_field), u"The set quick commision length value didn't appear on consignement page in suitable place")
+        Assert.contains(consignment._quick_commision_change_width_value, consignment.get_text(consignment._consignement_width_field), u"The set quick commision width value didn't appear on consignement page in suitable place")
+        Assert.contains(consignment._quick_commision_change_height_value, consignment.get_text(consignment._consignement_height_field), u"The set quick commision height value didn't appear on consignement page in suitable place")
+        Assert.contains(consignment._quick_commision_change_weight_value, consignment.get_text(consignment._consignement_weight_field), u"The set quick commision weight value didn't appear on consignement page in suitable place")
+        Assert.contains(consignment._quick_commision_change_items_number_value, consignment.get_text(consignment._consignement_items_number_field), u"The set quick commision items number value didn't appear on consignement page in suitable place")
 
     def test_register_user_should_succeed(self):
         home_page = HomePage(self.driver).open_home_page()
