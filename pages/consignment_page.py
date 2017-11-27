@@ -100,6 +100,8 @@ class ConsignmentPage(BasePage):
     _consignement_height_field = (By.XPATH, "//div[3]/div[3]/strong")
     _consignement_weight_field = (By.XPATH, "//div[4]/strong")
     _consignement_items_number_field = (By.XPATH, "//div[5]/strong")
+    _consignement_car_brand_field = (By.CSS_SELECTOR, "div.item > strong")
+    _consignement_car_weight_field = (By.XPATH, "//div[2]/strong")
 
 
 

@@ -89,7 +89,7 @@ class Page(object):
         wait = WebDriverWait(self.get_driver(), 10, poll_frequency=.2)
         wait.until(expected_conditions.visibility_of_element_located(locator)).click()
 
-    def click2(self, locator, info):
+    def click2(self, locator, info="click on button error"):
             try:
                 self.get_driver().execute_script("arguments[0].click();", self.find_element((locator)))
             except NoSuchElementException:
