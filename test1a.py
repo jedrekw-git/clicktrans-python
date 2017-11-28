@@ -858,10 +858,10 @@ class SmokeTest(unittest.TestCase):
     def test_change_password_should_succeed(self):
 
         home_page = HomePage(self.driver).open_home_page()
-        _saved_password = get_password("change_pass.txt")
+        _saved_password = get_password("change_pass1.txt")
         account_page = home_page.header.login(CHANGE_PASSWORD_USER, _saved_password)
         profile_page = home_page.header.open_profile_page()
-        profile_page.change_password("change_pass.txt")
+        profile_page.change_password("change_pass1.txt")
 
         Assert.contains(u"Hasło zostało zmienione.", profile_page.get_page_source(), u"The text <Hasło zostało zmienione> didn't appear or profile page after changing password")
 
