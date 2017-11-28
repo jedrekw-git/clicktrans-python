@@ -176,8 +176,8 @@ class ProfilePage(BasePage):
     _provider_data_saved_mail = (By.XPATH, "//tr[2]/td[2]")
     _provider_data_saved_www = (By.XPATH, "//tr[6]/td[2]")
     _provider_data_saved_address = (By.XPATH, "//tr[5]/td[2]")
-    _ask_for_offers_button = (By.XPATH, "//div[2]/div[3]/div/div/a")
-    _first_offer = (By.XPATH, "//button")
+    _ask_for_offers_button = (By.XPATH, '//*[@id="active-auctions"]/div[2]/div[1]/div/div[2]/div[3]/div/a')
+    _first_offer = (By.CSS_SELECTOR, '#best-couriers > div.ui.container.best-couriers-list > div > div:nth-child(1) > div.sixteen.wide.mobile.sixteen.wide.tablet.four.wide.computer.column.ui.left.floated > button')
     _first_consignment_distinguish_button = (By.XPATH, "//td[5]/a")
     _provider_first_consignment_distinguish_button = (By.XPATH, "//td[5]/a")
     _set_highlited_checkbox = (By.NAME, "auction_special")
@@ -479,6 +479,7 @@ class ProfilePage(BasePage):
     def ask_for_offer_for_added_consignment(self):
         self.click(self._my_consignments_menu, "The my consignments menu in user profile couldn't be clicked or wasn't visible")
         self.click(self._ask_for_offers_button, "The ask for offers button in my consignments menu in user profile couldn't be clicked or wasn't visible")
+        WebDriverWait(self.get_driver(), 10).until(EC.element_to_be_clickable(self._first_offer), u"The first offer in ask for offers in my consignments menu in user profile couldn't be clicked")
         self.click(self._first_offer, "The first offer in ask for offers in my consignments menu in user profile couldn't be clicked or wasn't visible")
 
     def set_consignment_highlited_and_urgent(self):
