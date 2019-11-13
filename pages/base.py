@@ -2,7 +2,7 @@ from pages.page import Page
 
 class BasePage(Page):
 
-    _base_url = "http://clicktrans_dev:czx1mcc713d@dev.clicktrans.pl/"
+    _base_url = "https://www.gsmarena.com/"
 
     @property
     def header(self):
